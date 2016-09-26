@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gridview_bg"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_marginBottom="@dimen/space_15"
+        android:id="@+id/welcome">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/check_out_three"
+            android:id="@+id/button3" />
+
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/space_50"
+            android:orientation="vertical"
+            >
+
+
+
+            <View
+                android:id="@+id/btnShipping"
+                android:layout_width="fill_parent"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:layout_marginTop="10dip"
+                android:background="@android:color/holo_purple"
+                />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:text="@string/slide_4_desc"
+                android:layout_marginTop="@dimen/space_5"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:inputType="textCapWords"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
+
+            <Button
+                android:id="@+id/btnsampleee"
+                android:layout_width="fill_parent"
+                android:layout_height="32dp"
+                android:textSize="20sp"
+                android:gravity="left"
+                android:paddingLeft="@dimen/space_15"
+                android:text="@string/address_you_entered"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dip"
+                android:background="@android:color/holo_purple"
+                />
+
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/space_110"
+                android:textSize="20sp"
+                android:text="@string/billing_address"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/input_register_hint" />
+
+
+
+
+            <Button
+                android:id="@+id/use_this_address"
+                android:layout_width="305dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dip"
+                android:gravity="center"
+                android:background="@android:color/holo_purple"
+                android:text="@string/use_this_address"
+                android:layout_marginLeft="@dimen/space_35"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/change_address"
+                android:layout_width="305dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dip"
+                android:layout_marginLeft="@dimen/space_35"
+                android:gravity="center"
+                android:background="@android:color/holo_purple"
+                android:text="@string/change_address"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

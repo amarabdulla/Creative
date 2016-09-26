@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gridview_bg"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_marginBottom="@dimen/space_15"
+        android:id="@+id/welcome">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/check_out_two"
+            android:id="@+id/button3" />
+
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/space_20"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <Button
+            android:id="@+id/btnShipping"
+            android:layout_width="335dp"
+            android:layout_height="42dp"
+            android:gravity="center"
+            android:layout_marginTop="10dip"
+            android:background="@android:color/holo_purple"
+            android:text="@string/shipping_address"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/fname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/hint_fname"
+            android:layout_marginTop="@dimen/space_5"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:inputType="textCapWords"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+        <EditText
+            android:id="@+id/lname"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/hint_lname"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/phone"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <EditText
+            android:id="@+id/address_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/hint_address"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <EditText
+            android:id="@+id/address_2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/hint_address_2"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/input_register"
+            android:layout_marginBottom="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/input_register_hint"
+            android:background="@android:color/white"
+            android:hint="@string/hint_city" />
+
+        <EditText
+            android:id="@+id/zip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:hint="@string/hint_zip"
+            android:inputType="text|number"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:layout_marginTop="@dimen/space_10"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/billing_address"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="#c5c5c5"
+                android:padding="10dp"
+                android:id="@+id/butto" />
+
+
+
+
+        <!-- Login Button -->
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="320dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dip"
+            android:gravity="center"
+            android:background="@android:color/holo_purple"
+            android:text="@string/next"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

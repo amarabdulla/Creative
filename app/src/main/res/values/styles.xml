@@ -1,0 +1,159 @@
+<resources>
+
+    <!-- Base application theme. -->
+   <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <!-- ScrimInsetLayout -->
+    <style name="ScrimInsetsLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="insetForegrounds">@color/nav_drawer_inset_foreground</item>
+    </style>
+
+    <!-- Material Design Navigation Drawer -->
+    <style name="NavDrawerRowLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/nav_drawer_item_row_height</item>
+        <item name="android:background">@drawable/nav_drawer_row_item_background</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="NavDrawerRowLayout.Main">
+        <item name="android:tag">@string/tag_nav_drawer_main_entry</item>
+    </style>
+
+    <style name="NavDrawerRowLayout.Secondary">
+        <item name="android:tag">@string/tag_nav_drawer_special_entry</item>
+    </style>
+
+    <style name="NavDrawerRowItemIcon">
+        <item name="android:layout_width">@dimen/nav_drawer_item_row_icon_size</item>
+        <item name="android:layout_height">@dimen/nav_drawer_item_row_icon_size</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/nav_drawer_vertical_keyline_icon_left</item>
+        <item name="colorStateList">@color/nav_drawer_row_icon</item>
+    </style>
+
+    <style name="NavDrawerRowItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/nav_drawer_item_main_text</item>
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/nav_drawer_vertical_keyline_text_left</item>
+    </style>
+
+    <style name="NavDrawerSectionSubheaderText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/nav_drawer_subheader_height</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/nav_drawer_section_subheader</item>
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/nav_drawer_vertical_keyline_icon_left</item>
+    </style>
+
+    <style name="NavDrawerAccountInfoText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="CustomTheme" parent="Theme.AppCompat.Light">
+
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+
+    </style>
+    <style name="AppSearchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="colorAccent">@color/ColorPrimaryDark</item>
+        <item name="android:icon">@drawable/transparent</item>
+    </style>
+    <style name="SampleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="colorAccent">@color/ColorPrimaryDark</item>
+        <item name="android:textColorHint">@color/white</item>
+
+    </style>
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
+    </style>
+
+    <style name="CustomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_animation</item>
+    </style>
+    <style name="ProgressDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="MaterialSearchViewStyle">
+        <!-- Background for the search bar-->
+        <item name="searchBackground">@color/theme_primary</item>
+
+        <!-- Change voice icon-->
+        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+
+        <!-- Change clear text icon-->
+        <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
+
+        <!-- Change up icon-->
+        <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
+
+        <!-- Change icon for the suggestions-->
+        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+
+        <!-- Change background for the suggestions list view-->
+        <item name="searchSuggestionBackground">@android:color/white</item>
+
+        <!-- Change text color for edit text. This will also be the color of the cursor-->
+        <item name="android:textColor">@color/theme_primary_text_inverted</item>
+
+        <!-- Change hint text color for edit text-->
+        <item name="android:textColorHint">@color/theme_secondary_text_inverted</item>
+
+        <!-- Hint for edit text-->
+        <item name="android:hint">@string/search_hint</item>
+    </style>
+
+    <style name="AppSearchThemeNew" parent="AppTheme.Base" />
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/theme_background</item>
+        <item name="android:textColorPrimary">@color/theme_icons</item>
+        <item name="actionMenuTextColor">@color/theme_icons</item>
+        <item name="android:textColorSecondary">@color/theme_icons</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+</resources>

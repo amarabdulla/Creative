@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gridview_bg"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_marginBottom="@dimen/space_15"
+        android:id="@+id/welcome">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:src="@drawable/check_out_one"
+            android:id="@+id/button3" />
+
+
+    </FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginLeft="@dimen/space_15"
+        android:layout_marginRight="@dimen/space_15"
+        android:paddingLeft="@dimen/space_25"
+        android:paddingRight="@dimen/space_25"
+        android:id="@+id/listView" />
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+    <RelativeLayout
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="@dimen/space_20"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginTop="@dimen/space_15"
+         >
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/total_quanity"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/total_quanity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/name"
+        android:layout_marginLeft="165dp"
+        android:layout_toRightOf="@+id/name"
+        android:text="1" >
+
+    </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="352dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_15"
+        >
+    <TextView
+        android:id="@+id/subtotal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:gravity="center"
+        android:textColor="#a41c9a"
+        android:textSize="18sp"
+        android:layout_marginLeft="110dp"
+        android:text="@string/sub_total"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/subtotal_text"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textColor="#a41c9a"
+            android:paddingBottom="@dimen/space_2"
+            android:layout_toRightOf="@+id/subtotal_text"
+            android:text=":100" />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="352dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/space_20"
+
+        >
+    <Button
+        android:id="@+id/check_out"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/space_15"
+        android:gravity="center"
+        android:background="@android:color/holo_purple"
+        android:text="@string/check_out"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/space_12"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/enter_promo_code_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:gravity="center"
+            android:textColor="#a41c9a"
+            android:textSize="18sp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/enter_promo_code"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/promo_code"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:paddingLeft="@dimen/space_8"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/edittext_bg"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="10dp"
+        android:hint="@string/promo_code"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/apply"
+        android:layout_width="95dp"
+        android:layout_height="42dp"
+        android:layout_alignBottom="@+id/promo_code"
+        android:background="@android:color/holo_purple"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="@dimen/space_3"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@+id/promo_code"
+       android:text="@string/apply">
+    </Button>
+</RelativeLayout>
+    <FrameLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/white" />
+
+    </FrameLayout>
+
+</LinearLayout>

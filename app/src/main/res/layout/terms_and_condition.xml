@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_activity_DrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@drawable/header"
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/menu_icon"
+                    android:layout_marginRight="@dimen/space_25"
+                    android:layout_gravity="end"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_drawer" />
+            </android.support.v7.widget.Toolbar>
+        </LinearLayout>
+        <WebView android:id="@+id/web_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    <include
+        layout="@layout/navigation_drawer"/>
+</android.support.v4.widget.DrawerLayout>

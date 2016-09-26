@@ -1,0 +1,3 @@
+include ':app', ':bouncy_text_library'
+include ':libs:ViewPagerIndicator-Library'
+project(':bouncy_text_library').projectDir = new File('libs/bouncy_text_library')
