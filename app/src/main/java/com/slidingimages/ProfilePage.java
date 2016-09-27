@@ -14,9 +14,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +49,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class ProfilePage extends ActionBarActivity implements View.OnClickListener {
     private ImageView menu_icon;
-    private TextView tc,privacy,my_order;
+//    private TextView tc,privacy,my_order;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private TextView textViewName_txt,textViewEmail_txt,textViewPhone_txt,textViewCity_txt;
@@ -61,14 +63,25 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private TextView textViewUsername,textViewEmail,textViewCity,textViewAddress1,getTextViewAddress2,textViewPhone,textViewNameBanner;
     private String username,surname,email,city,address1,address2,phone,zip;
+    ListView list;
+    String[] menu_item = {
+            "My Orders",
+            "Terms and Condition",
+            "Privacy Policy" };
+    Integer[] imageId = {
+            R.drawable.my_order_icon,
+            R.drawable.terms_icon,
+            R.drawable.privacy_icon
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.button_test);
         final String[] colors = {"#a41c9a"};
-        privacy=(TextView)findViewById(R.id.policy);
-        tc=(TextView)findViewById(R.id.tc);
-        my_order=(TextView)findViewById(R.id.my_order);
+//        privacy=(TextView)findViewById(R.id.policy);
+//        tc=(TextView)findViewById(R.id.tc);
+        list=(ListView)findViewById(R.id.list);
+//        my_order=(TextView)findViewById(R.id.my_order);
         textViewUsername=(TextView)findViewById(R.id.username);
         textViewEmail=(TextView)findViewById(R.id.email);
         textViewPhone=(TextView)findViewById(R.id.phone);
@@ -96,6 +109,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
             textViewCity_txt.setVisibility(View.GONE);
             textViewNameBanner.setText("Guest");
         }else {
+
             textViewName_txt.setVisibility(View.VISIBLE);
             textViewEmail_txt.setVisibility(View.VISIBLE);
             textViewPhone_txt.setVisibility(View.VISIBLE);
@@ -107,7 +121,31 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
             }
 
         }
+        ProfileViewCustomListAdapter adapter = new
+                ProfileViewCustomListAdapter(ProfilePage.this, menu_item, imageId);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent intent11= new Intent(ProfilePage.this,OrderList.class);
+                        startActivity(intent11);
+                        break;
+                    case 1:
+                        Intent intent= new Intent(ProfilePage.this,TermsAndCondition.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        Intent intent2= new Intent(ProfilePage.this,PrivacyPolicy.class);
+                        startActivity(intent2);
+                        break;
+                }
+            }
+        });
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         mCustomProgressDialog = new CustomProgressDialog(ProfilePage.this);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
@@ -144,6 +182,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         init_navigator();
         ProgressTask progressTask= new ProgressTask();
         progressTask.execute();
+
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -236,34 +275,34 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         menuLayoutFour.setOnClickListener(this);
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
-        tc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(ProfilePage.this,TermsAndCondition.class);
-                startActivity(intent);
-            }
-        });
-        privacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(ProfilePage.this,PrivacyPolicy.class);
-                startActivity(intent);
-            }
-        });
-        my_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Activity_Login.username.equals("")||Activity_Login.username.equals("temp")){
-                    new SweetAlertDialog(ProfilePage.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Please login")
-                            .show();
-                }else {
-                    Intent intent = new Intent(ProfilePage.this, OrderList.class);
-                    startActivity(intent);
-                    ProfilePage.this.finish();
-                }
-            }
-        });
+//        tc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent= new Intent(ProfilePage.this,TermsAndCondition.class);
+//                startActivity(intent);
+//            }
+//        });
+//        privacy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent= new Intent(ProfilePage.this,PrivacyPolicy.class);
+//                startActivity(intent);
+//            }
+//        });
+//        my_order.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Activity_Login.username.equals("")||Activity_Login.username.equals("temp")){
+//                    new SweetAlertDialog(ProfilePage.this, SweetAlertDialog.ERROR_TYPE)
+//                            .setTitleText("Please login")
+//                            .show();
+//                }else {
+//                    Intent intent = new Intent(ProfilePage.this, OrderList.class);
+//                    startActivity(intent);
+//                    ProfilePage.this.finish();
+//                }
+//            }
+//        });
     }
     public void onClick(View v) {
 

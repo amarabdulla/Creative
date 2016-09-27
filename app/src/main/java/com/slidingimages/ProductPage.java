@@ -61,6 +61,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
     private ArrayList<String> discountParseArray = new ArrayList<String>();
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray= new ArrayList<>();
+    private ArrayList<String> descArray= new ArrayList<>();
     private ImageView menu_icon;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private AHBottomNavigation bottomNavigation;
@@ -284,7 +285,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
             //Creating GridViewAdapter Object
             GridViewAdapter gridViewAdapter = new GridViewAdapter(ProductPage.this, imagesParseArray, titleParseArray,
                     sale_priceParseArray,purchase_priceParseArray,designer_nameParseArray,
-                    avaliablilityParseArray,qtyArray,discountParseArray,productIdArray);
+                    avaliablilityParseArray,qtyArray,discountParseArray,productIdArray,descArray);
 
             //Adding adapter to gridview
             gridView.setAdapter(gridViewAdapter);
@@ -323,6 +324,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                     String availability = jsonObjectUser.getString("availability");
                     String discount=jsonObjectUser.getString("discount");
                     String product_id=jsonObjectUser.getString("product_id");
+                    String desc=jsonObjectUser.getString("description");
 
 
                     titleParseArray.add(title);
@@ -333,6 +335,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                     avaliablilityParseArray.add(availability);
                     discountParseArray.add(discount);
                     productIdArray.add(product_id);
+                    descArray.add(desc);
                     
                 }
 

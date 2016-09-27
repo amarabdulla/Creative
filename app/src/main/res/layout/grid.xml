@@ -24,52 +24,59 @@
         <ImageView
             android:id="@+id/imageView1"
             android:layout_gravity="left"
-            android:layout_width="140dp"
+            android:layout_width="156dp"
             android:layout_height="220dp"
-            android:layout_marginTop="37dp"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="@dimen/space_2"
+            android:layout_marginRight="@dimen/space_2"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="2dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="240 AED"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:paddingLeft="@dimen/space_10"
-            android:textColor="#a41c9a"
+            android:textColor="@color/black"
             android:layout_gravity="left"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="310dp"
             android:id="@+id/purchase_price" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Abhaya"
-            android:textSize="10sp"
+            android:singleLine="true"
+            android:textSize="14sp"
             android:paddingLeft="@dimen/space_10"
             android:layout_gravity="left"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="290dp"
             android:id="@+id/product_name" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name by designer"
-            android:textSize="10sp"
-            android:paddingRight="@dimen/space_8"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:textStyle="bold"
             android:id="@+id/designer_name"
-            android:layout_marginTop="280dp"
-            android:layout_gravity="right" />
+            android:layout_marginTop="270dp"
+            android:layout_gravity="left" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="300 AED"
-            android:textSize="12sp"
-            android:textColor="#a41c9a"
+            android:textSize="13sp"
             android:paddingRight="@dimen/space_8"
             android:id="@+id/sale_price"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="310dp"
             android:layout_gravity="right" />
 
-        <Button
+    <!--    <Button
             android:layout_width="79dp"
             android:layout_height="33dp"
             android:text="@string/add_to_cart"
@@ -96,7 +103,7 @@
             android:id="@+id/buy_now"
             android:layout_gravity="left"
             android:layout_marginTop="320dp"
-            />
+            />-->
 
     </FrameLayout>
 </LinearLayout>

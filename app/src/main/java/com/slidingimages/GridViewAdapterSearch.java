@@ -45,7 +45,7 @@ public class GridViewAdapterSearch extends BaseAdapter {
 		TextView population;
 		ImageView flag;
 		TextView designer_name;
-		Button buy_now,add_to_cart;
+//		Button buy_now,add_to_cart;
 	}
 
 	@Override
@@ -66,12 +66,13 @@ public class GridViewAdapterSearch extends BaseAdapter {
 	public View getView(final int position, View view, ViewGroup parent) {
 		final ViewHolder holder;
 		if (view == null) {
+
 			holder = new ViewHolder();
 			view = inflater.inflate(R.layout.grid, null);
 			holder.rank = (TextView) view.findViewById(R.id.sale_price);
 			holder.country = (TextView) view.findViewById(R.id.product_name);
-			holder.buy_now =(Button) view.findViewById(R.id.buy_now);
-			holder.add_to_cart =(Button) view.findViewById(R.id.add_to_cart);
+//			holder.buy_now =(Button) view.findViewById(R.id.buy_now);
+//			holder.add_to_cart =(Button) view.findViewById(R.id.add_to_cart);
 			holder.population = (TextView) view.findViewById(R.id.purchase_price);
 			holder.designer_name = (TextView) view.findViewById(R.id.designer_name);
 			holder.flag = (ImageView) view.findViewById(R.id.imageView1);
@@ -88,52 +89,52 @@ public class GridViewAdapterSearch extends BaseAdapter {
 				.getDesigner_name());
 		// Set the results into ImageView
 		imageLoader.DisplayImage(worldpopulationlist.get(position).getProduct_image(), holder.flag);
-		holder.buy_now.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
-					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-							.setTitleText("Already added to Cart")
-							.show();
-				}else {
-					Intent intent = new Intent(mContext, LoginItemCartActivity.class);
-					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
-					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
-					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
-					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
-					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
-					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getAvailability());
-					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
-					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
-					mContext.startActivity(intent);
-				}
-			}
-		});
-		holder.add_to_cart.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
-					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-							.setTitleText("Already added to Cart")
-							.show();
-				}else {
-					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
-					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
-					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
-					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
-					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
-					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getProduct_name());
-					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
-					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
-
-					new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
-							.setTitleText("Added to Cart!")
-							.show();
-
-				}
-			}
-		});
+//		holder.buy_now.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
+//					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+//							.setTitleText("Already added to Cart")
+//							.show();
+//				}else {
+//					Intent intent = new Intent(mContext, LoginItemCartActivity.class);
+//					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
+//					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
+//					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
+//					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
+//					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
+//					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getAvailability());
+//					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
+//					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
+//					mContext.startActivity(intent);
+//				}
+//			}
+//		});
+//		holder.add_to_cart.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//
+//				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
+//					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+//							.setTitleText("Already added to Cart")
+//							.show();
+//				}else {
+//					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
+//					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
+//					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
+//					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
+//					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
+//					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getProduct_name());
+//					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
+//					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
+//
+//					new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+//							.setTitleText("Added to Cart!")
+//							.show();
+//
+//				}
+//			}
+//		});
 		// Listen for ListView Item Click
 		view.setOnClickListener(new OnClickListener() {
 

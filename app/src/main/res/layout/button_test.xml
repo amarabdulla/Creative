@@ -53,17 +53,14 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="match_parent"
-            android:layout_weight="0.6"
+            android:layout_weight="0.4"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/space_56"
             android:paddingBottom="@dimen/nav_drawer_vertical_spacing_listing"
-            android:background="@color/ActionBarSearchColor"
-            android:paddingEnd="@dimen/nav_drawer_vertical_keyline_right"
-            android:paddingLeft="@dimen/nav_drawer_vertical_keyline_icon_left"
-            android:paddingRight="@dimen/nav_drawer_vertical_keyline_right"
+            android:background="@drawable/profile_bg"
             android:paddingStart="@dimen/nav_drawer_vertical_keyline_icon_left">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/navigation_drawer_account_information"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/navigation_drawer_account_information_height"
@@ -72,21 +69,59 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/user_name"
-                    android:layout_marginLeft="@dimen/space_8"
+                    android:id="@+id/username"
+                    android:layout_marginLeft="@dimen/space_2"
                     style="@style/NavDrawerAccountInfoText"
+                    android:paddingLeft="@dimen/space_70"
+                    android:paddingTop="@dimen/space_2"
                     android:text="@string/tools_text_account_information_username"
                     tools:fontFamily="sans-serif-medium"/>
+                <TextView
+                    android:id="@+id/email_txt"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="ssssss@ddddd,fff"
+                    android:layout_centerVertical="true"
+                    android:layout_alignStart="@+id/username" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/city_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="Dubai"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/username">
+                </TextView>
+
+
+            </RelativeLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginLeft="@dimen/space_10"
                 android:id="@+id/navigation_drawer_user_account_picture_profile"
                 android:layout_width="@dimen/navigation_drawer_profile_image_size"
                 android:layout_height="@dimen/navigation_drawer_profile_image_size"
-                android:layout_above="@id/navigation_drawer_account_information"
-                android:src="@drawable/ic_account_circle_white_64dp" />
+                android:src="@drawable/ic_account_circle_white_64dp"
+                android:layout_above="@+id/navigation_drawer_account_information"
+                android:layout_alignEnd="@+id/navigation_drawer_account_information" />
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:text="123456789"
+                android:layout_marginLeft="@dimen/space_12"
+                android:layout_alignBottom="@+id/navigation_drawer_account_information"
+                android:layout_toEndOf="@+id/navigation_drawer_account_information"
+                android:layout_marginBottom="39dp">
+            </TextView>
 
         </RelativeLayout>
 
@@ -104,86 +139,12 @@
             tools:context=".PaymentPage" >
 
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView1"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/text_color"
-                android:layout_marginLeft="10dp"
-                android:text="@string/user_name"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/username"
+            <ListView
+                android:id="@+id/list"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/name"
-                android:layout_marginLeft="80dp"
-                android:layout_toRightOf="@+id/name"
-                android:textSize="16sp"
-                android:text="" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/email_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/name"
-                android:layout_below="@+id/name"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="20dp"
-                android:text="@string/hint_email"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:singleLine="true"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/email_txt"
-                android:layout_alignLeft="@+id/username"
-                android:textSize="16sp"
-                android:text=""
-                />
-            <TextView
-                android:id="@+id/phone_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView1"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="105dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/phone"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/phone_txt"
-                android:layout_marginLeft="50dp"
-                android:layout_toRightOf="@+id/phone_txt"
-                android:textSize="16sp"
-                android:text="" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/city_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textView1"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="144dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/hint_city"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
+                android:layout_height="wrap_content"/>
+       <!--     <TextView
                 android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -230,13 +191,13 @@
                 android:drawableLeft="@drawable/privacy_icon"
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/text_color" />-->
 
         </RelativeLayout>
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+   <!-- <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -264,10 +225,10 @@
             android:layout_gravity="bottom"
             android:background="@android:color/white" />
 
-    </FrameLayout>
+    </FrameLayout>-->
 
     </android.support.design.widget.CoordinatorLayout>
-<include
-        layout="@layout/navigation_drawer"/>
+<!--<include
+        layout="@layout/navigation_drawer"/>-->
 
     </android.support.v4.widget.DrawerLayout>

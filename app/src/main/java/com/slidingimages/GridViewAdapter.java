@@ -46,10 +46,11 @@ public class GridViewAdapter extends BaseAdapter {
     private ArrayList<String> discountArray = new ArrayList<String>();
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray=new ArrayList<>();
+    private ArrayList<String> descArray=new ArrayList<>();
 
     public GridViewAdapter (Context context, ArrayList<String> images, ArrayList<String> product_names,ArrayList<String> sale_prices
             ,ArrayList<String> purchase_prices, ArrayList<String> designer_names, ArrayList<String> avaliablilityArray,
-                            ArrayList<String> qtyArray,ArrayList<String> discountArray,ArrayList<String> productIdArray){
+                            ArrayList<String> qtyArray,ArrayList<String> discountArray,ArrayList<String> productIdArray,ArrayList<String> descArray){
         //Getting all the values
         this.context = context;
         this.images = images;
@@ -61,6 +62,7 @@ public class GridViewAdapter extends BaseAdapter {
         this.qtyArray = qtyArray;
         this.discountArray = discountArray;
         this.productIdArray = productIdArray;
+        this.descArray = descArray;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         imageLoader = new ImageLoader(context.getApplicationContext());
@@ -88,7 +90,7 @@ public class GridViewAdapter extends BaseAdapter {
         TextView product_name;
         TextView sale_price;
         TextView purchase_price;
-        Button buy_now,add_to_cart;
+//        Button buy_now,add_to_cart;
         TextView designer_name;
         ImageView img;
         TextView discount;
@@ -102,8 +104,8 @@ public class GridViewAdapter extends BaseAdapter {
         holder.product_name =(TextView) vi.findViewById(R.id.product_name);
         holder.sale_price =(TextView) vi.findViewById(R.id.sale_price);
         holder.purchase_price =(TextView) vi.findViewById(R.id.purchase_price);
-        holder.buy_now =(Button) vi.findViewById(R.id.buy_now);
-        holder.add_to_cart =(Button) vi.findViewById(R.id.add_to_cart);
+//        holder.buy_now =(Button) vi.findViewById(R.id.buy_now);
+//        holder.add_to_cart =(Button) vi.findViewById(R.id.add_to_cart);
         holder.designer_name =(TextView) vi.findViewById(R.id.designer_name);
         holder.img=(ImageView) vi.findViewById(R.id.imageView1);
         holder.discount=(TextView) vi.findViewById(R.id.discount) ;
@@ -119,7 +121,7 @@ public class GridViewAdapter extends BaseAdapter {
                 holder.sale_price.setText(sale_prices.get(position) + " AED");
             }
 
-        holder.buy_now.setOnClickListener(new View.OnClickListener() {
+       /* holder.buy_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (ShoppingCart.product_names.contains(product_names.get(position))){
@@ -164,7 +166,7 @@ public class GridViewAdapter extends BaseAdapter {
 
                 }
             }
-        });
+        });*/
         holder.product_name.setText(product_names.get(position));
         //DisplayImage function from ImageLoader Class
         imageLoader.DisplayImage(images.get(position), holder.img);
@@ -190,6 +192,7 @@ public class GridViewAdapter extends BaseAdapter {
                 intent.putExtra("designer_name", designer_names.get(position));
                 intent.putExtra("available", avaliablilityArray.get(position));
                 intent.putExtra("qty", qtyArray.get(position));
+                intent.putExtra("desc", descArray.get(position));
                 context.startActivity(intent);
             }
         });

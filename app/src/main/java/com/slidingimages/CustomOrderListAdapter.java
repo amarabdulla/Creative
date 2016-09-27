@@ -95,8 +95,8 @@ public class CustomOrderListAdapter  extends BaseAdapter {
             holder.product_name = (TextView) vi.findViewById(R.id.txt);
             holder.designer_name=(TextView)vi.findViewById(R.id.cur);
             holder.textWide=(TextView)vi.findViewById(R.id.text3);
-            holder.buy_now =(Button) vi.findViewById(R.id.buy_now);
-            holder.add_to_cart =(Button) vi.findViewById(R.id.add_to_cart);
+//            holder.buy_now =(Button) vi.findViewById(R.id.buy_now);
+//            holder.add_to_cart =(Button) vi.findViewById(R.id.add_to_cart);
             holder.textAddress=(TextView)vi.findViewById(R.id.text4);
             holder.image=(ImageView)vi.findViewById(R.id.imageView);
 

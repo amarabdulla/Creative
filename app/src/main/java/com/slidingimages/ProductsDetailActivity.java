@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,7 @@ public class ProductsDetailActivity extends Activity {
 	private String userName;
 	private Bundle extras;
 	private ImageLoader imageLoader;
-	private String qty_str;
+	private String qty_str,desc;
 	private Spinner qty;
 	private List<Integer> list = new ArrayList<Integer>();
 	@Override
@@ -73,6 +74,7 @@ public class ProductsDetailActivity extends Activity {
 		designer_name = extras.getString("designer_name");
 		productAvail = extras.getString("available");
 		qty_str= extras.getString("qty");
+		desc= extras.getString("desc");
 	}
 
 
@@ -98,8 +100,38 @@ public class ProductsDetailActivity extends Activity {
 		tv_price.setText("Price: " + "$" + purchase_price);
 		tv_tax.setText(sale_price);
 		tv_tax.setPaintFlags(tv_tax.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-		tv_des.setText("Test description is here designer clothes collection is the new way of industry buy now the collection");
+		tv_des.setText(Html.fromHtml(desc));
 		imageLoader.DisplayImage(productImg, detail_img);
+
+		detail_img.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+//				GridItem item = (GridItem) parent.getItemAtPosition(position);
+
+				Intent intent = new Intent(ProductsDetailActivity.this, DetailsActivity.class);
+				ImageView imageView = (ImageView) v.findViewById(R.id.detail_img);
+
+
+				// Interesting data to pass across are the thumbnail size/location, the
+				// resourceId of the source bitmap, the picture description, and the
+				// orientation (to avoid returning back to an obsolete configuration if
+				// the device rotates again in the meantime)
+
+				int[] screenLocation = new int[2];
+				imageView.getLocationOnScreen(screenLocation);
+
+				//Pass the image title and url to DetailsActivity
+				intent.putExtra("left", screenLocation[0]).
+						putExtra("top", screenLocation[1]).
+						putExtra("width", imageView.getWidth()).
+						putExtra("height", imageView.getHeight()).
+//						putExtra("title", item.getTitle()).
+						putExtra("image", productImg);
+
+				//Start details activity
+				startActivity(intent);
+			}
+		});
 
 
 		
