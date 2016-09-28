@@ -52,7 +52,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
 //    private TextView tc,privacy,my_order;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
-    private TextView textViewName_txt,textViewEmail_txt,textViewPhone_txt,textViewCity_txt;
+    private TextView textViewPhone_txt,textViewEmail_txt,textViewCity_txt;
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private CustomProgressDialog mCustomProgressDialog;
@@ -61,7 +61,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
     public static final String KEY_USERID = "user_id";
     FloatingActionButton floatingActionButton;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
-    private TextView textViewUsername,textViewEmail,textViewCity,textViewAddress1,getTextViewAddress2,textViewPhone,textViewNameBanner;
+    private TextView textViewUsername;
     private String username,surname,email,city,address1,address2,phone,zip;
     ListView list;
     String[] menu_item = {
@@ -78,18 +78,9 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.button_test);
         final String[] colors = {"#a41c9a"};
-//        privacy=(TextView)findViewById(R.id.policy);
-//        tc=(TextView)findViewById(R.id.tc);
         list=(ListView)findViewById(R.id.list);
-//        my_order=(TextView)findViewById(R.id.my_order);
         textViewUsername=(TextView)findViewById(R.id.username);
-        textViewEmail=(TextView)findViewById(R.id.email);
-        textViewPhone=(TextView)findViewById(R.id.phone);
-        textViewCity=(TextView)findViewById(R.id.city);
-        textViewNameBanner=(TextView)findViewById(R.id.user_name);
         floatingActionButton=(FloatingActionButton)findViewById(R.id.fab);
-//        textViewAddress1=(TextView)findViewById(R.id.username);
-//        getTextViewAddress2=(TextView)findViewById(R.id.username);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         String name_pref= prefs.getString("username", "null");
         String userid_pref= prefs.getString("userid", "null");
@@ -98,26 +89,20 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         }else {
             url = HomePage.FIRSTPART + "profileView?user_id=" +userid_pref;
         }
-        textViewName_txt=(TextView)findViewById(R.id.name);
         textViewEmail_txt=(TextView)findViewById(R.id.email_txt);
-        textViewPhone_txt=(TextView)findViewById(R.id.phone_txt);
+        textViewPhone_txt=(TextView)findViewById(R.id.phone);
         textViewCity_txt=(TextView)findViewById(R.id.city_txt);
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
-            textViewName_txt.setVisibility(View.GONE);
             textViewEmail_txt.setVisibility(View.GONE);
-            textViewPhone_txt.setVisibility(View.GONE);
             textViewCity_txt.setVisibility(View.GONE);
-            textViewNameBanner.setText("Guest");
         }else {
 
-            textViewName_txt.setVisibility(View.VISIBLE);
             textViewEmail_txt.setVisibility(View.VISIBLE);
-            textViewPhone_txt.setVisibility(View.VISIBLE);
             textViewCity_txt.setVisibility(View.VISIBLE);
             if ((name_pref.equals("") ||name_pref.equals("null"))){
-                textViewNameBanner.setText(Activity_Login.username);
+//                textViewNameBanner.setText(Activity_Login.username);
             }else {
-                textViewNameBanner.setText(name_pref);
+//                textViewNameBanner.setText(name_pref);
             }
 
         }
@@ -275,34 +260,6 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         menuLayoutFour.setOnClickListener(this);
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
-//        tc.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent= new Intent(ProfilePage.this,TermsAndCondition.class);
-//                startActivity(intent);
-//            }
-//        });
-//        privacy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent= new Intent(ProfilePage.this,PrivacyPolicy.class);
-//                startActivity(intent);
-//            }
-//        });
-//        my_order.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (Activity_Login.username.equals("")||Activity_Login.username.equals("temp")){
-//                    new SweetAlertDialog(ProfilePage.this, SweetAlertDialog.ERROR_TYPE)
-//                            .setTitleText("Please login")
-//                            .show();
-//                }else {
-//                    Intent intent = new Intent(ProfilePage.this, OrderList.class);
-//                    startActivity(intent);
-//                    ProfilePage.this.finish();
-//                }
-//            }
-//        });
     }
     public void onClick(View v) {
 
@@ -415,9 +372,9 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                                     @Override
                                     public void run() {
                                         textViewUsername.setText(username);
-                                        textViewCity.setText(city);
-                                        textViewEmail.setText(email);
-                                        textViewPhone.setText(phone);
+                                        textViewCity_txt.setText(city);
+                                        textViewEmail_txt.setText(email);
+                                        textViewPhone_txt.setText(phone);
                                     }
                                 });
                             } catch (JSONException e) {
@@ -429,7 +386,6 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                     {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-//                            Log.d("Error.Response", error);
                             new SweetAlertDialog(ProfilePage.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Please try again")
                                     .show();

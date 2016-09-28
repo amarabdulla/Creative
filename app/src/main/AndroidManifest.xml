@@ -49,16 +49,8 @@
         <activity android:name=".ChangeShippingAddressPage"/>
         <activity android:name=".PaymentPage"/>
         <activity android:name=".ProfilePage"/>
-        <activity
-            android:name=".NewSearch"
-            android:label="Search"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/AppSearchThemeNew"></activity>
         <activity android:name=".ShippingPage"/>
         <activity android:name=".SearchActivity"/>
-        <activity android:name=".TabSample"/>
-        <activity android:name=".TabActivity"/>
-        <activity android:name=".ColoredActivity"
             android:theme="@style/AppSearchThemeNew"/>
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by SONU on 29/08/15.
  */
-public class SlidingImage_Adapter extends PagerAdapter {
+public class BannerViewPager_Adapter extends PagerAdapter {
 
 
     private ArrayList<String> IMAGES;
@@ -23,7 +23,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
     private ImageLoader imageLoader;
 
 
-    public SlidingImage_Adapter(Context context,ArrayList<String> IMAGES) {
+    public BannerViewPager_Adapter(Context context, ArrayList<String> IMAGES) {
         this.context = context;
         this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);

@@ -70,40 +70,13 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="300 AED"
-            android:textSize="13sp"
+            android:textSize="10.5sp"
             android:paddingRight="@dimen/space_8"
             android:id="@+id/sale_price"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="313dp"
             android:layout_gravity="right" />
 
-    <!--    <Button
-            android:layout_width="79dp"
-            android:layout_height="33dp"
-            android:text="@string/add_to_cart"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:layout_marginRight="@dimen/space_2"
-            android:drawableLeft="@drawable/add_to_cart_icon"
-            android:background="#7a1572"
-            android:id="@+id/add_to_cart"
-            android:textSize="10sp"
-            android:layout_marginTop="320dp"
-            android:layout_gravity="right"
-            />
-        <Button
-            android:layout_width="74dp"
-            android:layout_height="33dp"
-            android:textAllCaps="false"
-            android:text="@string/buy_now"
-            android:layout_marginLeft="@dimen/space_2"
-            android:drawableLeft="@drawable/buy_now_icon"
-            android:background="#7a1572"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:id="@+id/buy_now"
-            android:layout_gravity="left"
-            android:layout_marginTop="320dp"
-            />-->
+
 
     </FrameLayout>
 </LinearLayout>

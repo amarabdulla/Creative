@@ -23,7 +23,7 @@ import com.squareup.picasso.Target;
 public class DetailsActivity extends ActionBarActivity {
     private static final int ANIM_DURATION = 600;
     private TextView titleTextView;
-    private SubsamplingScaleImageView imageView;
+    private ImageView imageView;
 
     private int mLeftDelta;
     private int mTopDelta;
@@ -64,10 +64,9 @@ public class DetailsActivity extends ActionBarActivity {
 //        titleTextView.setText(Html.fromHtml(title));
         imageLoader = new ImageLoader(this.getApplicationContext());
         //Set image url
-        imageView = (SubsamplingScaleImageView ) findViewById(R.id.grid_item_image);
+        imageView = (ImageView ) findViewById(R.id.grid_item_image);
 //        Picasso.with(this).load(image).into((Target) imageView);
-//        imageLoader.DisplayImage(image,imageView);
-        imageView.setImage(ImageSource.uri(image));
+        imageLoader.DisplayImage(image,imageView);
         //Set the background color to black
         frameLayout = (FrameLayout) findViewById(R.id.main_background);
         colorDrawable = new ColorDrawable(Color.BLACK);

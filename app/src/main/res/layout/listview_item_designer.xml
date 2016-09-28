@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     >
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
-        android:layout_width="185dp"
-        android:layout_height="match_parent"
+        android:layout_width="75dp"
+        android:background="@drawable/designer_circle_icon"
+        android:layout_height="60dp"
         android:contentDescription="@string/app_name"
         android:paddingTop="10dp"
         android:paddingRight="10dp"

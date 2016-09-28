@@ -197,7 +197,7 @@
 
     </LinearLayout>
 
-   <!-- <android.support.design.widget.FloatingActionButton
+   <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -225,10 +225,10 @@
             android:layout_gravity="bottom"
             android:background="@android:color/white" />
 
-    </FrameLayout>-->
+    </FrameLayout>
 
     </android.support.design.widget.CoordinatorLayout>
-<!--<include
-        layout="@layout/navigation_drawer"/>-->
+<include
+        layout="@layout/navigation_drawer"/>
 
     </android.support.v4.widget.DrawerLayout>

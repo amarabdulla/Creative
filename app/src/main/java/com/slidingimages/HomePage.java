@@ -1,37 +1,27 @@
 package com.slidingimages;
 
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -56,8 +46,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private static ViewPager mPager;
@@ -95,7 +83,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.to_delete);
+        setContentView(R.layout.home_page);
         gridView = (GridView) findViewById(R.id.gridView);
         seeAll=(TextView)findViewById(R.id.see_all) ;
         menu_icon=(ImageView) findViewById(R.id.menu_icon) ;
@@ -320,9 +308,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private void init() {
 
         mPager = (ViewPager) findViewById(R.id.pager);
-        SlidingImage_Adapter slidingImage_adapter= new SlidingImage_Adapter(HomePage.this, bannerImageArray);
-        mPager.setAdapter(slidingImage_adapter);
-        slidingImage_adapter.notifyDataSetChanged();
+        BannerViewPager_Adapter bannerViewPager_adapter = new BannerViewPager_Adapter(HomePage.this, bannerImageArray);
+        mPager.setAdapter(bannerViewPager_adapter);
+        bannerViewPager_adapter.notifyDataSetChanged();
 
         mPager.setOnClickListener(new View.OnClickListener() {
             @Override

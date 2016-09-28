@@ -98,7 +98,7 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder=new Holder();
-       final View vi=inflater.inflate(R.layout.grid, null);
+       final View vi=inflater.inflate(R.layout.layout_grid_test, null);
 
 //        vi = inflater.inflate(R.layout.grid, null);
         holder.product_name =(TextView) vi.findViewById(R.id.product_name);
@@ -136,7 +136,8 @@ public class GridViewAdapter extends BaseAdapter {
                     ShoppingCart.designer_names.add(designer_names.get(position));
                     ShoppingCart.product_images.add(images.get(position));
                     ShoppingCart.avaliablilityArray.add(avaliablilityArray.get(position));
-                    ShoppingCart.qtyArray.add(qtyArray.get(position));
+                    Shopp
+                    ingCart.qtyArray.add(qtyArray.get(position));
                     ShoppingCart.product_ids.add(productIdArray.get(position));
                     context.startActivity(intent);
                 }
@@ -173,7 +174,8 @@ public class GridViewAdapter extends BaseAdapter {
         if (!discountArray.get(position).equals("0")){
             holder.discount.setVisibility(View.VISIBLE);
             holder.discount.setText(discountArray.get(position)+"% OFF");
-            holder.discount.setBackgroundResource(R.color.red);
+
+            holder.discount.setBackgroundResource(R.color.green);
             holder.discount.setTextColor(ContextCompat.getColor(context, R.color.white));
             holder.discount.setGravity(Gravity.CENTER);
         }else {

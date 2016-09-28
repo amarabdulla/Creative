@@ -114,16 +114,7 @@
 
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/detail_des"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="5dp"
-        android:text="Description" />
+
      <Button
             android:id="@+id/detail_buy"
             android:layout_width="fill_parent"
@@ -152,6 +143,16 @@
             android:text="@string/add_to_cart"
             android:textSize="25sp"
             android:textColor="@color/white" />
+    <TextView
+        android:id="@+id/detail_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"
+        android:text="Description" />
    
 <TextView
         android:id="@+id/detail_line_2"
