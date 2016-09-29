@@ -20,8 +20,6 @@ public class CustomDesignerListAdapter extends BaseAdapter  {
     /*********** Declare Used Variables *********/
     private Activity activity;
     private static LayoutInflater inflater=null;
-//    public Resources res;
-//    ProductModelClass tempValues=null;
     int i=0;
     private ArrayList<String> images;
     private ArrayList<String> title;
@@ -86,7 +84,7 @@ public class CustomDesignerListAdapter extends BaseAdapter  {
         if(convertView==null){
 
             /****** Inflate tabitem.xml file for each row ( Defined below ) *******/
-            vi = inflater.inflate(R.layout.listview_item_designer, null);
+            vi = inflater.inflate(R.layout.designer_listview, null);
 
             /****** View Holder Object to contain tabitem.xml file elements ******/
 
