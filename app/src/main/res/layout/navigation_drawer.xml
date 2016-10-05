@@ -188,6 +188,22 @@
 
                 </FrameLayout>
 
+                <FrameLayout
+                    android:id="@+id/powered_text_lay"
+                    style="@style/NavDrawerRowLayout.Secondary">
+
+
+
+                    <TextView
+                        android:id="@+id/powered_text"
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/contact_us"
+                        android:layout_marginTop="@dimen/space_50"
+                        android:layout_marginLeft="@dimen/space_40"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
             </LinearLayout>
 
         </ScrollView>

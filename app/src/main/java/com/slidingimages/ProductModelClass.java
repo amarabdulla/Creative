@@ -10,9 +10,11 @@ public class ProductModelClass {
 	private String product_id;
 	private String discount;
 	private String qty;
+	private String desc;
+
 
 	public ProductModelClass(String sale_price, String product_name, String purchase_price,
-							 String product_image, String designer_name, String availability,String qty, String discount, String product_id) {
+							 String product_image, String designer_name, String availability,String qty, String discount, String product_id,String desc) {
 		this.sale_price = sale_price;
 		this.product_name = product_name;
 		this.purchase_price = purchase_price;
@@ -22,6 +24,7 @@ public class ProductModelClass {
 		this.product_id = product_id;
 		this.qty = qty;
 		this.discount = discount;
+		this.desc = desc;
 	}
 
 	public String getSale_price() {
@@ -60,5 +63,8 @@ public class ProductModelClass {
 
 	public String getQty() {
 		return qty;
+	}
+	public String getDesc() {
+		return desc;
 	}
 }

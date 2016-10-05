@@ -79,6 +79,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/do_you_have"
         android:textColor="@color/white"
+        android:singleLine="true"
         android:id="@+id/title_text"
         android:layout_marginTop="@dimen/space_5"
         android:layout_gravity="center_horizontal" />

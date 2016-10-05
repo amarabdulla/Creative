@@ -1,6 +1,9 @@
 package com.slidingimages;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -74,6 +77,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray= new ArrayList<>();
     private ArrayList<String> descArray= new ArrayList<>();
+    private ArrayList<String> imageLargeArray= new ArrayList<>();
     private AHBottomNavigation bottomNavigation;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private DrawerLayout mDrawerLayout;
@@ -187,10 +191,14 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
 
                         break;
                     case 4:
-                        Intent intent4= new Intent(HomePage.this,ProfilePage.class);
-                        startActivity(intent4);
+                        if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
+                            initAlertDialog();
+                        }else {
+                            Intent intent4 = new Intent(HomePage.this, ProfilePage.class);
+                            startActivity(intent4);
 
-                        HomePage.this.finish();
+                            HomePage.this.finish();
+                        }
                         break;
                 }
 
@@ -248,6 +256,30 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+
+    }
+    protected void initAlertDialog() {
+        Dialog alertDialog = new AlertDialog.Builder(this).
+                setTitle("Sign in required").
+                setMessage("To continue please sign in").
+                setIcon(R.drawable.ic_launcher).
+                setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String none = "none";
+                        Intent intent = new Intent(HomePage.this,Activity_Login.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bottomNavigation.setCurrentItem(0);
+            }
+        }).create();
+
+        alertDialog.show();
 
     }
     public void onClick(View v) {
@@ -312,13 +344,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         mPager.setAdapter(bannerViewPager_adapter);
         bannerViewPager_adapter.notifyDataSetChanged();
 
-        mPager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(HomePage.this,ProductDescriptionPage.class);
-                startActivity(intent);
-            }
-        });
+
 
         CirclePageIndicator indicator = (CirclePageIndicator)
                 findViewById(R.id.indicator);
@@ -390,7 +416,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
 
 
             //Creating GridViewAdapter Object
-            GridViewAdapter gridViewAdapter = new GridViewAdapter(HomePage.this, imagesParseArray, titleParseArray,
+            GridViewAdapter gridViewAdapter = new GridViewAdapter(HomePage.this, imagesParseArray,imageLargeArray, titleParseArray,
                     sale_priceParseArray,
                     purchase_priceParseArray,designer_nameParseArray,avaliablilityParseArray,qtyArray,discountParseArray,productIdArray,descArray);
 
@@ -441,6 +467,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
                         JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
                         String name = jsonObjectUser.getString("title");
                         String url = jsonObjectUser.getString("product_image");
+                        String url_large = jsonObjectUser.getString("product_image_l");
                         String sale_price = jsonObjectUser.getString("sale_price");
                         String purchase_price = jsonObjectUser.getString("discount_price");
                         String designer_name = jsonObjectUser.getString("designer_name");
@@ -451,6 +478,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
 
                         titleParseArray.add(name);
                         imagesParseArray.add(url);
+                        imageLargeArray.add(url_large);
                         sale_priceParseArray.add(sale_price);
                         purchase_priceParseArray.add(purchase_price);
                         designer_nameParseArray.add(designer_name);

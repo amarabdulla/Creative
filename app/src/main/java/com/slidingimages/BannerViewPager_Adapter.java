@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -53,6 +55,7 @@ public class BannerViewPager_Adapter extends PagerAdapter {
 
 //        imageView.setImageResource(IMAGES.get(position));
         imageLoader.DisplayImage(IMAGES.get(position), imageView);
+        Picasso.with(context).load(IMAGES.get(position)).placeholder(R.drawable.stub).noFade().into(imageView);
 
 
         view.addView(imageLayout, 0);

@@ -1,8 +1,11 @@
 package com.slidingimages;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -62,6 +65,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray= new ArrayList<>();
     private ArrayList<String> descArray= new ArrayList<>();
+    private ArrayList<String> imageLargeArray= new ArrayList<>();
     private ImageView menu_icon;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private AHBottomNavigation bottomNavigation;
@@ -158,9 +162,13 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                         }
                         break;
                     case 4:
-                        Intent intent4= new Intent(ProductPage.this,ProfilePage.class);
-                        startActivity(intent4);
-                        ProductPage.this.finish();
+                        if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
+                            initAlertDialog();
+                        }else {
+                            Intent intent4 = new Intent(ProductPage.this, ProfilePage.class);
+                            startActivity(intent4);
+                            ProductPage.this.finish();
+                        }
                         break;
                 }
 
@@ -283,7 +291,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                 qtyArray.add("1");
             }
             //Creating GridViewAdapter Object
-            GridViewAdapter gridViewAdapter = new GridViewAdapter(ProductPage.this, imagesParseArray, titleParseArray,
+            GridViewAdapter gridViewAdapter = new GridViewAdapter(ProductPage.this, imagesParseArray,imageLargeArray, titleParseArray,
                     sale_priceParseArray,purchase_priceParseArray,designer_nameParseArray,
                     avaliablilityParseArray,qtyArray,discountParseArray,productIdArray,descArray);
 
@@ -318,6 +326,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                     JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
                     String title = jsonObjectUser.getString("title");
                     String url = jsonObjectUser.getString("product_image");
+                    String url_large = jsonObjectUser.getString("product_image_l");
                     String sale_price = jsonObjectUser.getString("sale_price");
                     String purchase_price = jsonObjectUser.getString("discount_price");
                     String designer_name = jsonObjectUser.getString("designer_name");
@@ -329,6 +338,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
 
                     titleParseArray.add(title);
                     imagesParseArray.add(url);
+                    imageLargeArray.add(url_large);
                     sale_priceParseArray.add(sale_price);
                     purchase_priceParseArray.add(purchase_price);
                     designer_nameParseArray.add(designer_name);
@@ -347,7 +357,30 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
             return null;
         }
     }
+    protected void initAlertDialog() {
+        Dialog alertDialog = new AlertDialog.Builder(this).
+                setTitle("Sign in required").
+                setMessage("To continue please sign in").
+                setIcon(R.drawable.ic_launcher).
+                setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
 
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String none = "none";
+                        Intent intent = new Intent(ProductPage.this,Activity_Login.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bottomNavigation.setCurrentItem(1);
+            }
+        }).create();
+
+        alertDialog.show();
+
+    }
     @Override
     protected void onResume() {
         bottomNavigation.setCurrentItem(1);

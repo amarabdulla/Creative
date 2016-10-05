@@ -52,6 +52,7 @@ public class DesignerDetailActivity extends ActionBarActivity implements View.On
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray = new ArrayList<>();
     private ArrayList<String> descArray= new ArrayList<>();
+    private ArrayList<String> imageLargeArray= new ArrayList<>();
     private ImageView menu_icon;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     String title;
@@ -224,7 +225,7 @@ public class DesignerDetailActivity extends ActionBarActivity implements View.On
                 qtyArray.add("1");
             }
             //Creating GridViewAdapter Object
-            GridViewAdapter gridViewAdapter = new GridViewAdapter(DesignerDetailActivity.this, imagesParseArray, titleParseArray,
+            GridViewAdapter gridViewAdapter = new GridViewAdapter(DesignerDetailActivity.this, imagesParseArray,imageLargeArray, titleParseArray,
                     sale_priceParseArray, purchase_priceParseArray, designer_nameParseArray,
                     avaliablilityParseArray, qtyArray, discountParseArray, productIdArray,descArray);
 
@@ -259,6 +260,7 @@ public class DesignerDetailActivity extends ActionBarActivity implements View.On
                     JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
                     String title = jsonObjectUser.getString("title");
                     String url = jsonObjectUser.getString("product_image");
+                    String url_large = jsonObjectUser.getString("product_image_l");
                     String sale_price = jsonObjectUser.getString("sale_price");
                     String purchase_price = jsonObjectUser.getString("discount_price");
                     String designer_name = jsonObjectUser.getString("designer_name");
@@ -269,6 +271,7 @@ public class DesignerDetailActivity extends ActionBarActivity implements View.On
 
                     titleParseArray.add(title);
                     imagesParseArray.add(url);
+                    imageLargeArray.add(url_large);
                     sale_priceParseArray.add(sale_price);
                     purchase_priceParseArray.add(purchase_price);
                     designer_nameParseArray.add(designer_name);

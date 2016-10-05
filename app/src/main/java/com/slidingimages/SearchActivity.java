@@ -1,7 +1,10 @@
 package com.slidingimages;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -71,7 +74,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	private ArrayList<String> discountParseArray = new ArrayList<String>();
 	private ArrayList<String> qtyArray = new ArrayList<String>();
 	private ArrayList<String> productIdArray= new ArrayList<>();
-
+	private ArrayList<String> descArray= new ArrayList<>();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -180,9 +183,13 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 						}
 						break;
 					case 4:
-                        Intent intent4= new Intent(SearchActivity.this,ProfilePage.class);
-                        startActivity(intent4);
-						SearchActivity.this.finish();
+						if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
+							initAlertDialog();
+						}else {
+							Intent intent4 = new Intent(SearchActivity.this, ProfilePage.class);
+							startActivity(intent4);
+							SearchActivity.this.finish();
+						}
 						break;
 				}
 
@@ -267,6 +274,30 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 
 		}
 	}
+	protected void initAlertDialog() {
+		Dialog alertDialog = new AlertDialog.Builder(this).
+				setTitle("Sign in required").
+				setMessage("To continue please sign in").
+				setIcon(R.drawable.ic_launcher).
+				setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String none = "none";
+						Intent intent = new Intent(SearchActivity.this,Activity_Login.class);
+						startActivity(intent);
+					}
+				}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				bottomNavigation.setCurrentItem(2);
+			}
+		}).create();
+
+		alertDialog.show();
+
+	}
 	private class ProgressTask extends AsyncTask<String, Void, Boolean> {
 
 		protected void onPreExecute() {
@@ -289,10 +320,14 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 
 				ProductModelClass wp = new ProductModelClass(sale_priceParseArray.get(i), titleParseArray.get(i),
 						purchase_priceParseArray.get(i), imagesParseArray.get(i),designer_nameParseArray.get(i),avaliablilityParseArray.get(i),qtyArray.get(i)
-						,discountParseArray.get(i),productIdArray.get(i));
+						,discountParseArray.get(i),productIdArray.get(i),descArray.get(i));
 				// Binds all strings into an array
 				arraylist.add(wp);
 			}
+
+//			adapter = new GridViewAdapterSearch(SearchActivity.this,arraylist imagesParseArray, titleParseArray,
+//					sale_priceParseArray,purchase_priceParseArray,designer_nameParseArray,
+//					avaliablilityParseArray,qtyArray,discountParseArray,productIdArray,descArray);
 
 			adapter = new GridViewAdapterSearch(SearchActivity.this, arraylist);
 
@@ -335,6 +370,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 					String availability = jsonObjectUser.getString("availability");
 					String discount=jsonObjectUser.getString("discount");
 					String product_id=jsonObjectUser.getString("product_id");
+					String desc=jsonObjectUser.getString("description");
 
 					titleParseArray.add(name);
 					imagesParseArray.add(url);
@@ -344,6 +380,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 					avaliablilityParseArray.add(availability);
 					discountParseArray.add(discount);
 					productIdArray.add(product_id);
+					descArray.add(desc);
 				}
 
 

@@ -5,14 +5,22 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Entry extends Activity {
 
     protected FrameLayout wel;
-
+    Button logger,registering;
+    TextView skip;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +29,13 @@ public class Entry extends Activity {
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
         wel = (FrameLayout)findViewById(R.id.welcome);
 
-        Button logger = (Button)findViewById(R.id.button3);
-        Button registering = (Button)findViewById(R.id.button4);
-        TextView skip=(TextView) findViewById(R.id.skip_login);
+         logger = (Button)findViewById(R.id.button3);
+         registering = (Button)findViewById(R.id.button4);
+         skip=(TextView) findViewById(R.id.skip_login);
         logger.setTypeface(tf);
         registering.setTypeface(tf);
         skip.setTypeface(tf);
-
+        StartAnimations();
 
         logger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +61,34 @@ public class Entry extends Activity {
                 startActivity(intent1);
             }
         });
+    }
+    private void StartAnimations() {
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        anim.reset();
+
+        FrameLayout linlay=(FrameLayout) findViewById(R.id.welcome);
+        linlay.clearAnimation();
+        linlay.startAnimation(anim);
+
+        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
+        anim.reset();
+
+//        ImageView splashimg = (ImageView) findViewById(R.id.splashview);
+
+        logger.clearAnimation();
+        logger.startAnimation(anim);
+        registering.clearAnimation();
+        registering.startAnimation(anim);
+        skip.startAnimation(anim);
+
+//        timer = new Timer();
+//        timer.schedule(new TimerTask(){
+//            @Override
+//            public void run() {
+//                Intent home_page = new Intent(getApplicationContext(),WelcomeActivity.class);
+//                startActivity(home_page);
+//                finish();
+//            }}, SPLASH_TIME_OUT);
+//        this.scheduled=true;
     }
 }

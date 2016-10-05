@@ -61,6 +61,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray = new ArrayList<>();
     private ArrayList<String> descArray= new ArrayList<>();
+    private ArrayList<String> imageLargeArray= new ArrayList<>();
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private ImageView menu_icon;
     private AHBottomNavigation bottomNavigation;
@@ -224,7 +225,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
                     qtyArray.add("1");
                 }
                 //Creating GridViewAdapter Object
-                GridViewAdapter gridViewAdapter = new GridViewAdapter(SpecialOfferPage.this, imagesParseArray, titleParseArray,
+                GridViewAdapter gridViewAdapter = new GridViewAdapter(SpecialOfferPage.this, imagesParseArray,imageLargeArray, titleParseArray,
                         sale_priceParseArray, purchase_priceParseArray, designer_nameParseArray,
                         avaliablilityParseArray, qtyArray, discountParseArray, productIdArray,descArray);
 
@@ -259,6 +260,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
                         JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
                         String title = jsonObjectUser.getString("title");
                         String url = jsonObjectUser.getString("product_image");
+                        String url_large = jsonObjectUser.getString("product_image_l");
                         String sale_price = jsonObjectUser.getString("sale_price");
                         String purchase_price = jsonObjectUser.getString("discount_price");
                         String designer_name = jsonObjectUser.getString("designer_name");
@@ -269,6 +271,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
 
                         titleParseArray.add(title);
                         imagesParseArray.add(url);
+                        imageLargeArray.add(url_large);
                         sale_priceParseArray.add(sale_price);
                         purchase_priceParseArray.add(purchase_price);
                         designer_nameParseArray.add(designer_name);

@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 
 import com.slidingimages.cart.LoginItemCartActivity;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class ProductsDetailActivity extends Activity {
 	private ImageLoader imageLoader;
 	private String qty_str,desc;
 	private Spinner qty;
+	private String spinner_qty_text="1";
 	private List<Integer> list = new ArrayList<Integer>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class ProductsDetailActivity extends Activity {
 		purchase_price = extras.getString("purchase_price");
 		designer_name = extras.getString("designer_name");
 		productAvail = extras.getString("available");
-		qty_str= extras.getString("qty");
+//		qty_str= extras.getString("qty");
 		desc= extras.getString("desc");
 	}
 
@@ -101,7 +103,8 @@ public class ProductsDetailActivity extends Activity {
 		tv_tax.setText(sale_price);
 		tv_tax.setPaintFlags(tv_tax.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 		tv_des.setText(Html.fromHtml(desc));
-		imageLoader.DisplayImage(productImg, detail_img);
+//		imageLoader.DisplayImage(productImg, detail_img);
+		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.stub).noFade().into(detail_img);
 
 		detail_img.setOnClickListener(new OnClickListener() {
 			@Override
@@ -145,7 +148,7 @@ public class ProductsDetailActivity extends Activity {
 						.setTitleText("Already added to Cart")
 						.show();
 			}else {
-//                    ShoppingCart.qtyArray.add(position,"1");
+				spinner_qty_text = qty.getSelectedItem().toString();
 				ShoppingCart.product_ids.add(productId);
 				ShoppingCart.product_names.add(productName);
 				ShoppingCart.sale_prices.add(sale_price);
@@ -167,16 +170,23 @@ public class ProductsDetailActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				ShoppingCart.product_ids.add(productId);
-				ShoppingCart.product_names.add(productName);
-				ShoppingCart.sale_prices.add(sale_price);
-				ShoppingCart.purchase_prices.add(purchase_price);
-				ShoppingCart.designer_names.add(designer_name);
-				ShoppingCart.product_images.add(productImg);
-				ShoppingCart.avaliablilityArray.add(productAvail);
-				ShoppingCart.qtyArray.add(qty_str);
-				Intent intent= new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
-				startActivity(intent);
+				if (ShoppingCart.product_names.contains(productName)){
+					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
+							.setTitleText("Already added to Cart")
+							.show();
+				}else {
+					spinner_qty_text = qty.getSelectedItem().toString();
+					ShoppingCart.product_ids.add(productId);
+					ShoppingCart.product_names.add(productName);
+					ShoppingCart.sale_prices.add(sale_price);
+					ShoppingCart.purchase_prices.add(purchase_price);
+					ShoppingCart.designer_names.add(designer_name);
+					ShoppingCart.product_images.add(productImg);
+					ShoppingCart.avaliablilityArray.add(productAvail);
+					ShoppingCart.qtyArray.add(spinner_qty_text);
+					Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
+					startActivity(intent);
+				}
 			}
 		});
 	

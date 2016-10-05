@@ -1,5 +1,8 @@
 package com.slidingimages.cart;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -130,9 +133,13 @@ public class LoginEmptyCartActivity extends ActionBarActivity implements View.On
 
                         break;
                     case 4:
-                        Intent intent4 = new Intent(LoginEmptyCartActivity.this, ProfilePage.class);
-                        startActivity(intent4);
-                        LoginEmptyCartActivity.this.finish();
+                        if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
+
+                        }else {
+                            Intent intent4 = new Intent(LoginEmptyCartActivity.this, ProfilePage.class);
+                            startActivity(intent4);
+                            LoginEmptyCartActivity.this.finish();
+                        }
                         break;
                 }
 
@@ -172,7 +179,30 @@ public class LoginEmptyCartActivity extends ActionBarActivity implements View.On
         // TODO Auto-generated method stub
         extras = getIntent().getExtras();
     }
+    protected void initAlertDialog() {
+        Dialog alertDialog = new AlertDialog.Builder(this).
+                setTitle("Sign in required").
+                setMessage("To continue please sign in").
+                setIcon(R.drawable.ic_launcher).
+                setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
 
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String none = "none";
+                        Intent intent = new Intent(LoginEmptyCartActivity.this,Activity_Login.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        }).create();
+
+        alertDialog.show();
+
+
+    }
     public void onClick(View v) {
 
         switch (v.getId()) {

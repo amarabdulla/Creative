@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slidingimages.cart.LoginItemCartActivity;
+import com.squareup.picasso.Picasso;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -47,13 +48,15 @@ public class GridViewAdapter extends BaseAdapter {
     private ArrayList<String> qtyArray = new ArrayList<String>();
     private ArrayList<String> productIdArray=new ArrayList<>();
     private ArrayList<String> descArray=new ArrayList<>();
+    private ArrayList<String> images_l=new ArrayList<>();
 
-    public GridViewAdapter (Context context, ArrayList<String> images, ArrayList<String> product_names,ArrayList<String> sale_prices
+    public GridViewAdapter (Context context, ArrayList<String> images,ArrayList<String> images_l, ArrayList<String> product_names,ArrayList<String> sale_prices
             ,ArrayList<String> purchase_prices, ArrayList<String> designer_names, ArrayList<String> avaliablilityArray,
                             ArrayList<String> qtyArray,ArrayList<String> discountArray,ArrayList<String> productIdArray,ArrayList<String> descArray){
         //Getting all the values
         this.context = context;
         this.images = images;
+        this.images_l  = images_l;
         this.sale_prices = sale_prices;
         this.designer_names = designer_names;
         this.purchase_prices = purchase_prices;
@@ -90,7 +93,6 @@ public class GridViewAdapter extends BaseAdapter {
         TextView product_name;
         TextView sale_price;
         TextView purchase_price;
-//        Button buy_now,add_to_cart;
         TextView designer_name;
         ImageView img;
         TextView discount;
@@ -170,7 +172,8 @@ public class GridViewAdapter extends BaseAdapter {
         });*/
         holder.product_name.setText(product_names.get(position));
         //DisplayImage function from ImageLoader Class
-        imageLoader.DisplayImage(images.get(position), holder.img);
+//        imageLoader.DisplayImage(images.get(position), holder.img);
+        Picasso.with(context).load(images.get(position)).placeholder(R.drawable.stub).noFade().into(holder.img);
         if (!discountArray.get(position).equals("0")){
             holder.discount.setVisibility(View.VISIBLE);
             holder.discount.setText(discountArray.get(position)+"% OFF");
@@ -181,6 +184,15 @@ public class GridViewAdapter extends BaseAdapter {
         }else {
             holder.discount.setVisibility(View.INVISIBLE);
         }
+        if (avaliablilityArray.get(position).equals("0")){
+            holder.discount.setVisibility(View.VISIBLE);
+            holder.discount.setText("Out of Stock");
+            holder.discount.setBackgroundResource(R.color.red);
+            holder.discount.setTextColor(ContextCompat.getColor(context, R.color.white));
+            holder.discount.setGravity(Gravity.CENTER);
+        }else {
+//            holder.discount.setVisibility(View.INVISIBLE);
+        }
 
         vi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +200,7 @@ public class GridViewAdapter extends BaseAdapter {
                 Intent intent= new Intent(context,ProductsDetailActivity.class);
                 intent.putExtra("productId",productIdArray.get(position));
                 intent.putExtra("productName", product_names.get(position));
-                intent.putExtra("productImage", images.get(position));
+                intent.putExtra("productImage", images_l.get(position));
                 intent.putExtra("sale_price", sale_prices.get(position));
                 intent.putExtra("purchase_price", purchase_prices.get(position));
                 intent.putExtra("designer_name", designer_names.get(position));

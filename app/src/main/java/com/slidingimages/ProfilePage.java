@@ -31,6 +31,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.cart.LoginEmptyCartActivity;
+import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
 import com.slidingimages.utils.UtilsDevice;
 import com.slidingimages.utils.UtilsMiscellaneous;
@@ -186,6 +188,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                 ShoppingCart.designer_names.clear();
                 ShoppingCart.qtyArray.clear();
                 ShoppingCart.avaliablilityArray.clear();
+                ProfilePage.this.finish();
             }
         });
 
@@ -243,9 +246,15 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                         ProfilePage.this.finish();
                         break;
                     case 3:
-                        Intent intent3= new Intent(ProfilePage.this,ShoppingCart.class);
-                        startActivity(intent3);
-                        ProfilePage.this.finish();
+                        if (ShoppingCart.product_names.isEmpty()){
+                            Intent intent3= new Intent(ProfilePage.this,LoginEmptyCartActivity
+                                    .class);
+                            startActivity(intent3);
+                            ProfilePage.this.finish();
+                        }else {
+                            Intent intent3 = new Intent(ProfilePage.this, LoginItemCartActivity.class);
+                            startActivity(intent3);
+                        }
                         break;
                     case 4:
                         break;

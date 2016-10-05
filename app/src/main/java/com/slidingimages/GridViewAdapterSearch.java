@@ -81,10 +81,10 @@ public class GridViewAdapterSearch extends BaseAdapter {
 			holder = (ViewHolder) view.getTag();
 		}
 		// Set the results into TextViews
-		holder.rank.setText(worldpopulationlist.get(position).getSale_price());
+		holder.rank.setText(worldpopulationlist.get(position).getSale_price()+" AED");
 		holder.country.setText(worldpopulationlist.get(position).getProduct_name());
 		holder.population.setText(worldpopulationlist.get(position)
-				.getPurchase_price());
+				.getPurchase_price()+" AED");
 		holder.designer_name.setText(worldpopulationlist.get(position)
 				.getDesigner_name());
 		// Set the results into ImageView
@@ -140,24 +140,36 @@ public class GridViewAdapterSearch extends BaseAdapter {
 
 			@Override
 			public void onClick(View arg0) {
-				// Send single item click data to SingleItemView Class
-				Intent intent = new Intent(mContext, ProductDescriptionPage.class);
-				// Pass all data rank
-				intent.putExtra("rank",
-						(worldpopulationlist.get(position).getSale_price()));
-				// Pass all data country
-				intent.putExtra("country",
-						(worldpopulationlist.get(position).getProduct_name()));
-				// Pass all data population
-				intent.putExtra("population",
-						(worldpopulationlist.get(position).getPurchase_price()));
-				// Pass all data flag
-				intent.putExtra("flag",
-						(worldpopulationlist.get(position).getProduct_image()));
-				// Start SingleItemView Class
+//				// Send single item click data to SingleItemView Class
+//				Intent intent = new Intent(mContext, ProductDescriptionPage.class);
+//				// Pass all data rank
+//				intent.putExtra("rank",
+//						(worldpopulationlist.get(position).getSale_price()));
+//				// Pass all data country
+//				intent.putExtra("country",
+//						(worldpopulationlist.get(position).getProduct_name()));
+//				// Pass all data population
+//				intent.putExtra("population",
+//						(worldpopulationlist.get(position).getPurchase_price()));
+//				// Pass all data flag
+//				intent.putExtra("flag",
+//						(worldpopulationlist.get(position).getProduct_image()));
+//				// Start SingleItemView Class
+//				mContext.startActivity(intent);
+				Intent intent= new Intent(mContext,ProductsDetailActivity.class);
+				intent.putExtra("productId",worldpopulationlist.get(position).getProduct_id());
+				intent.putExtra("productName", worldpopulationlist.get(position).getProduct_name());
+				intent.putExtra("productImage", worldpopulationlist.get(position).getProduct_image());
+				intent.putExtra("sale_price", worldpopulationlist.get(position).getSale_price());
+				intent.putExtra("purchase_price", worldpopulationlist.get(position).getPurchase_price());
+				intent.putExtra("designer_name", worldpopulationlist.get(position).getDesigner_name());
+				intent.putExtra("available", worldpopulationlist.get(position).getAvailability());
+				intent.putExtra("qty", worldpopulationlist.get(position).getQty());
+				intent.putExtra("desc", worldpopulationlist.get(position).getDesc());
 				mContext.startActivity(intent);
 			}
 		});
+
 
 		return view;
 	}
