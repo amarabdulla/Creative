@@ -2,6 +2,7 @@ package com.slidingimages;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ import java.util.ArrayList;
  * Created by Creative on 19-Sep-16.
  */
 public class DesignerDetailActivity extends ActionBarActivity implements View.OnClickListener {
+    private static final String name = "name";
+    String namepref;
     private static String url ;
     private FrameLayout menuLayoutOne, menuLayoutTwo, menuLayoutThree, menuLayoutFour, menuLayoutFive, menuLayoutSix;
     private ArrayList<String> imagesParseArray = new ArrayList<String>();
@@ -87,13 +90,18 @@ public class DesignerDetailActivity extends ActionBarActivity implements View.On
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
-
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
 
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText("Welcome "+Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
 

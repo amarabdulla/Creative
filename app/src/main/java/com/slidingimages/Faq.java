@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,9 @@ import com.slidingimages.utils.UtilsMiscellaneous;
  * Created by Amar on 9/2/2016.
  */
 public class Faq extends ActionBarActivity implements View.OnClickListener {
+    private static final String name = "name";
+    String namepref;
+    private RelativeLayout navigation_banner_layout;
     private WebView webview;
     private static final String TAG = "Main";
     private ProgressDialog progressBar;
@@ -45,6 +50,7 @@ public class Faq extends ActionBarActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.faq);
+        navigation_banner_layout=(RelativeLayout)findViewById(R.id.navigation_drawer_account_section);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
         menuLayoutThree=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_three);
@@ -67,12 +73,18 @@ public class Faq extends ActionBarActivity implements View.OnClickListener {
         menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
         menuLayoutOne.setOnClickListener(this);
@@ -98,6 +110,14 @@ public class Faq extends ActionBarActivity implements View.OnClickListener {
             }
         });
 
+        navigation_banner_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Faq.this,HomePage.class);
+                startActivity(intent);
+                Faq.this.finish();
+            }
+        });
 
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);

@@ -102,7 +102,7 @@ public class Activity_Login extends Activity implements OnClickListener {
                     }
 
                 } else {
-                    new SweetAlertDialog(Activity_Login.this, SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(Activity_Login.this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Please check your network")
                             .show();
 //                    Log.v("Home", "############################You are not online!!!!");

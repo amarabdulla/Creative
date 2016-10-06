@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -52,6 +53,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class ProfilePage extends ActionBarActivity implements View.OnClickListener {
     private ImageView menu_icon;
 //    private TextView tc,privacy,my_order;
+    private static final String name = "name";
+    String namepref;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private TextView textViewPhone_txt,textViewEmail_txt,textViewCity_txt;
@@ -158,17 +161,29 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText("Welcome "+Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
 
         init_navigator();
-        ProgressTask progressTask= new ProgressTask();
-        progressTask.execute();
+
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(ProfilePage.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
 
 

@@ -99,12 +99,12 @@ public class ProductsDetailActivity extends Activity {
 
 		tv_model.setText(productName);
 		tv_avail.setText("Availability: " + productAvail);
-		tv_price.setText("Price: " + "$" + purchase_price);
-		tv_tax.setText(sale_price);
+		tv_price.setText("Price: " + "AED" + purchase_price);
+		tv_tax.setText(sale_price+" AED");
 		tv_tax.setPaintFlags(tv_tax.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 		tv_des.setText(Html.fromHtml(desc));
 //		imageLoader.DisplayImage(productImg, detail_img);
-		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.stub).noFade().into(detail_img);
+		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.stub).into(detail_img);
 
 		detail_img.setOnClickListener(new OnClickListener() {
 			@Override
@@ -143,26 +143,33 @@ public class ProductsDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-			if (ShoppingCart.product_names.contains(productName)){
-				new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
-						.setTitleText("Already added to Cart")
-						.show();
-			}else {
-				spinner_qty_text = qty.getSelectedItem().toString();
-				ShoppingCart.product_ids.add(productId);
-				ShoppingCart.product_names.add(productName);
-				ShoppingCart.sale_prices.add(sale_price);
-				ShoppingCart.purchase_prices.add(purchase_price);
-				ShoppingCart.designer_names.add(designer_name);
-				ShoppingCart.product_images.add(productImg);
-				ShoppingCart.avaliablilityArray.add(productAvail);
-				ShoppingCart.qtyArray.add(qty_str);
+				if (!productAvail.equalsIgnoreCase("0")) {
+					if (ShoppingCart.product_names.contains(productName)) {
+						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+								.setTitleText("Already added to Cart")
+								.show();
+					} else {
+						spinner_qty_text = qty.getSelectedItem().toString();
+						ShoppingCart.product_ids.add(productId);
+						ShoppingCart.product_names.add(productName);
+						ShoppingCart.sale_prices.add(sale_price);
+						ShoppingCart.purchase_prices.add(purchase_price);
+						ShoppingCart.designer_names.add(designer_name);
+						ShoppingCart.product_images.add(productImg);
+						ShoppingCart.avaliablilityArray.add(productAvail);
+						ShoppingCart.qtyArray.add(qty_str);
 
-				new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-						.setTitleText("Added to Cart!")
-						.show();
+						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+								.setTitleText("Added to Cart!")
+								.show();
+					}
+				}else {
+					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+							.setTitleText("Out of Stock!")
+							.show();
+				}
 			}
-			}
+
 		});
 		
 		
@@ -170,22 +177,27 @@ public class ProductsDetailActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				if (ShoppingCart.product_names.contains(productName)){
-					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.ERROR_TYPE)
-							.setTitleText("Already added to Cart")
+				if (!productAvail.equalsIgnoreCase("0")) {
+					if (ShoppingCart.product_names.contains(productName)) {
+						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
+						startActivity(intent);
+					} else {
+						spinner_qty_text = qty.getSelectedItem().toString();
+						ShoppingCart.product_ids.add(productId);
+						ShoppingCart.product_names.add(productName);
+						ShoppingCart.sale_prices.add(sale_price);
+						ShoppingCart.purchase_prices.add(purchase_price);
+						ShoppingCart.designer_names.add(designer_name);
+						ShoppingCart.product_images.add(productImg);
+						ShoppingCart.avaliablilityArray.add(productAvail);
+						ShoppingCart.qtyArray.add(spinner_qty_text);
+						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
+						startActivity(intent);
+					}
+				} else {
+					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+							.setTitleText("Out of Stock!")
 							.show();
-				}else {
-					spinner_qty_text = qty.getSelectedItem().toString();
-					ShoppingCart.product_ids.add(productId);
-					ShoppingCart.product_names.add(productName);
-					ShoppingCart.sale_prices.add(sale_price);
-					ShoppingCart.purchase_prices.add(purchase_price);
-					ShoppingCart.designer_names.add(designer_name);
-					ShoppingCart.product_images.add(productImg);
-					ShoppingCart.avaliablilityArray.add(productAvail);
-					ShoppingCart.qtyArray.add(spinner_qty_text);
-					Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
-					startActivity(intent);
 				}
 			}
 		});

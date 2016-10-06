@@ -106,10 +106,9 @@
 
         <Spinner
             android:id="@+id/detail_edt_qty"
-            android:layout_width="65dp"
+            android:layout_width="85dp"
             android:layout_height="25dp"
     >
-
             </Spinner>
 
 

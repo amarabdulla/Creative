@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -47,6 +49,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class SearchActivity extends ActionBarActivity implements View.OnClickListener{
 
 	// Declare Variables
@@ -54,6 +58,8 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	GridViewAdapterSearch adapter;
 	private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
 	EditText editsearch;
+	private static final String name = "name";
+	String namepref;
 	private ImageView menu_icon;
 	private ProgressDialog dialog;
 	private Button search_close;
@@ -66,8 +72,8 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	private DrawerLayout mDrawerLayout;
 	private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 	private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
-	private static String FIRSTPART="http://52.210.59.100/project/mazyoona/index.php/rest/api/";
-	private static String url = FIRSTPART+"products";
+//	private static String FIRSTPART="http://52.210.59.100/project/mazyoona/index.php/rest/api/";
+	private static String url = HomePage.FIRSTPART+"products";
 //	private static String url = "http://192.168.0.109/creative/mazyoona/index.php/rest/api/products";
 	ArrayList<ProductModelClass> arraylist = new ArrayList<ProductModelClass>();
 	private ArrayList<String> avaliablilityParseArray = new ArrayList<String>();
@@ -103,7 +109,8 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
 		menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
 		menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
-
+		SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+		namepref = prefs.getString("username", "null");
 		menu_icon.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -118,7 +125,11 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 			navigation_username.setText("Welcome "+"Guest");
 			navigation_username.setTypeface(tf);
 		}else {
-			navigation_username.setText(Activity_Login.username);
+			if (name.equals("null") || name.equals("")){
+				navigation_username.setText(Activity_Login.username);
+			}else {
+				navigation_username.setText(namepref);
+			}
 			navigation_username.setTypeface(tf);
 		}
 		final String[] colors = {"#a41c9a"};
@@ -127,8 +138,15 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		gridView = (GridView) findViewById(R.id.gridView);
 		bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 		dialog= new ProgressDialog(this);
-		ProgressTask progressTask=new ProgressTask();
-		progressTask.execute();
+
+		if (AppStatus.getInstance(this).isOnline()) {
+			ProgressTask progressTask=new ProgressTask();
+			progressTask.execute();
+		}else {
+			new SweetAlertDialog(SearchActivity.this, SweetAlertDialog.WARNING_TYPE)
+					.setTitleText("Please check your network")
+					.show();
+		}
 
 
 		AHBottomNavigationItem item1 = new AHBottomNavigationItem(getString(R.string.home), R.drawable.home_icon, Color.parseColor(colors[0]));

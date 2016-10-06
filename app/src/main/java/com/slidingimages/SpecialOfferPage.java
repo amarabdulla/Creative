@@ -3,6 +3,7 @@ package com.slidingimages;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -19,12 +20,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.slidingimages.R;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -44,10 +47,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Amar on 9/2/2016.
  */
 public class SpecialOfferPage extends ActionBarActivity implements View.OnClickListener {
+    private static final String name = "name";
+    String namepref;
     private static String firstpart = "http://52.210.59.100/project/mazyoona/index.php/rest/api/";
     private static String url = firstpart + "todayDeals";
     private FrameLayout menuLayoutOne, menuLayoutTwo, menuLayoutThree, menuLayoutFour, menuLayoutFive, menuLayoutSix;
@@ -65,6 +72,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private ImageView menu_icon;
     private AHBottomNavigation bottomNavigation;
+    private RelativeLayout navigation_banner_layout;
     private GridView gridView;
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
@@ -74,7 +82,7 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.special_offer);
-
+        navigation_banner_layout=(RelativeLayout)findViewById(R.id.navigation_drawer_account_section);
         gridView = (GridView) findViewById(R.id.gridView);
         menuLayoutOne = (FrameLayout) findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo = (FrameLayout) findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
@@ -99,17 +107,29 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
 //
 
-        ProgressTask progressTask = new ProgressTask();
-        progressTask.execute();
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(SpecialOfferPage.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
         for (int i = 0; i < titleParseArray.size(); i++) {
             qtyArray.add("1");
@@ -125,6 +145,15 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutSix.setOnClickListener(this);
 
         init_navigator();
+
+
+        navigation_banner_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(SpecialOfferPage.this,HomePage.class);
+                startActivity(intent);
+            }
+        });
 
         menu_icon.setOnClickListener(new View.OnClickListener() {
             @Override

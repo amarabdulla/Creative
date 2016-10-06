@@ -43,6 +43,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,9 +59,13 @@ public class PaymentPage extends Activity {
     private Button place_order;
     private String result="null";
     private String sale_id;
+    ArrayList<String> product_idArray= new ArrayList<>();
+    ArrayList<String> product_nameArray= new ArrayList<>();
+    ArrayList<String> product_priceArray= new ArrayList<>();
+    ArrayList<String> product_subtotalArray= new ArrayList<>();
     private TextView total_qty,total_sale_price,total_purchase_price,shipping,tax;
     JSONObject jsonObjFinal;
-
+    JSONArray jsonArr;
 
     private CustomProgressDialog mCustomProgressDialog;
     private static final String REGISTER_URL = "http://mazyoona.com/project/mazyoona/index.php/rest/api/cartFinish";
@@ -119,7 +124,7 @@ public class PaymentPage extends Activity {
         }else {
             paymentAmount = "0";
         }
-        JSONArray jsonArr = new JSONArray();
+        jsonArr = new JSONArray();
 
         for (int i=0;i< ShoppingCart.product_names.size();i++){
             JSONObject jsonObject= new JSONObject();
@@ -139,7 +144,7 @@ public class PaymentPage extends Activity {
         }
         try {
             jsonObjFinal.put("products",jsonArr);
-            System.out.println(jsonObjFinal+"jsonn");
+            System.out.println(jsonArr+"jsonn");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -186,12 +191,17 @@ public class PaymentPage extends Activity {
                 }else if (payment_mode.equals("cod")){
                     new SweetAlertDialog(PaymentPage.this, SweetAlertDialog.NORMAL_TYPE)
                             .setTitleText("")
-                            .setContentText("Selected payment mode is cash on deilvery.Click OK to continue")
+                            .setContentText("Selected payment mode is Cash On Delivery.Click OK to continue")
                             .setConfirmText("OK")
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
-
+                                    ProgressTask1 progressTask= new ProgressTask1();
+                                    progressTask.execute();
+                                    Intent intent = new Intent(PaymentPage.this, ConfirmationActivity.class);
+                                    intent.putExtra("PaymentDetails", "Cash On Delivery");
+                                    intent.putExtra("PaymentAmount", paymentAmount);
+                                    startActivity(intent);
                                 }
                             })
                             .setCancelText("Cancel")
@@ -353,7 +363,7 @@ public class PaymentPage extends Activity {
                 @Override
                 protected Map<String,String> getParams(){
                     Map<String,String> params = new HashMap<String, String>();
-                    params.put(KEY_PRODUCTS,String.valueOf(jsonObjFinal));
+                    params.put(KEY_PRODUCTS,String.valueOf(jsonArr));
                     params.put(KEY_FIRSTNAME,ShippingPage.f_name_str);
                     params.put(KEY_lASTNAME,ShippingPage.l_name_str);
                     params.put(KEY_PHONE,ShippingPage.phone_str);
@@ -365,7 +375,6 @@ public class PaymentPage extends Activity {
                     SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
                     String userid_pref= prefs.getString("userid", "null");
                     if (userid_pref.equals("")||  userid_pref.equals("null")){
-
                         params.put(KEY_USER_ID,Activity_Login.userId);
                     }else {
                         params.put(KEY_USER_ID,userid_pref);
@@ -407,6 +416,26 @@ public class PaymentPage extends Activity {
                         public void onResponse(String response) {
 //                                result="success";
                             Toast.makeText(PaymentPage.this,response,Toast.LENGTH_LONG).show();
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.toString());
+                                JSONObject jsonObject1=jsonObject.getJSONObject("sale_details");
+                                JSONArray jsonArray = jsonObject1.getJSONArray("products");
+
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                                    String id = jsonObjectUser.getString("id");
+                                    String name = jsonObjectUser.getString("name");
+                                    String price = jsonObjectUser.getString("price");
+                                    String subtotal = jsonObjectUser.getString("subtotal");
+
+
+                                    product_idArray.add(id);
+                                    product_nameArray.add(name);
+                                    product_priceArray.add(price);
+                                    product_subtotalArray.add(subtotal);
+
+                                }
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -414,11 +443,17 @@ public class PaymentPage extends Activity {
                                     Intent intent = new Intent(PaymentPage.this, ConfirmationActivity.class);
                                     intent.putExtra("PaymentDetails", paymentDetails);
                                     intent.putExtra("PaymentAmount", paymentAmount);
-
+                                    intent.putExtra("productsIdArray", product_idArray);
+                                    intent.putExtra("productsNameArray", product_nameArray);
+                                    intent.putExtra("productsPriceArray", product_priceArray);
+                                    intent.putExtra("productsSubtotalArray", product_subtotalArray);
                                     startActivity(intent);
                                     PaymentPage.this.finish();
                                 }
                             });
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     },
                     new Response.ErrorListener() {

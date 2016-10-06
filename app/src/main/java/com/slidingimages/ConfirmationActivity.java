@@ -1,6 +1,7 @@
 package com.slidingimages;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.view.GravityCompat;
@@ -27,16 +28,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ConfirmationActivity extends ActionBarActivity implements View.OnClickListener {
+    private static final String name = "name";
+    String namepref;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private AHBottomNavigation bottomNavigation;
     private ImageView menu_icon;
+    TextView textViewId;
+    TextView textViewStatus,textViewAmount;
+    String amt;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+        textViewId = (TextView) findViewById(R.id.paymentId);
+        textViewStatus= (TextView) findViewById(R.id.paymentStatus);
+        textViewAmount = (TextView) findViewById(R.id.paymentAmount);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
         menuLayoutThree=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_three);
@@ -60,11 +69,17 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
         final String[] colors = {"#a41c9a"};
@@ -143,12 +158,28 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         //Getting Intent
         Intent intent = getIntent();
 
+        //Clearing all items from cart
+        ShoppingCart.product_names.clear();
+        ShoppingCart.product_ids.clear();
+        ShoppingCart.purchase_prices.clear();
+        ShoppingCart.sale_prices.clear();
+        ShoppingCart.avaliablilityArray.clear();
+        ShoppingCart.qtyArray.clear();
+        ShoppingCart.designer_names.clear();
+        ShoppingCart.product_images.clear();
 
         try {
-            JSONObject jsonDetails = new JSONObject(intent.getStringExtra("PaymentDetails"));
+            if (!intent.getStringExtra("PaymentDetails").equalsIgnoreCase("cash on delivery")) {
+                JSONObject jsonDetails = new JSONObject(intent.getStringExtra("PaymentDetails"));
 
-            //Displaying payment details
-            showDetails(jsonDetails.getJSONObject("response"), intent.getStringExtra("PaymentAmount"));
+                //Displaying payment details
+                showDetails(jsonDetails.getJSONObject("response"), intent.getStringExtra("PaymentAmount"));
+                amt=intent.getStringExtra("PaymentAmount");
+            }else {
+                textViewId.setText("cod");
+                textViewStatus.setText("Cash On Delivery");
+                textViewAmount.setText(amt);
+            }
         } catch (JSONException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -198,9 +229,7 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
 
     private void showDetails(JSONObject jsonDetails, String paymentAmount) throws JSONException {
         //Views
-        TextView textViewId = (TextView) findViewById(R.id.paymentId);
-        TextView textViewStatus= (TextView) findViewById(R.id.paymentStatus);
-        TextView textViewAmount = (TextView) findViewById(R.id.paymentAmount);
+
 
         //Showing the details from json object
         textViewId.setText(jsonDetails.getString("id"));

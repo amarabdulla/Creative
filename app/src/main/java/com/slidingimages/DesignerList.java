@@ -3,6 +3,7 @@ package com.slidingimages;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -17,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -46,11 +49,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Amar on 9/2/2016.
  */
 public class DesignerList extends AppCompatActivity implements View.OnClickListener{
+    private static final String name = "name";
+    String namepref;
     private DrawerLayout mDrawerLayout;
+    private RelativeLayout navigation_banner_layout;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
@@ -71,7 +79,7 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.designer_list);
         final String[] colors = {"#a41c9a"};
-
+        navigation_banner_layout=(RelativeLayout)findViewById(R.id.navigation_drawer_account_section);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
         menuLayoutThree=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_three);
@@ -93,11 +101,17 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
         listView=(ListView)findViewById(R.id.listview);
@@ -118,6 +132,15 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
 
         init_navigator();
 
+        navigation_banner_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(DesignerList.this,HomePage.class);
+                startActivity(intent);
+                DesignerList.this.finish();
+            }
+        });
+
         menu_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,8 +151,14 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-        ProgressTask progressTask=new ProgressTask();
-        progressTask.execute();
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(DesignerList.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
 
 

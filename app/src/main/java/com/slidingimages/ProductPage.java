@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -52,8 +54,9 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class ProductPage extends ActionBarActivity implements View.OnClickListener{
 //    private static String url = "http://192.168.0.109/creative/mazyoona/index.php/rest/api/products";
-    private static String firstpart="http://52.210.59.100/project/mazyoona/index.php/rest/api/";
-    private static String url = firstpart+"products";
+    private static final String name = "name";
+    String namepref;
+    private static String url = HomePage.FIRSTPART+"products";
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private ArrayList<String> imagesParseArray = new ArrayList<String>();
     private ArrayList<String> titleParseArray = new ArrayList<String>();
@@ -100,11 +103,17 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
         menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
         menu_icon=(ImageView) findViewById(R.id.menu_icon) ;
@@ -174,8 +183,14 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
 
             }
         });
-        ProgressTask progressTask=new ProgressTask();
-        progressTask.execute();
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(ProductPage.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
         for (int i=0;i<titleParseArray.size();i++){
             qtyArray.add("1");

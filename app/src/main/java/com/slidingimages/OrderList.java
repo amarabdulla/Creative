@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -53,6 +54,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * Created by Creative on 20-Sep-16.
  */
 public class OrderList extends ActionBarActivity implements View.OnClickListener {
+    private static final String name = "name";
+    String namepref;
     private DrawerLayout mDrawerLayout;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
@@ -117,7 +120,11 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
-            navigation_username.setText(Activity_Login.username);
+            if (name.equals("null") || name.equals("")){
+                navigation_username.setText(Activity_Login.username);
+            }else {
+                navigation_username.setText(namepref);
+            }
             navigation_username.setTypeface(tf);
         }
 
@@ -142,8 +149,14 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
                 }
             }
         });
-        ProgressTask progressTask=new ProgressTask();
-        progressTask.execute();
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(OrderList.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
 
 
@@ -261,7 +274,7 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
                                             String product_name = jsonObjectProducts.getString("name");
                                             String product_image = jsonObjectProducts.getString("image");
                                             String product_price = jsonObjectProducts.getString("price");
-                                            String product_subtotal = jsonObjectProducts.getString("sale_code");
+                                            String product_subtotal = jsonObjectProducts.getString("order_id");
                                             String product_qty = jsonObjectProducts.getString("qty");
 
                                             titleParseArray.add(product_name);

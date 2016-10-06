@@ -60,6 +60,7 @@
                         style="@style/NavDrawerAccountInfoText"
                         android:text="@string/tools_text_account_information_username"
                         android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginTop="@dimen/space_5"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </LinearLayout>
@@ -69,7 +70,7 @@
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
                     android:layout_marginLeft="@dimen/space_18"
-                    android:layout_marginBottom="-8dp"
+                    android:layout_marginBottom="-35dp"
                     android:layout_above="@id/navigation_drawer_account_information"
                     android:src="@drawable/circular_image_icon" />
 

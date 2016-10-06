@@ -106,8 +106,6 @@ public class GridViewAdapter extends BaseAdapter {
         holder.product_name =(TextView) vi.findViewById(R.id.product_name);
         holder.sale_price =(TextView) vi.findViewById(R.id.sale_price);
         holder.purchase_price =(TextView) vi.findViewById(R.id.purchase_price);
-//        holder.buy_now =(Button) vi.findViewById(R.id.buy_now);
-//        holder.add_to_cart =(Button) vi.findViewById(R.id.add_to_cart);
         holder.designer_name =(TextView) vi.findViewById(R.id.designer_name);
         holder.img=(ImageView) vi.findViewById(R.id.imageView1);
         holder.discount=(TextView) vi.findViewById(R.id.discount) ;

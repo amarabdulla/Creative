@@ -12,9 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by SONU on 29/08/15.
- */
+
 public class BannerViewPager_Adapter extends PagerAdapter {
 
 

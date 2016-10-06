@@ -67,9 +67,9 @@ public class ShippingPage extends Activity {
         String name_pref= prefs.getString("username", "null");
         userid_pref= prefs.getString("userid", "null");
         if (name_pref.equals("") || userid_pref.equals("")|| name_pref.equals("null")|| userid_pref.equals("null")){
-            urlprofileView = HomePage.FIRSTPART + "profileView?user_id=" +userid_pref;
-        }else {
             urlprofileView = HomePage.FIRSTPART + "profileView?user_id=" + Activity_Login.userId;
+        }else {
+            urlprofileView = HomePage.FIRSTPART + "profileView?user_id=" +userid_pref;
         }
 //        List<String> list = new ArrayList<String>();
 //        list.add("Dubai");
@@ -105,8 +105,13 @@ public class ShippingPage extends Activity {
                     new SweetAlertDialog(ShippingPage.this, SweetAlertDialog.NORMAL_TYPE)
                             .setTitleText("Please fill all the fields")
                             .show();
-                }else {
-
+                }else   if (fname.getText().toString().equals("null") ||lname.getText().toString().equals("null")||address_one.getText().toString().equals("null")
+                        ||address_two.getText().toString().equals("null")|| city.getText().toString().equals("null")||zip.getText().toString().equals("null")) {
+                    new SweetAlertDialog(ShippingPage.this, SweetAlertDialog.NORMAL_TYPE)
+                            .setTitleText("null is not a valid entry")
+                            .show();
+                }
+                else {
 
                     f_name_str=fname.getText().toString();
                     l_name_str=lname.getText().toString();

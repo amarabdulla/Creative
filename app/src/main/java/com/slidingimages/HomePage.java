@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.slidingimages.customViews.ScrimInsetsFrameLayout;
@@ -50,12 +51,14 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 //    private static String url = "http://192.168.0.109/creative/mazyoona/index.php/rest/api/products";
-    public static final String FIRSTPART="http://52.210.59.100/project/mazyoona/index.php/rest/api/";
+    public static final String FIRSTPART="http://52.210.59.100/index.php/rest/api/";
     private static String url = FIRSTPART+"featured";
     private static final String companyName = "companyName";
     private static final String name = "name";
@@ -114,7 +117,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
-        namepref = prefs.getString("username", "null");//"No name defined" is the default value.
+        namepref = prefs.getString("username", "null");
         useridpref = prefs.getString("userid", "null");
         System.out.println("name in pref"+name);
 
@@ -226,16 +229,28 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         });
 
 
-        bannerImageArray.add("http://www.latestasianfashions.com/wp-content/uploads/2012/10/Bokitta-New-Head-Scarves-Winter-Collection-2012-Banner-www.latestasianfashions.jpg");
-        bannerImageArray.add("http://sobyexports.com/blog/wp-content/uploads/2015/08/2349092452176d38a07a112ab1a37bd53a3a32ad_abayas.jpg");
-        bannerImageArray.add("http://usabaya.com/wp-content/uploads/2015/06/Botika-Latest-Fashion-Matching-Scarves-Collection-2012-Banner-www.Fashionhuntworld.Blogspot.com_.jpg");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_1.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_2.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_3.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_4.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_5.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_6.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_7.png");
+        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_8.png");
 
 
 
         init();
+        if (AppStatus.getInstance(this).isOnline()) {
+            ProgressTask progressTask=new ProgressTask();
+            progressTask.execute();
+        }else {
+            new SweetAlertDialog(HomePage.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Please check your network")
+                    .show();
+        }
 
-        ProgressTask progressTask=new ProgressTask();
-        progressTask.execute();
+
 
 
 
