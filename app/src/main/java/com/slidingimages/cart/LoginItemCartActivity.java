@@ -96,13 +96,30 @@ public class LoginItemCartActivity extends Activity {
 			public void onClick(View v) {
 
 				if (!Activity_Login.username.equals("temp")) {
-					Intent intent = new Intent(LoginItemCartActivity.this, ShippingPage.class);
-					startActivity(intent);
-					LoginItemCartActivity.this.finish();
+					if (!ShoppingCart.product_images.isEmpty()){
+						Intent intent = new Intent(LoginItemCartActivity.this, ShippingPage.class);
+						startActivity(intent);
+						LoginItemCartActivity.this.finish();
+					}else {
+						new SweetAlertDialog(LoginItemCartActivity.this, SweetAlertDialog.NORMAL_TYPE)
+								.setTitleText("Please add items")
+								.show();
+					}
+
 				}else {
 					new SweetAlertDialog(LoginItemCartActivity.this, SweetAlertDialog.ERROR_TYPE)
 							.setTitleText("Please login to continue")
+							.setConfirmText("OK")
+							.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+								@Override
+								public void onClick(SweetAlertDialog sDialog) {
+									Intent intent= new Intent(LoginItemCartActivity.this,Activity_Login.class);
+									startActivity(intent);
+									LoginItemCartActivity.this.finish();
+								}
+							})
 							.show();
+
 				}
 			}
 		});

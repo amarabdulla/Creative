@@ -95,12 +95,12 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){

@@ -155,12 +155,12 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
@@ -232,11 +232,11 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-        bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+        bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
         //  Enables Reveal effect
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         bottomNavigation.setCurrentItem(4);
 

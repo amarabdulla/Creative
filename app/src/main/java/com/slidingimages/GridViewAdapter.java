@@ -171,7 +171,7 @@ public class GridViewAdapter extends BaseAdapter {
         holder.product_name.setText(product_names.get(position));
         //DisplayImage function from ImageLoader Class
 //        imageLoader.DisplayImage(images.get(position), holder.img);
-        Picasso.with(context).load(images.get(position)).placeholder(R.drawable.stub).noFade().into(holder.img);
+        Picasso.with(context).load(images.get(position)).placeholder(R.drawable.transparent).noFade().into(holder.img);
         if (!discountArray.get(position).equals("0")){
             holder.discount.setVisibility(View.VISIBLE);
             holder.discount.setText(discountArray.get(position)+"% OFF");

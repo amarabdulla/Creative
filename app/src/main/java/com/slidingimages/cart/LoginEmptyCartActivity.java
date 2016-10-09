@@ -110,11 +110,11 @@ public class LoginEmptyCartActivity extends ActionBarActivity implements View.On
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-        bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+        bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
         //  Enables Reveal effect
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         bottomNavigation.setCurrentItem(3);
 
@@ -143,7 +143,7 @@ public class LoginEmptyCartActivity extends ActionBarActivity implements View.On
                         break;
                     case 4:
                         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
-
+                            initAlertDialog();
                         }else {
                             Intent intent4 = new Intent(LoginEmptyCartActivity.this, ProfilePage.class);
                             startActivity(intent4);

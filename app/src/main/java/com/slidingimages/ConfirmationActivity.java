@@ -27,6 +27,8 @@ import com.slidingimages.utils.UtilsMiscellaneous;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class ConfirmationActivity extends ActionBarActivity implements View.OnClickListener {
     private static final String name = "name";
     String namepref;
@@ -46,6 +48,7 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         textViewId = (TextView) findViewById(R.id.paymentId);
         textViewStatus= (TextView) findViewById(R.id.paymentStatus);
         textViewAmount = (TextView) findViewById(R.id.paymentAmount);
+//        textViewAddress = (TextView) findViewById(R.id.shippingaddress);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
         menuLayoutThree=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_three);
@@ -168,6 +171,8 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         ShoppingCart.designer_names.clear();
         ShoppingCart.product_images.clear();
 
+
+
         try {
             if (!intent.getStringExtra("PaymentDetails").equalsIgnoreCase("cash on delivery")) {
                 JSONObject jsonDetails = new JSONObject(intent.getStringExtra("PaymentDetails"));
@@ -176,6 +181,7 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
                 showDetails(jsonDetails.getJSONObject("response"), intent.getStringExtra("PaymentAmount"));
                 amt=intent.getStringExtra("PaymentAmount");
             }else {
+                amt=intent.getStringExtra("PaymentAmount");
                 textViewId.setText("cod");
                 textViewStatus.setText("Cash On Delivery");
                 textViewAmount.setText(amt);

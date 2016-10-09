@@ -7,18 +7,22 @@
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
+    <string name="shipping_note">Please make sure the entered address is correct before proceeding to payment</string>
 
     <string name="slide_1_title">ABAYA</string>
-    <string name="slide_1_desc">Lorem Ipsum is simply dummy texting of printing and typesting industry also its avaliable</string>
+    <string name="slide_1_desc">Outer garment worn by women in some parts of Middle East, particularily Saudi Arabia and the Arabian Gulf region </string>
 
-    <string name="slide_2_title">BAG</string>
-    <string name="slide_2_desc">Lorem Ipsum is simply dummy texting of printing and typesting industry also its avaliable</string>
+    <string name="slide_2_title">BAGS</string>
+    <string name="slide_2_desc">A hands-free shoulder bag, the ideal clutch for a night out or an office friendly tote,this is your one stop shop for finding every handbag you need</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Jewellery</string>
+    <string name="slide_3_desc">Thousands of designs of jewelery are avaliable in an Arabesque style with a comtemporary twist to cater to the local market </string>
 
-    <string name="slide_4_title">Dresses</string>
-    <string name="slide_4_desc">Lorem Ipsum is simply dummy texting of printing and typesting industry also its avaliable</string>
+    <string name="slide_4_title">Kaftan</string>
+    <string name="slide_4_desc">Kaftan is a collection of casual,comfortable,versatile lifestyle dressing that is effortlessly stylish made from quality fabrics in gorgeous bright colours and parts elevating and energizing your spirit</string>
+
+    <string name="slide_5_title">DRESSES</string>
+    <string name="slide_5_desc">Dubai and UAE have varying degrees of tolerance for clothing styles from across the world.Nevertheless, dress code in Dubai is quite liberal</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
@@ -58,6 +62,7 @@
     <string name="phone">Phone No</string>
     <string name="product_desc">Product Descrption</string>
     <string name="browse_by_category">Browse By Category</string>
+    <string name="featured_product">Featured products</string>
     <string name="see_all">See All</string>
     <string name="buy_now">Buy Now</string>
     <string name="spinner_prompt">Dubai</string>
@@ -69,6 +74,7 @@
     <string name="merchandise_total">Merchandise Total</string>
     <string name="discount">Discount</string>
     <string name="shipping">Shipping</string>
+    <string name="check_email">Please check your email for more details</string>
     <string name="tax">Tax</string>
     <string name="product_lowcase">Products</string>
     <string name="my_profile">My Profile</string>
@@ -119,15 +125,15 @@
     <string name="tag_nav_drawer_special_entry">nav_drawer_special_entry</string>
     <string name="tools_text_account_information_username">Username</string>
     <string name="tools_text_account_information_email">user@mail.com</string>
-    <string name="about_us">ABOUT US</string>
-    <string name="contact_us">CONTACT US</string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
     <string name="faq">FAQ</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
-    <string name="shopping_cart">SHOPPING CART</string>
+    <string name="shopping_cart">Shopping Cart</string>
     <string name="shopping_cart_lowcase">Shopping Cart</string>
-    <string name="special_offer">SPECIAL OFFER</string>
-    <string name="designer_list">DESIGNER LIST</string>
+    <string name="special_offer">Special Offer</string>
+    <string name="designer_list">Designer List</string>
     <string name="order_placed">Your Order is Placed</string>
     <string name="my_orders">MY ORDERS</string>
     <string name="my_orders_small">My Orders</string>

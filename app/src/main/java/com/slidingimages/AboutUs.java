@@ -40,7 +40,7 @@ public class AboutUs extends ActionBarActivity implements View.OnClickListener {
     private WebView webview;
     private static final String TAG = "Main";
         private ProgressDialog progressBar;
-    private static String ABOUT_URL="http://192.168.0.109/creative/mazyoona/index.php/rest/api/page/about_us";
+    private static String ABOUT_URL=HomePage.FIRSTPART+"page/about_us";
     private ImageView menu_icon;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private DrawerLayout mDrawerLayout;
@@ -68,12 +68,12 @@ public class AboutUs extends ActionBarActivity implements View.OnClickListener {
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
@@ -201,11 +201,11 @@ public class AboutUs extends ActionBarActivity implements View.OnClickListener {
                 this.startActivity(cont);
                 mDrawerLayout.closeDrawer(GravityCompat.END);
                 break;
-            case R.id.see_all:
-                Intent pro = new Intent(this, ProductPage.class);
-                this.startActivity(pro);
-                mDrawerLayout.closeDrawer(GravityCompat.END);
-                break;
+//            case R.id.see_all:
+//                Intent pro = new Intent(this, ProductPage.class);
+//                this.startActivity(pro);
+//                mDrawerLayout.closeDrawer(GravityCompat.END);
+//                break;
         }
     }
     private void init_navigator(){

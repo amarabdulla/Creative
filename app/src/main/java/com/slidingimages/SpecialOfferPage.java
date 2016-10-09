@@ -55,8 +55,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class SpecialOfferPage extends ActionBarActivity implements View.OnClickListener {
     private static final String name = "name";
     String namepref;
-    private static String firstpart = "http://52.210.59.100/project/mazyoona/index.php/rest/api/";
-    private static String url = firstpart + "todayDeals";
+//    private static String firstpart = "http://52.210.59.100/project/mazyoona/index.php/rest/api/";
+    private static String url = HomePage.FIRSTPART + "todayDeals";
     private FrameLayout menuLayoutOne, menuLayoutTwo, menuLayoutThree, menuLayoutFour, menuLayoutFive, menuLayoutSix;
     private ArrayList<String> imagesParseArray = new ArrayList<String>();
     private ArrayList<String> titleParseArray = new ArrayList<String>();
@@ -101,12 +101,12 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){

@@ -99,12 +99,17 @@ public class ProductsDetailActivity extends Activity {
 
 		tv_model.setText(productName);
 		tv_avail.setText("Availability: " + productAvail);
-		tv_price.setText("Price: " + "AED" + purchase_price);
-		tv_tax.setText(sale_price+" AED");
-		tv_tax.setPaintFlags(tv_tax.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+		tv_price.setText("Price: " + "AED " + purchase_price);
+		if (sale_price.equals(purchase_price)){
+			tv_tax.setText("");
+		}else {
+			tv_tax.setText(sale_price+" AED");
+			tv_tax.setPaintFlags(tv_tax.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+		}
+
 		tv_des.setText(Html.fromHtml(desc));
 //		imageLoader.DisplayImage(productImg, detail_img);
-		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.stub).into(detail_img);
+		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.transparent).into(detail_img);
 
 		detail_img.setOnClickListener(new OnClickListener() {
 			@Override
@@ -145,7 +150,7 @@ public class ProductsDetailActivity extends Activity {
 
 				if (!productAvail.equalsIgnoreCase("0")) {
 					if (ShoppingCart.product_names.contains(productName)) {
-						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Already added to Cart")
 								.show();
 					} else {
@@ -157,7 +162,7 @@ public class ProductsDetailActivity extends Activity {
 						ShoppingCart.designer_names.add(designer_name);
 						ShoppingCart.product_images.add(productImg);
 						ShoppingCart.avaliablilityArray.add(productAvail);
-						ShoppingCart.qtyArray.add(qty_str);
+						ShoppingCart.qtyArray.add(spinner_qty_text);
 
 						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
 								.setTitleText("Added to Cart!")

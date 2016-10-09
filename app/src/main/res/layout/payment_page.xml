@@ -7,10 +7,9 @@
     android:paddingTop="10dp" >
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:gravity="center_horizontal"
-
-        android:layout_marginBottom="@dimen/space_10"
+        android:layout_marginBottom="@dimen/space_1"
         android:id="@+id/welcome">
 
         <ImageView
@@ -30,7 +29,7 @@
         android:paddingLeft="@dimen/space_15"
         android:text="@string/choose_deilvery_mode"
         android:textColor="@color/white"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="15dip"
         android:background="@android:color/holo_purple"
         />
     <RadioGroup
@@ -53,7 +52,7 @@
             android:padding="5dp"
             />
 
-        <RadioButton
+    <!--    <RadioButton
             android:id="@+id/bank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +60,7 @@
             android:layout_marginTop="@dimen/space_3"
             android:drawableLeft="@drawable/pay_debit_s"
             android:padding="5dp"
-            />
+            />-->
 
         <RadioButton
             android:id="@+id/cod"
@@ -141,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/phone"
-            android:layout_marginLeft="105dp"
+            android:layout_marginLeft="112dp"
             android:layout_toRightOf="@+id/phone"
             android:text="0" >
         </TextView>

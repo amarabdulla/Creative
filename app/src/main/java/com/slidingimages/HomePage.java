@@ -67,7 +67,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private GridView gridView;
     private ImageView menu_icon;
     private Integer currentMenuPosition=0;
-    private TextView seeAll;
+//    private TextView seeAll;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private ArrayList<String> bannerImageArray = new ArrayList<>();
     private ArrayList<String> imagesParseArray = new ArrayList<String>();
@@ -92,7 +92,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
         gridView = (GridView) findViewById(R.id.gridView);
-        seeAll=(TextView)findViewById(R.id.see_all) ;
+//        seeAll=(TextView)findViewById(R.id.see_all) ;
         menu_icon=(ImageView) findViewById(R.id.menu_icon) ;
         menu_icon.setClickable(true);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
@@ -110,12 +110,12 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
         useridpref = prefs.getString("userid", "null");
@@ -155,11 +155,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-        bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+        bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
         //  Enables Reveal effect
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         bottomNavigation.setCurrentItem(0);
 
@@ -229,14 +229,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         });
 
 
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_1.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_2.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_3.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_4.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_5.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_6.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_7.png");
-        bannerImageArray.add("http://52.210.59.100//uploads//category_image//category_8.png");
+        bannerImageArray.add("http://tinyimg.io/i/i6QNZGe.png");
+        bannerImageArray.add("http://tinyimg.io/i/y952YxK.jpg");
+        bannerImageArray.add("http://tinyimg.io/i/zxP4Vw3.png");
+
 
 
 
@@ -262,7 +258,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         menuLayoutFour.setOnClickListener(this);
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
-        seeAll.setOnClickListener(this);
+//        seeAll.setOnClickListener(this);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -344,10 +340,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
                 this.startActivity(cont);
                 mDrawerLayout.closeDrawer(GravityCompat.END);
                 break;
-            case R.id.see_all:
-                Intent pro = new Intent(this, ProductPage.class);
-                this.startActivity(pro);
-                break;
+//            case R.id.see_all:
+//                Intent pro = new Intent(this, ProductPage.class);
+//                this.startActivity(pro);
+//                break;
         }
     }
 

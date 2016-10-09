@@ -132,14 +132,13 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
         bottomNavigation.addItem(item5);
-
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-        bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+        bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
         //  Enables Reveal effect
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         bottomNavigation.setCurrentItem(1);
 

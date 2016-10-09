@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="195dp"
-            android:src="@drawable/intro_three" />
+            android:src="@drawable/intro_six" />
 
         <TextView
             android:layout_width="wrap_content"

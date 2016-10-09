@@ -63,12 +63,19 @@ public class PaymentPage extends Activity {
     ArrayList<String> product_nameArray= new ArrayList<>();
     ArrayList<String> product_priceArray= new ArrayList<>();
     ArrayList<String> product_subtotalArray= new ArrayList<>();
+    ArrayList<String> firstnameArray= new ArrayList<>();
+    ArrayList<String> lastnameArray= new ArrayList<>();
+    ArrayList<String> zipArray= new ArrayList<>();
+    ArrayList<String> cityArray= new ArrayList<>();
+    ArrayList<String> address1Array= new ArrayList<>();
+    ArrayList<String> address2Array= new ArrayList<>();
+
     private TextView total_qty,total_sale_price,total_purchase_price,shipping,tax;
     JSONObject jsonObjFinal;
     JSONArray jsonArr;
 
     private CustomProgressDialog mCustomProgressDialog;
-    private static final String REGISTER_URL = "http://mazyoona.com/project/mazyoona/index.php/rest/api/cartFinish";
+    private static final String REGISTER_URL = HomePage.FIRSTPART+"cartFinish";
 //    private String REGISTER_URL="http://192.168.0.109/creative/mazyoona/index.php/rest/api/cartFinish1";
 
     private String ORDER_URL = "";
@@ -93,7 +100,7 @@ public class PaymentPage extends Activity {
     public static final String KEY_TAX = "tax";
     public static final String KEY_SUBTOTAL = "subtotal";
     public static final String KEY_SALEID = "sale_id";
-
+    String userid_pref;
     String paymentDetails;
     // PayPal configuration
     private static PayPalConfiguration paypalConfig = new PayPalConfiguration()
@@ -131,10 +138,8 @@ public class PaymentPage extends Activity {
             try {
                 jsonObject.put(KEY_PRODUCT_ID, ShoppingCart.product_ids.get(i));
                 jsonObject.put(KEY_QTY,ShoppingCart.qtyArray.get(i));
-//            json.put(KEY_OPTION,ShoppingCart.product_ids.get(i));
                 jsonObject.put(KEY_PRICE,ShoppingCart.purchase_prices.get(i));
                 jsonObject.put(KEY_PRODUCTNAME,ShoppingCart.product_names.get(i));
-//            json.put(KEY_TAX,ShoppingCart.product_ids.get(i));
                 jsonObject.put(KEY_SUBTOTAL,paymentAmount);
                 jsonArr.put(jsonObject);
             } catch (JSONException e) {
@@ -142,12 +147,14 @@ public class PaymentPage extends Activity {
             }
 
         }
-        try {
-            jsonObjFinal.put("products",jsonArr);
-            System.out.println(jsonArr+"jsonn");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
+        userid_pref= prefs.getString("userid", "null");
+//        try {
+//            jsonObjFinal.put("products",jsonArr);
+//            System.out.println(jsonArr+"jsonn");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         place_order.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +170,27 @@ public class PaymentPage extends Activity {
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
+                                    if (!ShoppingCart.purchase_prices.isEmpty()){
+                                        paymentAmount= String.valueOf(total_sale_price()/3.7);
+                                    }else {
+                                        paymentAmount = "0";
+                                    }
+                                    jsonArr = new JSONArray();
+
+                                    for (int i=0;i< ShoppingCart.product_names.size();i++){
+                                        JSONObject jsonObject= new JSONObject();
+                                        try {
+                                            jsonObject.put(KEY_PRODUCT_ID, ShoppingCart.product_ids.get(i));
+                                            jsonObject.put(KEY_QTY,ShoppingCart.qtyArray.get(i));
+                                            jsonObject.put(KEY_PRICE,ShoppingCart.purchase_prices.get(i));
+                                            jsonObject.put(KEY_PRODUCTNAME,ShoppingCart.product_names.get(i));
+                                            jsonObject.put(KEY_SUBTOTAL,paymentAmount);
+                                            jsonArr.put(jsonObject);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
                                     ProgressTask1 progressTask= new ProgressTask1();
                                     progressTask.execute();
                                     getPayment();
@@ -176,18 +204,18 @@ public class PaymentPage extends Activity {
                                 }
                             })
                             .show();
-                }else if (payment_mode.equals("bank")){
-                    new SweetAlertDialog(PaymentPage.this, SweetAlertDialog.NORMAL_TYPE)
-                            .setTitleText("")
-                            .setContentText("Not available please select any other payment mode")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sDialog) {
-                                    sDialog.dismissWithAnimation();
-                                }
-                            })
-                            .show();
+//                }else if (payment_mode.equals("bank")){
+//                    new SweetAlertDialog(PaymentPage.this, SweetAlertDialog.NORMAL_TYPE)
+//                            .setTitleText("")
+//                            .setContentText("Not available please select any other payment mode")
+//                            .setConfirmText("OK")
+//                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                @Override
+//                                public void onClick(SweetAlertDialog sDialog) {
+//                                    sDialog.dismissWithAnimation();
+//                                }
+//                            })
+//                            .show();
                 }else if (payment_mode.equals("cod")){
                     new SweetAlertDialog(PaymentPage.this, SweetAlertDialog.NORMAL_TYPE)
                             .setTitleText("")
@@ -196,12 +224,34 @@ public class PaymentPage extends Activity {
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
+                                    if (!ShoppingCart.purchase_prices.isEmpty()){
+                                        paymentAmount= String.valueOf(total_sale_price());
+                                    }else {
+                                        paymentAmount = "0";
+                                    }
+                                    jsonArr = new JSONArray();
+
+                                    for (int i=0;i< ShoppingCart.product_names.size();i++){
+                                        JSONObject jsonObject= new JSONObject();
+                                        try {
+                                            jsonObject.put(KEY_PRODUCT_ID, ShoppingCart.product_ids.get(i));
+                                            jsonObject.put(KEY_QTY,ShoppingCart.qtyArray.get(i));
+                                            jsonObject.put(KEY_PRICE,ShoppingCart.purchase_prices.get(i));
+                                            jsonObject.put(KEY_PRODUCTNAME,ShoppingCart.product_names.get(i));
+                                            jsonObject.put(KEY_SUBTOTAL,paymentAmount);
+                                            jsonArr.put(jsonObject);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
                                     ProgressTask1 progressTask= new ProgressTask1();
                                     progressTask.execute();
                                     Intent intent = new Intent(PaymentPage.this, ConfirmationActivity.class);
                                     intent.putExtra("PaymentDetails", "Cash On Delivery");
                                     intent.putExtra("PaymentAmount", paymentAmount);
                                     startActivity(intent);
+                                    PaymentPage.this.finish();
                                 }
                             })
                             .setCancelText("Cancel")
@@ -240,9 +290,9 @@ public class PaymentPage extends Activity {
                     case R.id.paypal:
                         payment_mode="paypal";
                         break;
-                    case R.id.bank:
-                        payment_mode="bank";
-                        break;
+//                    case R.id.bank:
+//                        payment_mode="bank";
+//                        break;
                     case R.id.cod:
                         payment_mode="cod";
                         break;
@@ -341,15 +391,29 @@ public class PaymentPage extends Activity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-//                                result="success";
-                            Toast.makeText(PaymentPage.this,response,Toast.LENGTH_LONG).show();
+//                            Toast.makeText(PaymentPage.this,response,Toast.LENGTH_LONG).show();
                             try {
                                 JSONObject mainObject = new JSONObject(response.toString());
                                 sale_id=mainObject.getString("sale_id");
                                 ORDER_URL=HomePage.FIRSTPART+"orderInvoice?sale_id="+sale_id;
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        if (payment_mode.equals("cod")){
+//                                            ProgressTask2 progressTask2= new ProgressTask2();
+//                                            progressTask2.execute();
+//                                            Intent intent = new Intent(PaymentPage.this, ConfirmationActivity.class);
+//                                    intent.putExtra("PaymentDetails", "Cash On Delivery");
+//                                    intent.putExtra("PaymentAmount", paymentAmount);
+//                                    startActivity(intent);
+//                                    PaymentPage.this.finish();
+//                                        }
+//                                    }
+//                                });
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+
 
                         }
                     },
@@ -372,16 +436,17 @@ public class PaymentPage extends Activity {
                     params.put(KEY_CITY,ShippingPage.city_str);
                     params.put(KEY_ZIP,ShippingPage.zip_str);
                     params.put(KEY_TOTAL,paymentAmount);
-                    SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
-                    String userid_pref= prefs.getString("userid", "null");
+
                     if (userid_pref.equals("")||  userid_pref.equals("null")){
                         params.put(KEY_USER_ID,Activity_Login.userId);
                     }else {
                         params.put(KEY_USER_ID,userid_pref);
                     }
-                    params.put(KEY_USER_ID,Activity_Login.userId);
+
                     params.put(KEY_PAYMENT_TYPE,payment_mode);
+                    System.out.println(params+"params");
                     return params;
+
                 }
 
             };
@@ -414,16 +479,16 @@ public class PaymentPage extends Activity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-//                                result="success";
-                            Toast.makeText(PaymentPage.this,response,Toast.LENGTH_LONG).show();
+//                            Toast.makeText(PaymentPage.this,response,Toast.LENGTH_LONG).show();
                             try {
                                 JSONObject jsonObject = new JSONObject(response.toString());
                                 JSONObject jsonObject1=jsonObject.getJSONObject("sale_details");
-                                JSONArray jsonArray = jsonObject1.getJSONArray("products");
+                                JSONArray jsonArrayProducts = jsonObject1.getJSONArray("products");
+//                                JSONArray jsonArrayShipping = jsonObject1.getJSONArray("shipping_info");
 
 
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                                for (int i = 0; i < jsonArrayProducts.length(); i++) {
+                                    JSONObject jsonObjectUser = jsonArrayProducts.getJSONObject(i);
                                     String id = jsonObjectUser.getString("id");
                                     String name = jsonObjectUser.getString("name");
                                     String price = jsonObjectUser.getString("price");
@@ -436,6 +501,7 @@ public class PaymentPage extends Activity {
                                     product_subtotalArray.add(subtotal);
 
                                 }
+
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -447,6 +513,12 @@ public class PaymentPage extends Activity {
                                     intent.putExtra("productsNameArray", product_nameArray);
                                     intent.putExtra("productsPriceArray", product_priceArray);
                                     intent.putExtra("productsSubtotalArray", product_subtotalArray);
+                                    intent.putExtra("firstnameArray", firstnameArray);
+                                    intent.putExtra("lastnameArray", lastnameArray);
+                                    intent.putExtra("address1Array", address1Array);
+                                    intent.putExtra("address2Array", address2Array);
+                                    intent.putExtra("cityArray", cityArray);
+                                    intent.putExtra("zipArray", zipArray);
                                     startActivity(intent);
                                     PaymentPage.this.finish();
                                 }

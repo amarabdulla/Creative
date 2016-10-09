@@ -35,8 +35,9 @@
                 android:text="240 AED"
                 android:textSize="13sp"
                 android:paddingLeft="@dimen/space_10"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:layout_gravity="left"
+                android:textStyle="bold"
                 android:layout_marginTop="290dp"
                 android:id="@+id/purchase_price" />
             <TextView

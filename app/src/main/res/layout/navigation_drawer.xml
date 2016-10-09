@@ -19,12 +19,12 @@
             android:layout_height="@dimen/navigation_drawer_account_section_default_height"
             android:clickable="true"
             android:foreground="?selectableItemBackground"
-            tools:layout_height="@dimen/navigation_drawer_account_section_default_height">
+            tools:layout_height="150dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:foreground="@color/black_alpha_50">
+               >
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/navigation_drawer_user_account_picture_cover"
@@ -72,7 +72,7 @@
                     android:layout_marginLeft="@dimen/space_18"
                     android:layout_marginBottom="-35dp"
                     android:layout_above="@id/navigation_drawer_account_information"
-                    android:src="@drawable/circular_image_icon" />
+                    android:src="@drawable/user_icon_female" />
 
             </RelativeLayout>
 
@@ -113,6 +113,9 @@
                         tools:fontFamily="sans-serif-medium"
                         tools:textColor="@color/nav_drawer_item_text_selected"/>
 
+
+
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -127,6 +130,11 @@
                         android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium"/>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
+
                 </FrameLayout>
 
              <!--   <include
@@ -135,7 +143,10 @@
                 <FrameLayout
                     android:id="@+id/navigation_drawer_items_list_linearLayout_three"
                     style="@style/NavDrawerRowLayout.Secondary">
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
 
 
                     <TextView
@@ -152,6 +163,10 @@
                     style="@style/NavDrawerRowLayout.Secondary">
 
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_four"
                         style="@style/NavDrawerRowItemText"
@@ -165,13 +180,21 @@
                     android:id="@+id/navigation_drawer_items_list_linearLayout_five"
                     style="@style/NavDrawerRowLayout.Secondary">
 
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_five"
                         style="@style/NavDrawerRowItemText"
                         android:text="@string/about_us"
                         android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
 
                 </FrameLayout>
 
@@ -187,27 +210,24 @@
                         android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/powered_text_lay"
-                    style="@style/NavDrawerRowLayout.Secondary">
-
-
-
-                    <TextView
-                        android:id="@+id/powered_text"
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/contact_us"
-                        android:layout_marginTop="@dimen/space_50"
-                        android:layout_marginLeft="@dimen/space_40"
-                        tools:fontFamily="sans-serif-medium" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_btn_bg_color"/>
 
                 </FrameLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="85dp"
+                    android:background="@drawable/creative_logo"
+                    android:id="@+id/imageView2" />
+
 
             </LinearLayout>
 
         </ScrollView>
+
 
     </LinearLayout>
 

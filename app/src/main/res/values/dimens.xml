@@ -46,6 +46,7 @@
         <dimen name="space_90">90.0dip</dimen>
         <dimen name="space_70">70.0dip</dimen>
          <dimen name="space_65">65.0dip</dimen>
+        <dimen name="space_60">60.0dip</dimen>
         <dimen name="space_56">56.0dip</dimen>
         <dimen name="space_50">50.0dip</dimen>
         <dimen name="space_40">40.0dip</dimen>

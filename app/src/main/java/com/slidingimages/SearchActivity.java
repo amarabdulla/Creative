@@ -70,6 +70,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	private ArrayList<String> designer_nameParseArray = new ArrayList<String>();
 	private AHBottomNavigation bottomNavigation;
 	private DrawerLayout mDrawerLayout;
+	private CustomProgressDialog mCustomProgressDialog;
 	private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 	private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
 //	private static String FIRSTPART="http://52.210.59.100/project/mazyoona/index.php/rest/api/";
@@ -88,6 +89,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		menu_icon=(ImageView) findViewById(R.id.menu_icon) ;
 		menu_icon.setClickable(true);
 		search_close=(Button)findViewById(R.id.delete);
+		mCustomProgressDialog = new CustomProgressDialog(SearchActivity.this);
 		menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
 		menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
 		menuLayoutThree=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_three);
@@ -163,11 +165,11 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 
 		bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-		bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-		bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+		bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+		bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
 		//  Enables Reveal effect
-		bottomNavigation.setColored(true);
+//		bottomNavigation.setColored(true);
 
 		bottomNavigation.setCurrentItem(2);
 
@@ -319,14 +321,18 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	private class ProgressTask extends AsyncTask<String, Void, Boolean> {
 
 		protected void onPreExecute() {
-			dialog.setMessage("Progress start");
-			dialog.show();
+//			dialog.setMessage("Progress start");
+//			dialog.show();
+			mCustomProgressDialog.show("");
 		}
 
 		@Override
 		protected void onPostExecute(final Boolean success) {
-			if (dialog.isShowing()) {
-				dialog.dismiss();
+//			if (dialog.isShowing()) {
+//				dialog.dismiss();
+//			}
+			if (mCustomProgressDialog.isShowing()|| mCustomProgressDialog!=null) {
+				mCustomProgressDialog.dismiss("");
 			}
 
 			for (int i=0;i<titleParseArray.size();i++){

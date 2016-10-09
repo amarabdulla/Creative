@@ -55,7 +55,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class OrderList extends ActionBarActivity implements View.OnClickListener {
     private static final String name = "name";
-    String namepref;
+    String name_pref;
     private DrawerLayout mDrawerLayout;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
@@ -101,14 +101,14 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
-        String name_pref= prefs.getString("username", "null");
+        name_pref= prefs.getString("username", "null");
         String userid_pref= prefs.getString("userid", "null");
         if (name_pref.equals("") || userid_pref.equals("")|| name_pref.equals("null")|| userid_pref.equals("null")){
             url=HomePage.FIRSTPART+"orderDetails?user_id="+Activity_Login.userId;
@@ -123,10 +123,11 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
             }else {
-                navigation_username.setText(namepref);
+                navigation_username.setText(name_pref);
             }
             navigation_username.setTypeface(tf);
         }
+
 
         //Navigation menu item click listener
         menuLayoutOne.setOnClickListener(this);
@@ -267,6 +268,7 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
 //                                        String url = jsonObjectUser.getString("image");
 //                                        String company = jsonObjectUser.getString("company");
 //                                        String email = jsonObjectUser.getString("email");
+                                        String product_subtotal = jsonObjectUser.getString("order_id");
                                         String payment_type = jsonObjectUser.getString("payment_type");
                                         JSONArray jsonArrayProducts = jsonObjectUser.getJSONArray("products");
                                         for (int j = 0; j < jsonArrayProducts.length(); j++) {
@@ -274,7 +276,7 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
                                             String product_name = jsonObjectProducts.getString("name");
                                             String product_image = jsonObjectProducts.getString("image");
                                             String product_price = jsonObjectProducts.getString("price");
-                                            String product_subtotal = jsonObjectProducts.getString("order_id");
+                                            String product_salecode = jsonObjectProducts.getString("sale_code");
                                             String product_qty = jsonObjectProducts.getString("qty");
 
                                             titleParseArray.add(product_name);
@@ -299,7 +301,7 @@ public class OrderList extends ActionBarActivity implements View.OnClickListener
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(OrderList.this,"successful",Toast.LENGTH_LONG).show();
+//                                        Toast.makeText(OrderList.this,"successful",Toast.LENGTH_LONG).show();
 
                                         CustomOrderListAdapter  customOrderListAdapter= new CustomOrderListAdapter(OrderList.this,imagesParseArray,titleParseArray,
                                                 companyParseArray,emailParseArray,addressParseArray,designerIdParseArray);

@@ -69,7 +69,7 @@ public class CustomDesignerListAdapter extends BaseAdapter  {
 
         public TextView product_name;
         public TextView designer_name;
-        public TextView textWide;
+//        public TextView textWide;
         public TextView textAddress;
         public de.hdodenhof.circleimageview.CircleImageView image;
 
@@ -91,7 +91,7 @@ public class CustomDesignerListAdapter extends BaseAdapter  {
             holder = new ViewHolder();
             holder.product_name = (TextView) vi.findViewById(R.id.txt);
             holder.designer_name=(TextView)vi.findViewById(R.id.cur);
-            holder.textWide=(TextView)vi.findViewById(R.id.text3);
+//            holder.textWide=(TextView)vi.findViewById(R.id.text3);
             holder.textAddress=(TextView)vi.findViewById(R.id.text4);
             holder.image=(de.hdodenhof.circleimageview.CircleImageView)vi.findViewById(R.id.imageView);
 
@@ -110,7 +110,7 @@ public class CustomDesignerListAdapter extends BaseAdapter  {
         {
             holder.product_name.setText(title.get(position) );
             holder.designer_name.setText( companyArray.get(position) );
-            holder.textWide.setText( emailArray.get(position) );
+//            holder.textWide.setText( emailArray.get(position) );
             holder.textAddress.setText( addressArray.get(position) );
             imageLoader.DisplayImage(images.get(position), holder.image);
 

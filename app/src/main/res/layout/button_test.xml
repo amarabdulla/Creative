@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:text="Dubai"
+                    android:text=""
                     android:layout_alignParentBottom="true"
                     android:layout_alignStart="@+id/email_txt">
                 </TextView>
@@ -121,7 +121,7 @@
                 android:id="@+id/navigation_drawer_user_account_picture_profile"
                 android:layout_width="@dimen/navigation_drawer_profile_image_size"
                 android:layout_height="@dimen/navigation_drawer_profile_image_size"
-                android:src="@drawable/ic_account_circle_white_64dp"
+                android:src="@drawable/user_icon_female"
                 android:layout_above="@+id/navigation_drawer_account_information"
                 android:layout_alignEnd="@+id/navigation_drawer_account_information"
                 android:layout_marginEnd="125dp" />

@@ -51,7 +51,7 @@
         android:layout_marginLeft="8dp"
              android:textStyle="bold"
         android:text="model: "
-        android:textSize="22dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/detail_avail"
@@ -61,7 +61,7 @@
         android:layout_marginLeft="8dp"
         android:layout_below="@id/detail_model"
         android:text="availability" 
-        android:textSize="20dp"/>
+        android:textSize="16dp"/>
 
 
         <TextView
@@ -71,9 +71,10 @@
             android:layout_marginTop="1dp"
             android:layout_marginLeft="8dp"
             android:layout_below="@id/detail_model"
+            android:textStyle="bold"
             android:text="price"
-            android:textColor="@color/orangered"
-            android:textSize="20dp"/>
+            android:textColor="@color/text_color"
+            android:textSize="18dp"/>
 
         <TextView
             android:id="@+id/detail_tax"
@@ -126,7 +127,8 @@
             android:padding="5dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/buy_now"
-            android:textSize="25sp"
+         android:textAllCaps="false"
+            android:textSize="22sp"
             android:textColor="@color/white" 
             />
 
@@ -140,7 +142,8 @@
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/add_to_cart"
-            android:textSize="25sp"
+            android:textAllCaps="false"
+            android:textSize="22sp"
             android:textColor="@color/white" />
     <TextView
         android:id="@+id/detail_des"

@@ -114,8 +114,53 @@
                         android:textStyle="bold" />
                 </TableRow>
 
+              <!--  <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ddddddddddddd"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:textColor="@color/text_color" />
+
+                    <TextView
+                        android:id="@+id/shippingaddress"
+                        android:layout_width="wrap_content"
+                        android:text="@string/check_email"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                         />
+                </TableRow>-->
+
 
             </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="@dimen/space_10"
+                        android:textColor="@color/text_color" />
+
+                    <TextView
+                        android:id="@+id/shippingaddress"
+                        android:layout_width="wrap_content"
+                        android:text="@string/check_email"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        />
+                </TableRow>
+                </TableLayout>
         </LinearLayout>
         <FrameLayout
             android:id="@+id/coordinator"
@@ -136,6 +181,6 @@
 
         </FrameLayout>
     </RelativeLayout>
-    <include
+<include
         layout="@layout/navigation_drawer"/>
 </android.support.v4.widget.DrawerLayout>

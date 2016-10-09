@@ -51,7 +51,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="25sp"
+        android:textSize="20sp"
         />
         <requestFocus/>
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/cart_price"
         android:textColor="@color/orangered"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     </RelativeLayout>
     
@@ -85,11 +85,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:textAllCaps="false"
         android:background="@drawable/button_selector_signin"
         android:padding="10dp"
         android:text="@string/check_out"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="21sp" />
     
         <TextView 
         android:id="@+id/line_1"
@@ -128,8 +129,9 @@
             android:padding="10dp"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
+            android:textAllCaps="false"
             android:text="@string/edit_cart"
-            android:textSize="25sp" />
+            android:textSize="21sp" />
 
          </LinearLayout>
         <TextView 
