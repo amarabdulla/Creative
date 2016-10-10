@@ -23,11 +23,11 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginLeft="@dimen/space_15"
-        android:layout_marginRight="@dimen/space_15"
-        android:paddingLeft="@dimen/space_25"
-        android:paddingRight="@dimen/space_25"
+        android:layout_height="180dp"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:paddingLeft="@dimen/space_15"
+        android:paddingRight="@dimen/space_15"
         android:id="@+id/listView" />
     <TextView
         android:id="@+id/empty"

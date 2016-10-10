@@ -1,3 +1,4 @@
-include ':app', ':bouncy_text_library'
+include ':app', ':bouncy_text_library', ':elegent_number_lib', 'number_button'
 include ':libs:ViewPagerIndicator-Library'
 project(':bouncy_text_library').projectDir = new File('libs/bouncy_text_library')
+project(':elegent_number_lib').projectDir = new File('libs/elegent_number_lib')

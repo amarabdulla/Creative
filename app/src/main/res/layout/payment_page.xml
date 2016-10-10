@@ -163,7 +163,7 @@
             android:layout_alignBottom="@+id/city"
             android:layout_marginLeft="115dp"
             android:layout_toRightOf="@+id/city"
-            android:text="$$$" >
+            android:text="20 AED" >
         </TextView>
 
         <TextView

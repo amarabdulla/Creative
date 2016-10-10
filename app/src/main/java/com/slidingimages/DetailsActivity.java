@@ -66,7 +66,7 @@ public class DetailsActivity extends ActionBarActivity {
         //Set image url
         imageView = (ImageView ) findViewById(R.id.grid_item_image);
 //        Picasso.with(this).load(image).into((Target) imageView);
-        Picasso.with(DetailsActivity.this).load(image).placeholder(R.drawable.transparent).noFade().resize(800,1200).centerCrop().into(imageView);
+        Picasso.with(DetailsActivity.this).load(image).placeholder(R.drawable.icon_mazyoona_loading).noFade().resize(800,1200).centerCrop().into(imageView);
 //        imageLoader.DisplayImage(image,imageView);
         //Set the background color to black
         frameLayout = (FrameLayout) findViewById(R.id.main_background);

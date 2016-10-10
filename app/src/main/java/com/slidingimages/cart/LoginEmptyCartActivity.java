@@ -164,6 +164,9 @@ public class LoginEmptyCartActivity extends ActionBarActivity implements View.On
         menuLayoutFour.setOnClickListener(this);
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
+
+        menuLayoutThree.setBackgroundColor(getResources().getColor(R.color.gray_btn_bg_color));
+
         Toolbar topToolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(topToolBar);
 //        topToolBar.setLogo(R.drawable.ic_drawer);

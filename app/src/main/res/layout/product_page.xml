@@ -52,12 +52,14 @@
             android:id="@+id/header_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
+            android:background="@color/gray_btn_bg_color"
+            android:paddingLeft="@dimen/space_5"
             android:text="@string/products"
             android:layout_marginBottom="@dimen/space_5"
             android:layout_marginTop="@dimen/space_70"
-            android:textColor="#a41c9a"
-            android:textSize="22dp" />
+            android:textColor="@color/black"
+            android:textSize="18dp" />
     </FrameLayout>
 
 

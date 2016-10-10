@@ -43,7 +43,7 @@ public class Activity_Login extends Activity implements OnClickListener {
     public static String username="null";
     private CustomProgressDialog mCustomProgressDialog;
 
-    private static final String REGISTER_URL = "http://mazyoona.com/project/mazyoona/index.php/rest/api/login";
+    private static final String REGISTER_URL = HomePage.FIRSTPART+"login";
     public static final String MY_PREFS_NAME="login_pref";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";

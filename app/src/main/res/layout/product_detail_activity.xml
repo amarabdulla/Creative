@@ -1,167 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gridview_bg_new" >
+    android:background="@drawable/gridview_bg_new">
 
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@drawable/header"
-            android:layout_width="match_parent"
-            android:layout_height="64dp">
 
-
-        </android.support.v7.widget.Toolbar>
-    </LinearLayout>
-
-    
-    <ImageView
-        android:id="@+id/detail_img"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="@dimen/space_15"
-        android:src="@drawable/c_1" />
-
-    <TextView
-        android:id="@+id/detail_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:text="TextView" />
-    
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginBottom="@dimen/space_5"
-        android:layout_height="wrap_content" >
-        
-         <TextView
-        android:id="@+id/detail_model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="8dp"
-             android:textStyle="bold"
-        android:text="model: "
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/detail_avail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="8dp"
-        android:layout_below="@id/detail_model"
-        android:text="availability" 
-        android:textSize="16dp"/>
-
-
-        <TextView
-            android:id="@+id/detail_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="8dp"
-            android:layout_below="@id/detail_model"
-            android:textStyle="bold"
-            android:text="price"
-            android:textColor="@color/text_color"
-            android:textSize="18dp"/>
-
-        <TextView
-            android:id="@+id/detail_tax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="33dp"
-            android:layout_marginLeft="147dp"
-            android:text="Ex Tax"
-            android:textSize="20sp"
-            android:textColor="@color/grey"/>
-
-
-
-</RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:id="@+id/detail_qty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Qty: "
-            android:textStyle="bold" 
-            android:layout_marginLeft="30dp"/>
-
-        <Spinner
-            android:id="@+id/detail_edt_qty"
-            android:layout_width="85dp"
-            android:layout_height="25dp"
-    >
-            </Spinner>
-
-
-    </LinearLayout>
-
-     <Button
-            android:id="@+id/detail_buy"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_selector_cart"
-            android:padding="5dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/buy_now"
-         android:textAllCaps="false"
-            android:textSize="22sp"
-            android:textColor="@color/white" 
-            />
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/header"
+                android:minHeight="?attr/actionBarSize">
+
+
+                <RelativeLayout
+                    android:id="@+id/badge_layout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <RelativeLayout
+                        android:id="@+id/relative_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/menu_icon"
+                            android:layout_width="27dip"
+                            android:layout_height="25dip"
+                            android:layout_toStartOf="@+id/badge_notification"
+                            android:background="@drawable/ic_cart" />
+
+                        <TextView
+                            android:id="@+id/badge_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/circle_cart_bg"
+                            android:paddingBottom="@dimen/space_2"
+                            android:paddingLeft="@dimen/space_4"
+                            android:paddingRight="@dimen/space_5"
+                            android:paddingTop="@dimen/space_1"
+                            android:text=""
+                            android:textColor="#FFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/detail_img"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/space_15"
+            android:src="@drawable/c_1" />
+
+        <TextView
+            android:id="@+id/detail_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:text="TextView" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_5">
+
+            <TextView
+                android:id="@+id/detail_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="3dp"
+                android:text="model: "
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detail_avail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_model"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="28dp"
+                android:text="availability"
+                android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/detail_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detail_model"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="1dp"
+                android:text="price"
+                android:textColor="@color/text_color"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detail_tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="147dp"
+                android:layout_marginTop="33dp"
+                android:text="Ex Tax"
+                android:textColor="@color/grey"
+                android:textSize="20sp" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/detail_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Qty: "
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/detail_edt_qty"
+                android:layout_width="85dp"
+                android:layout_height="25dp"></Spinner>
+
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/detail_add"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_selector_save"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_selector_save"
             android:text="@string/add_to_cart"
             android:textAllCaps="false"
-            android:textSize="22sp"
-            android:textColor="@color/white" />
-    <TextView
-        android:id="@+id/detail_des"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="5dp"
-        android:text="Description" />
-   
-<TextView
-        android:id="@+id/detail_line_2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:text="TextView" />
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
+        <TextView
+            android:id="@+id/detail_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Description"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/detail_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:text="TextView" />
+
+        </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
-</ScrollView>

@@ -8,6 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
@@ -16,6 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.squareup.picasso.Picasso;
 
@@ -44,16 +51,41 @@ public class ProductsDetailActivity extends Activity {
 	private String designer_name;
 	private String userName;
 	private Bundle extras;
+	private Button menu_icon;
+	private TextView badge_notification;
 	private ImageLoader imageLoader;
 	private String qty_str,desc;
 	private Spinner qty;
 	private String spinner_qty_text="1";
 	private List<Integer> list = new ArrayList<Integer>();
+	private Menu mToolbarMenu;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product_detail_activity);
 		imageLoader=new ImageLoader(ProductsDetailActivity.this);
+		badge_notification=(TextView)findViewById(R.id.badge_notification) ;
+		menu_icon=(Button)findViewById(R.id.menu_icon);
+		menu_icon.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!ShoppingCart.product_names.isEmpty()){
+					Intent intent= new Intent(ProductsDetailActivity.this,LoginItemCartActivity.class);
+					startActivity(intent);
+				}else {
+					Intent intent= new Intent(ProductsDetailActivity.this,LoginEmptyCartActivity.class);
+					startActivity(intent);
+				}
+
+			}
+		});
+
+		if (!ShoppingCart.product_images.isEmpty()){
+			badge_notification.setVisibility(View.VISIBLE);
+			badge_notification.setText(ShoppingCart.product_names.size()+"");
+		}else {
+			badge_notification.setVisibility(View.INVISIBLE);
+		}
 
 		getIntentTxt();
 		initView();
@@ -63,6 +95,10 @@ public class ProductsDetailActivity extends Activity {
 				(android.R.layout.simple_spinner_dropdown_item);
 
 		qty.setAdapter(dataAdapter);
+	}
+	public boolean onCreateOptionsMenu(Menu paramMenu) {
+		getMenuInflater().inflate(R.menu.main, paramMenu);
+		return super.onCreateOptionsMenu(paramMenu);
 	}
 
 	private void getIntentTxt() {
@@ -88,7 +124,7 @@ public class ProductsDetailActivity extends Activity {
 		TextView tv_tax = (TextView)findViewById(R.id.detail_tax);
 		TextView tv_des = (TextView)findViewById(R.id.detail_des);
 		Button btn_add = (Button)findViewById(R.id.detail_add);
-		final Button btn_buy = (Button)findViewById(R.id.detail_buy);
+//		final Button btn_buy = (Button)findViewById(R.id.detail_buy);
 		qty = (Spinner) findViewById(R.id.detail_edt_qty);
 		ImageView detail_img = (ImageView)findViewById(R.id.detail_img);
 
@@ -109,7 +145,7 @@ public class ProductsDetailActivity extends Activity {
 
 		tv_des.setText(Html.fromHtml(desc));
 //		imageLoader.DisplayImage(productImg, detail_img);
-		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.transparent).into(detail_img);
+		Picasso.with(ProductsDetailActivity.this).load(productImg).placeholder(R.drawable.icon_mazyoona_loading).into(detail_img);
 
 		detail_img.setOnClickListener(new OnClickListener() {
 			@Override
@@ -148,12 +184,14 @@ public class ProductsDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
+
 				if (!productAvail.equalsIgnoreCase("0")) {
 					if (ShoppingCart.product_names.contains(productName)) {
 						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
 								.setTitleText("Already added to Cart")
 								.show();
 					} else {
+
 						spinner_qty_text = qty.getSelectedItem().toString();
 						ShoppingCart.product_ids.add(productId);
 						ShoppingCart.product_names.add(productName);
@@ -163,6 +201,8 @@ public class ProductsDetailActivity extends Activity {
 						ShoppingCart.product_images.add(productImg);
 						ShoppingCart.avaliablilityArray.add(productAvail);
 						ShoppingCart.qtyArray.add(spinner_qty_text);
+						badge_notification.setVisibility(View.VISIBLE);
+						badge_notification.setText(ShoppingCart.product_names.size()+"");
 
 						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
 								.setTitleText("Added to Cart!")
@@ -178,38 +218,65 @@ public class ProductsDetailActivity extends Activity {
 		});
 		
 		
-		btn_buy.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if (!productAvail.equalsIgnoreCase("0")) {
-					if (ShoppingCart.product_names.contains(productName)) {
-						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
-						startActivity(intent);
-					} else {
-						spinner_qty_text = qty.getSelectedItem().toString();
-						ShoppingCart.product_ids.add(productId);
-						ShoppingCart.product_names.add(productName);
-						ShoppingCart.sale_prices.add(sale_price);
-						ShoppingCart.purchase_prices.add(purchase_price);
-						ShoppingCart.designer_names.add(designer_name);
-						ShoppingCart.product_images.add(productImg);
-						ShoppingCart.avaliablilityArray.add(productAvail);
-						ShoppingCart.qtyArray.add(spinner_qty_text);
-						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
-						startActivity(intent);
-					}
-				} else {
-					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
-							.setTitleText("Out of Stock!")
-							.show();
-				}
-			}
-		});
+//		btn_buy.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				if (!productAvail.equalsIgnoreCase("0")) {
+//					if (ShoppingCart.product_names.contains(productName)) {
+//						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
+//						startActivity(intent);
+//					} else {
+//
+//						spinner_qty_text = qty.getSelectedItem().toString();
+//						ShoppingCart.product_ids.add(productId);
+//						ShoppingCart.product_names.add(productName);
+//						ShoppingCart.sale_prices.add(sale_price);
+//						ShoppingCart.purchase_prices.add(purchase_price);
+//						ShoppingCart.designer_names.add(designer_name);
+//						ShoppingCart.product_images.add(productImg);
+//						ShoppingCart.avaliablilityArray.add(productAvail);
+//						ShoppingCart.qtyArray.add(spinner_qty_text);
+//						badge_notification.setVisibility(View.VISIBLE);
+//						badge_notification.setText(ShoppingCart.product_names.size()+"");
+//
+//						Intent intent = new Intent(ProductsDetailActivity.this, LoginItemCartActivity.class);
+//						startActivity(intent);
+//					}
+//				} else {
+//					new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.WARNING_TYPE)
+//							.setTitleText("Out of Stock!")
+//							.show();
+//				}
+//			}
+//		});
 	
 	}
 
+	public class Animations {
+		public Animation fromAtoB(float fromX, float fromY, float toX, float toY, Animation.AnimationListener l, int speed){
 
+
+			Animation fromAtoB = new TranslateAnimation(
+					Animation.ABSOLUTE, //from xType
+					fromX,
+					Animation.ABSOLUTE, //to xType
+					toX,
+					Animation.ABSOLUTE, //from yType
+					fromY,
+					Animation.ABSOLUTE, //to yType
+					toY
+			);
+
+			fromAtoB.setDuration(speed);
+			fromAtoB.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
+
+
+			if(l != null)
+				fromAtoB.setAnimationListener(l);
+			return fromAtoB;
+		}
+	}
 	protected void initAlertDialog() {
 		Dialog alertDialog = new AlertDialog.Builder(this).
 				setTitle("Save failed").
@@ -240,12 +307,7 @@ public class ProductsDetailActivity extends Activity {
 		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
+
 	
 
 

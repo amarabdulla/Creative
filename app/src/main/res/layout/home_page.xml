@@ -48,7 +48,7 @@
            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_25">
+                android:layout_marginTop="@dimen/space_1">
 
 
                 <android.support.v4.view.ViewPager
@@ -75,20 +75,21 @@
             <FrameLayout
                 android:id="@+id/welcome"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="27dp"
                 android:layout_marginBottom="@dimen/space_1"
                 android:layout_marginTop="@dimen/space_15"
                 android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/button3"
-                    android:layout_width="180dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:paddingLeft="@dimen/space_20"
                     android:text="@string/featured_product"
+                    android:background="@color/gray_btn_bg_color"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
               <!--  <TextView
                     android:id="@+id/see_all"

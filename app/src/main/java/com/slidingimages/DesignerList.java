@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -129,7 +130,7 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
 
-
+        menuLayoutOne.setBackgroundColor(getResources().getColor(R.color.gray_btn_bg_color));
         init_navigator();
 
         navigation_banner_layout.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +188,7 @@ public class DesignerList extends AppCompatActivity implements View.OnClickListe
             case R.id.navigation_drawer_items_list_linearLayout_one:
                 if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
                     mDrawerLayout.closeDrawer(GravityCompat.END);
+
                 } else {
                     mDrawerLayout.openDrawer(GravityCompat.END);
                 }

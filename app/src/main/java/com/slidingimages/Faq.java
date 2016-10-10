@@ -93,6 +93,9 @@ public class Faq extends ActionBarActivity implements View.OnClickListener {
         menuLayoutFour.setOnClickListener(this);
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
+
+        menuLayoutFour.setBackgroundColor(getResources().getColor(R.color.gray_btn_bg_color));
+
         Toolbar topToolBar = (Toolbar)findViewById(R.id.toolbar);
         setTitle(null);
         setSupportActionBar(topToolBar);

@@ -187,7 +187,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
                             startActivity(intent3);
                             HomePage.this.finish();
                         }else {
-                            Intent intent3 = new Intent(HomePage.this, LoginItemCartActivity
+                            Intent intent3 = new Intent(HomePage.this, ShoppingCart
                                     .class);
                             startActivity(intent3);
                         }
@@ -300,6 +300,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
             case R.id.navigation_drawer_items_list_linearLayout_one:
                 Intent intent = new Intent(this, DesignerList.class);
                 this.startActivity(intent);
+
                 mDrawerLayout.closeDrawer(GravityCompat.END);
                 break;
 

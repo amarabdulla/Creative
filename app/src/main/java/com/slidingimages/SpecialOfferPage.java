@@ -144,6 +144,8 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutFive.setOnClickListener(this);
         menuLayoutSix.setOnClickListener(this);
 
+        menuLayoutTwo.setBackgroundColor(getResources().getColor(R.color.gray_btn_bg_color));
+
         init_navigator();
 
 

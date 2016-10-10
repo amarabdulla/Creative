@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/ViewPagerIndicator-Library" />
             <option value="$PROJECT_DIR$/libs/bouncy_text_library" />
+            <option value="$PROJECT_DIR$/libs/elegent_number_lib" />
+            <option value="$PROJECT_DIR$/number_button" />
           </set>
         </option>
         <option name="myModules">
@@ -21,6 +23,8 @@
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/ViewPagerIndicator-Library" />
             <option value="$PROJECT_DIR$/libs/bouncy_text_library" />
+            <option value="$PROJECT_DIR$/libs/elegent_number_lib" />
+            <option value="$PROJECT_DIR$/number_button" />
           </set>
         </option>
       </GradleProjectSettings>

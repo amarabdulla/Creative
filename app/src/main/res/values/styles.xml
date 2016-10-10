@@ -92,7 +92,7 @@
     </style>
     <style name="SampleTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimary">@color/text_color</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/ColorPrimaryDark</item>
         <item name="android:textColorHint">@color/white</item>

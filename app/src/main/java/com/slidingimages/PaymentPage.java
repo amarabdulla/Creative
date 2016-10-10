@@ -123,11 +123,11 @@ public class PaymentPage extends Activity {
         mCustomProgressDialog = new CustomProgressDialog(PaymentPage.this);
         total_qty.setText(ShoppingCart.qtyArray.size()+"");
         total_sale_price.setText(String.valueOf(total_sale_price()));
-        shipping.setText("0");
+        shipping.setText("20 AED");
         tax.setText("0");
         jsonObjFinal = new JSONObject();
         if (!ShoppingCart.purchase_prices.isEmpty()){
-            paymentAmount= String.valueOf(total_sale_price());
+            paymentAmount= String.valueOf(total_sale_price()+20);
         }else {
             paymentAmount = "0";
         }
@@ -171,7 +171,8 @@ public class PaymentPage extends Activity {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
                                     if (!ShoppingCart.purchase_prices.isEmpty()){
-                                        paymentAmount= String.valueOf(total_sale_price()/3.7);
+                                        Double aDouble=total_sale_price()+20;
+                                        paymentAmount= String.valueOf(aDouble/3.7);
                                     }else {
                                         paymentAmount = "0";
                                     }
@@ -225,7 +226,7 @@ public class PaymentPage extends Activity {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
                                     if (!ShoppingCart.purchase_prices.isEmpty()){
-                                        paymentAmount= String.valueOf(total_sale_price());
+                                        paymentAmount= String.valueOf(total_sale_price()+20);
                                     }else {
                                         paymentAmount = "0";
                                     }

@@ -61,7 +61,7 @@ public class Activity_Register extends Activity  {
 
     String result = null;
 
-    private static String REGISTER_URL = "http://mazyoona.com/project/mazyoona/index.php/rest/api/register";
+    private static String REGISTER_URL = HomePage.FIRSTPART+"register";
 
 
     private static final String TAG_FNAME = "name";

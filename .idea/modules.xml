@@ -6,7 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/libs/ViewPagerIndicator-Library/ViewPagerIndicator-Library.iml" filepath="$PROJECT_DIR$/libs/ViewPagerIndicator-Library/ViewPagerIndicator-Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/bouncy_text_library/bouncy_text_library.iml" filepath="$PROJECT_DIR$/libs/bouncy_text_library/bouncy_text_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/elegent_number_lib/elegent_number_lib.iml" filepath="$PROJECT_DIR$/libs/elegent_number_lib/elegent_number_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/number_button/number_button.iml" filepath="$PROJECT_DIR$/number_button/number_button.iml" />
     </modules>
   </component>
 </project>

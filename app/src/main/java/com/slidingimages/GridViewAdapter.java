@@ -12,6 +12,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
@@ -19,6 +22,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.slidingimages.cart.LoginItemCartActivity;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class GridViewAdapter extends BaseAdapter {
@@ -171,7 +177,12 @@ public class GridViewAdapter extends BaseAdapter {
         holder.product_name.setText(product_names.get(position));
         //DisplayImage function from ImageLoader Class
 //        imageLoader.DisplayImage(images.get(position), holder.img);
-        Picasso.with(context).load(images.get(position)).placeholder(R.drawable.transparent).noFade().into(holder.img);
+//        Picasso.with(context).load(images.get(position)).placeholder(R.drawable.icon_mazyoona_loading).noFade().into(holder.img);
+        Glide.with(context)
+                .load(images.get(position))
+                .placeholder(R.drawable.icon_mazyoona_loading)
+                .crossFade()
+                .into(holder.img);
         if (!discountArray.get(position).equals("0")){
             holder.discount.setVisibility(View.VISIBLE);
             holder.discount.setText(discountArray.get(position)+"% OFF");
