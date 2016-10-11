@@ -29,7 +29,7 @@
                 android:layout_gravity="end"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_drawer" />
+                android:src="@drawable/ic_menu" />
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
     <WebView android:id="@+id/web_view"

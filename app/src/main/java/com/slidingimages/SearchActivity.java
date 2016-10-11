@@ -193,7 +193,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 						break;
 					case 3:
 						if (!ShoppingCart.product_names.isEmpty()){
-							Intent scart = new Intent(SearchActivity.this, LoginItemCartActivity.class);
+							Intent scart = new Intent(SearchActivity.this, ShoppingCart.class);
 							startActivity(scart);
 							mDrawerLayout.closeDrawer(GravityCompat.END);
 						}else {

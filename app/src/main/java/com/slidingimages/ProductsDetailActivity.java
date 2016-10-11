@@ -25,6 +25,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -70,7 +71,7 @@ public class ProductsDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (!ShoppingCart.product_names.isEmpty()){
-					Intent intent= new Intent(ProductsDetailActivity.this,LoginItemCartActivity.class);
+					Intent intent= new Intent(ProductsDetailActivity.this,ShoppingCart.class);
 					startActivity(intent);
 				}else {
 					Intent intent= new Intent(ProductsDetailActivity.this,LoginEmptyCartActivity.class);
@@ -89,12 +90,12 @@ public class ProductsDetailActivity extends Activity {
 
 		getIntentTxt();
 		initView();
-		ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,list);
-
-		dataAdapter.setDropDownViewResource
-				(android.R.layout.simple_spinner_dropdown_item);
-
-		qty.setAdapter(dataAdapter);
+//		ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,list);
+//
+//		dataAdapter.setDropDownViewResource
+//				(android.R.layout.simple_spinner_dropdown_item);
+//
+//		qty.setAdapter(dataAdapter);
 	}
 	public boolean onCreateOptionsMenu(Menu paramMenu) {
 		getMenuInflater().inflate(R.menu.main, paramMenu);
@@ -123,9 +124,9 @@ public class ProductsDetailActivity extends Activity {
 		TextView tv_price = (TextView)findViewById(R.id.detail_price);
 		TextView tv_tax = (TextView)findViewById(R.id.detail_tax);
 		TextView tv_des = (TextView)findViewById(R.id.detail_des);
-		Button btn_add = (Button)findViewById(R.id.detail_add);
+		ImageButton btn_add = (ImageButton)findViewById(R.id.detail_add);
 //		final Button btn_buy = (Button)findViewById(R.id.detail_buy);
-		qty = (Spinner) findViewById(R.id.detail_edt_qty);
+//		qty = (Spinner) findViewById(R.id.detail_edt_qty);
 		ImageView detail_img = (ImageView)findViewById(R.id.detail_img);
 
 		for (int i=1;i<Integer.parseInt(productAvail)+1;i++){
@@ -192,7 +193,7 @@ public class ProductsDetailActivity extends Activity {
 								.show();
 					} else {
 
-						spinner_qty_text = qty.getSelectedItem().toString();
+//						spinner_qty_text = qty.getSelectedItem().toString();
 						ShoppingCart.product_ids.add(productId);
 						ShoppingCart.product_names.add(productName);
 						ShoppingCart.sale_prices.add(sale_price);
@@ -200,7 +201,7 @@ public class ProductsDetailActivity extends Activity {
 						ShoppingCart.designer_names.add(designer_name);
 						ShoppingCart.product_images.add(productImg);
 						ShoppingCart.avaliablilityArray.add(productAvail);
-						ShoppingCart.qtyArray.add(spinner_qty_text);
+						ShoppingCart.qtyArray.add(1);
 						badge_notification.setVisibility(View.VISIBLE);
 						badge_notification.setText(ShoppingCart.product_names.size()+"");
 

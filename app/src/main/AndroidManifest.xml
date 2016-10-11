@@ -50,7 +50,8 @@
         <activity android:name=".PaymentPage"/>
         <activity android:name=".ProfilePage"/>
         <activity android:name=".ShippingPage"/>
-        <activity android:name=".SearchActivity"/>
+        <activity android:name=".SearchActivity"
+            android:windowSoftInputMode="stateHidden"/>
             android:theme="@style/AppSearchThemeNew"/>
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"

@@ -2,6 +2,9 @@ package com.slidingimages;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +29,6 @@ public class GridViewAdapterSearch extends BaseAdapter {
 	LayoutInflater inflater;
 	private List<ProductModelClass> worldpopulationlist = null;
 	private ArrayList<ProductModelClass> arraylist;
-
 	private ImageLoader imageLoader;
 
 	public GridViewAdapterSearch(Context context,
@@ -45,6 +47,7 @@ public class GridViewAdapterSearch extends BaseAdapter {
 		TextView population;
 		ImageView flag;
 		TextView designer_name;
+		TextView discount;
 //		Button buy_now,add_to_cart;
 	}
 
@@ -68,7 +71,7 @@ public class GridViewAdapterSearch extends BaseAdapter {
 		if (view == null) {
 
 			holder = new ViewHolder();
-			view = inflater.inflate(R.layout.grid, null);
+			view = inflater.inflate(R.layout.grid_search_new, null);
 			holder.rank = (TextView) view.findViewById(R.id.sale_price);
 			holder.country = (TextView) view.findViewById(R.id.product_name);
 //			holder.buy_now =(Button) view.findViewById(R.id.buy_now);
@@ -76,12 +79,23 @@ public class GridViewAdapterSearch extends BaseAdapter {
 			holder.population = (TextView) view.findViewById(R.id.purchase_price);
 			holder.designer_name = (TextView) view.findViewById(R.id.designer_name);
 			holder.flag = (ImageView) view.findViewById(R.id.imageView1);
+			holder.discount =(TextView) view.findViewById(R.id.discount) ;
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
-		// Set the results into TextViews
-		holder.rank.setText(worldpopulationlist.get(position).getSale_price()+" AED");
+
+//		holder.rank.setText(worldpopulationlist.get(position).getSale_price()+" AED");
+
+
+		if (worldpopulationlist.get(position).getSale_price().equals(worldpopulationlist.get(position).getPurchase_price())){
+//			holder.sale_price.setText("");
+			holder.rank.setText("");
+		}else {
+			holder.rank.setPaintFlags(holder.rank.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//			holder.sale_price.setText(sale_prices.get(position) + " AED");
+			holder.rank.setText(worldpopulationlist.get(position).getSale_price()+" AED");
+		}
 		holder.country.setText(worldpopulationlist.get(position).getProduct_name());
 		holder.population.setText(worldpopulationlist.get(position)
 				.getPurchase_price()+" AED");
@@ -89,73 +103,31 @@ public class GridViewAdapterSearch extends BaseAdapter {
 				.getDesigner_name());
 		// Set the results into ImageView
 		imageLoader.DisplayImage(worldpopulationlist.get(position).getProduct_image(), holder.flag);
-//		holder.buy_now.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
-//					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-//							.setTitleText("Already added to Cart")
-//							.show();
-//				}else {
-//					Intent intent = new Intent(mContext, LoginItemCartActivity.class);
-//					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
-//					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
-//					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
-//					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
-//					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
-//					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getAvailability());
-//					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
-//					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
-//					mContext.startActivity(intent);
-//				}
-//			}
-//		});
-//		holder.add_to_cart.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//
-//				if (ShoppingCart.product_names.contains(worldpopulationlist.get(position).getProduct_name())){
-//					new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-//							.setTitleText("Already added to Cart")
-//							.show();
-//				}else {
-//					ShoppingCart.product_names.add(worldpopulationlist.get(position).getProduct_name());
-//					ShoppingCart.sale_prices.add(worldpopulationlist.get(position).getSale_price());
-//					ShoppingCart.purchase_prices.add(worldpopulationlist.get(position).getPurchase_price());
-//					ShoppingCart.designer_names.add(worldpopulationlist.get(position).getDesigner_name());
-//					ShoppingCart.product_images.add(worldpopulationlist.get(position).getProduct_image());
-//					ShoppingCart.avaliablilityArray.add(worldpopulationlist.get(position).getProduct_name());
-//					ShoppingCart.qtyArray.add(worldpopulationlist.get(position).getQty());
-//					ShoppingCart.product_ids.add(worldpopulationlist.get(position).getProduct_id());
-//
-//					new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
-//							.setTitleText("Added to Cart!")
-//							.show();
-//
-//				}
-//			}
-//		});
+	if (!worldpopulationlist.get(position).getDiscount().equals("0")){
+		holder.discount.setVisibility(View.VISIBLE);
+		holder.discount.setText(worldpopulationlist.get(position).getDiscount()+"% OFF");
+
+		holder.discount.setBackgroundResource(R.color.green);
+		holder.discount.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+		holder.discount.setGravity(Gravity.CENTER);
+	}else {
+		holder.discount.setVisibility(View.INVISIBLE);
+	}
+	if (worldpopulationlist.get(position).getAvailability().equals("0")){
+		holder.discount.setVisibility(View.VISIBLE);
+		holder.discount.setText("Out of Stock");
+		holder.discount.setBackgroundResource(R.color.red);
+		holder.discount.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+		holder.discount.setGravity(Gravity.CENTER);
+	}else {
+//            holder.discount.setVisibility(View.INVISIBLE);
+	}
 		// Listen for ListView Item Click
 		view.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-//				// Send single item click data to SingleItemView Class
-//				Intent intent = new Intent(mContext, ProductDescriptionPage.class);
-//				// Pass all data rank
-//				intent.putExtra("rank",
-//						(worldpopulationlist.get(position).getSale_price()));
-//				// Pass all data country
-//				intent.putExtra("country",
-//						(worldpopulationlist.get(position).getProduct_name()));
-//				// Pass all data population
-//				intent.putExtra("population",
-//						(worldpopulationlist.get(position).getPurchase_price()));
-//				// Pass all data flag
-//				intent.putExtra("flag",
-//						(worldpopulationlist.get(position).getProduct_image()));
-//				// Start SingleItemView Class
-//				mContext.startActivity(intent);
+
 				Intent intent= new Intent(mContext,ProductsDetailActivity.class);
 				intent.putExtra("productId",worldpopulationlist.get(position).getProduct_id());
 				intent.putExtra("productName", worldpopulationlist.get(position).getProduct_name());

@@ -160,7 +160,7 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
                         break;
                     case 3:
                         if (!ShoppingCart.product_names.isEmpty()){
-                            Intent scart = new Intent(ProductPage.this, LoginItemCartActivity.class);
+                            Intent scart = new Intent(ProductPage.this, ShoppingCart.class);
                             startActivity(scart);
                             mDrawerLayout.closeDrawer(GravityCompat.END);
                         }else {

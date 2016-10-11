@@ -142,7 +142,7 @@ public class CartEditListAdapter extends BaseAdapter {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								ShoppingCart.qtyArray.add(position, String.valueOf(newQty));//update text
+//								ShoppingCart.qtyArray.add(position, String.valueOf(newQty));//update text
 								notifyDataSetChanged();	
 								//reset qty
 								newQty = 1;

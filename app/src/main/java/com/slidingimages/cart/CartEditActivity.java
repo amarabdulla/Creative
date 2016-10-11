@@ -62,8 +62,8 @@ public class CartEditActivity extends Activity {
 //
 		userName="test";
 //
-		mAdapter = new CartEditListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
-				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.avaliablilityArray,ShoppingCart.qtyArray, userName);
+//		mAdapter = new CartEditListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
+//				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.avaliablilityArray,ShoppingCart.qtyArray, userName);
 		list.setAdapter(mAdapter);
 //
 		new Utility().setListViewHeightBasedOnChildren(list);

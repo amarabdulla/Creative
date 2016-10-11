@@ -26,7 +26,7 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
-    <string name="products">Products</string>
+    <string name="products">ALL PRODUCTS</string>
 
     <string name="edit_info">Your subtotal will be updated when you save your cart</string>
     <string name="check_out">Check Out</string>
@@ -82,7 +82,7 @@
     <string name="apply">APPLY</string>
     <string name="enter_promo_code">Enter Promo Code</string>
     <string name="total">Total</string>
-    <string name="sub_total">SUBTOTAL</string>
+    <string name="sub_total">SUBTOTAL :</string>
     <string name="sign_in">Sign In</string>
     <string name="item_name">item name</string>
     <string name="remove">remove</string>

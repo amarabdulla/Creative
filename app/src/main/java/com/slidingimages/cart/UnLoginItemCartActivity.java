@@ -70,8 +70,8 @@ public class UnLoginItemCartActivity extends Activity {
 
 
 		tv_subPrice.setText("$" + "subPrice here");
-		mAdapter = new CartItemListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
-				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.qtyArray);
+//		mAdapter = new CartItemListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
+//				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.qtyArray);
 		list.setAdapter(mAdapter);
 		//adjust listView height
 		new Utility().setListViewHeightBasedOnChildren(list);

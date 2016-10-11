@@ -267,7 +267,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                             startActivity(intent3);
                             ProfilePage.this.finish();
                         }else {
-                            Intent intent3 = new Intent(ProfilePage.this, LoginItemCartActivity.class);
+                            Intent intent3 = new Intent(ProfilePage.this, ShoppingCart.class);
                             startActivity(intent3);
                         }
                         break;

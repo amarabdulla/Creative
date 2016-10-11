@@ -36,7 +36,7 @@
                 android:layout_gravity="end"
                 android:layout_marginRight="@dimen/space_25"
                 android:background="@null"
-                android:src="@drawable/ic_drawer" />
+                android:src="@drawable/ic_menu" />
 
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

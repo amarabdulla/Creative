@@ -34,7 +34,7 @@ public class ShoppingCart extends Activity {
     public static ArrayList<String> purchase_prices =  new ArrayList<>();
     public static ArrayList<String> designer_names =  new ArrayList<>();
     public static ArrayList<String> avaliablilityArray =  new ArrayList<>();
-    public static ArrayList<String> qtyArray =  new ArrayList<>();
+    public static ArrayList<Integer> qtyArray =  new ArrayList<>();
     public static ArrayList<String> product_ids =  new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,25 +121,31 @@ public class ShoppingCart extends Activity {
         apply=(Button)findViewById(R.id.apply);
         checkout=(Button)findViewById(R.id.check_out);
         promocode=(EditText) findViewById(R.id.promo_code);
-        empty=(TextView)findViewById(R.id.empty);
+//        empty=(TextView)findViewById(R.id.empty);
         total_quanity=(TextView)findViewById(R.id.total_quanity) ;
         total=(TextView)findViewById(R.id.subtotal) ;
         listView = (ListView) findViewById(R.id.listView);
 
         if (product_names.size()!=0 || !product_names.isEmpty()){
-            customListShoppingCart = new CustomListShoppingCart(this, product_names, product_images, sale_prices);
+            customListShoppingCart = new CustomListShoppingCart(this, product_names, product_images, purchase_prices);
             listView.setAdapter(customListShoppingCart);
             total_quanity.setText(product_names.size()+"");
-            if (sale_prices.size()!=0 || !sale_prices.isEmpty()){
+            if (purchase_prices.size()!=0 || !purchase_prices.isEmpty()){
                 total.setText((int) total_sale_price()+" AED");
             }else {
                 total.setText("0");
             }
         }else {
-            empty.setText("No items!");
+//            empty.setText("No items!");
             total_quanity.setText("0");
         }
-
+        customListShoppingCart.setOnDataChangeListener(new CustomListShoppingCart.OnDataChangeListener(){
+            public void onDataChanged(int size){
+//                Toast.makeText(getApplicationContext(),"Dtat change",Toast.LENGTH_SHORT).show();
+                total_quanity.setText(product_names.size()+"");
+                total.setText((int) total_sale_price()+" AED");
+            }
+        });
 
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +158,7 @@ public class ShoppingCart extends Activity {
             @Override
             public void onClick(View v) {
               if (promocode.getText().equals("")){
-                  Toast.makeText(getApplicationContext(),"Please enter your code",Toast.LENGTH_SHORT);
+                  Toast.makeText(getApplicationContext(),"Please enter your code",Toast.LENGTH_SHORT).show();
               }
             }
         });
@@ -168,7 +174,7 @@ public class ShoppingCart extends Activity {
         double sum = 0;
         for(int i = 0; i < purchase_prices.size(); i++)
         {
-            sum += (int)Double.parseDouble(purchase_prices.get(i));
+            sum += (int)Double.parseDouble(purchase_prices.get(i))*qtyArray.get(i);
         }
         return sum;
     }

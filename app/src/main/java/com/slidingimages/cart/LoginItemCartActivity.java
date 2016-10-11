@@ -65,13 +65,13 @@ public class LoginItemCartActivity extends Activity {
 
 		if (!ShoppingCart.purchase_prices.isEmpty() || !ShoppingCart.qtyArray.isEmpty()){
 			for (int i=0;i <ShoppingCart.purchase_prices.size();i++){
-				 sum=(int)Double.parseDouble(ShoppingCart.purchase_prices.get(i)) *(int)Double.parseDouble(ShoppingCart.qtyArray.get(i));
+//				 sum=(int)Double.parseDouble(ShoppingCart.purchase_prices.get(i)) *(int)Double.parseDouble(ShoppingCart.qtyArray.get(i));
 				 sumArray.add(sum);
 			}
 		}
 		tv_subPrice.setText("AED " + (int) total_sale_price());
-		mAdapter = new CartItemListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
-				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.qtyArray);
+//		mAdapter = new CartItemListAdapter(this, ShoppingCart.product_images, ShoppingCart.product_names,
+//				ShoppingCart.sale_prices,ShoppingCart.purchase_prices,ShoppingCart.designer_names,ShoppingCart.qtyArray);
 		list.setAdapter(mAdapter);
 		//make listView display normally
 		new Utility().setListViewHeightBasedOnChildren(list);

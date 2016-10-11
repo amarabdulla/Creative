@@ -29,7 +29,7 @@
                 android:layout_gravity="end"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_drawer" />
+                android:src="@drawable/ic_menu" />
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
     <ScrollView
@@ -52,14 +52,13 @@
             android:id="@+id/header_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:background="@color/gray_btn_bg_color"
+            android:gravity="center"
             android:paddingLeft="@dimen/space_5"
             android:text="@string/products"
             android:layout_marginBottom="@dimen/space_5"
             android:layout_marginTop="@dimen/space_70"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textColor="#a41c9a"
+            android:textSize="20dp" />
     </FrameLayout>
 
 

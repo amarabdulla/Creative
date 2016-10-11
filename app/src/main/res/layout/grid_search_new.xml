@@ -1,0 +1,96 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_marginBottom="@dimen/space_15"
+        android:orientation="vertical">
+
+        // this is your first layout to put the big image
+        // use src or backgroud image as per requirement
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_gravity="left"
+                android:layout_width="156dp"
+                android:layout_height="220dp"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="@dimen/space_2"
+                android:layout_marginRight="@dimen/space_2"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="2dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="240 AED"
+                android:textSize="13sp"
+                android:paddingLeft="@dimen/space_10"
+                android:textColor="@color/text_color"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+                android:layout_marginTop="290dp"
+                android:id="@+id/purchase_price" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abhaya"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:paddingLeft="@dimen/space_10"
+                android:layout_gravity="left"
+                android:layout_marginTop="270dp"
+                android:id="@+id/product_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name by designer"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10"
+                android:textStyle="bold"
+                android:id="@+id/designer_name"
+                android:layout_marginTop="248dp"
+                android:layout_gravity="left" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="300 AED"
+                android:textSize="10.5sp"
+                android:paddingRight="@dimen/space_8"
+                android:id="@+id/sale_price"
+                android:layout_gravity="right"
+                android:layout_alignBottom="@+id/purchase_price"
+                android:layout_alignEnd="@+id/imageView1" />
+
+            <TextView
+                android:id="@+id/discount"
+                android:layout_width="56dp"
+                android:layout_height="40dp"
+                android:text="abcdddd"
+                android:background="@color/text_color"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:layout_alignBottom="@+id/imageView1"
+                android:layout_alignStart="@+id/imageView1" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    // This is the imageview which overlay the first LinearLayout
+</FrameLayout>

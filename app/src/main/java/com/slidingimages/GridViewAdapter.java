@@ -127,53 +127,7 @@ public class GridViewAdapter extends BaseAdapter {
                 holder.sale_price.setText(sale_prices.get(position) + " AED");
             }
 
-       /* holder.buy_now.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ShoppingCart.product_names.contains(product_names.get(position))){
-                    new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Already added to Cart")
-                            .show();
-                }else {
-                    Intent intent = new Intent(context, LoginItemCartActivity.class);
-                    ShoppingCart.product_names.add(product_names.get(position));
-                    ShoppingCart.sale_prices.add(sale_prices.get(position));
-                    ShoppingCart.purchase_prices.add(purchase_prices.get(position));
-                    ShoppingCart.designer_names.add(designer_names.get(position));
-                    ShoppingCart.product_images.add(images.get(position));
-                    ShoppingCart.avaliablilityArray.add(avaliablilityArray.get(position));
-                    Shopp
-                    ingCart.qtyArray.add(qtyArray.get(position));
-                    ShoppingCart.product_ids.add(productIdArray.get(position));
-                    context.startActivity(intent);
-                }
-            }
-        });
-        holder.add_to_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if (ShoppingCart.product_names.contains(product_names.get(position))){
-                    new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Already added to Cart")
-                            .show();
-                }else {
-                    ShoppingCart.product_names.add(product_names.get(position));
-                    ShoppingCart.sale_prices.add(sale_prices.get(position));
-                    ShoppingCart.purchase_prices.add(purchase_prices.get(position));
-                    ShoppingCart.designer_names.add(designer_names.get(position));
-                    ShoppingCart.product_images.add(images.get(position));
-                    ShoppingCart.avaliablilityArray.add(avaliablilityArray.get(position));
-                    ShoppingCart.qtyArray.add(qtyArray.get(position));
-                    ShoppingCart.product_ids.add(productIdArray.get(position));
-
-                    new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Added to Cart!")
-                            .show();
-
-                }
-            }
-        });*/
         holder.product_name.setText(product_names.get(position));
         //DisplayImage function from ImageLoader Class
 //        imageLoader.DisplayImage(images.get(position), holder.img);

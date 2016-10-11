@@ -33,7 +33,7 @@
                 android:layout_gravity="end"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_drawer" />
+                android:src="@drawable/ic_menu" />
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
     </LinearLayout>
@@ -119,12 +119,12 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginLeft="@dimen/space_10"
                 android:id="@+id/navigation_drawer_user_account_picture_profile"
-                android:layout_width="@dimen/navigation_drawer_profile_image_size"
-                android:layout_height="@dimen/navigation_drawer_profile_image_size"
+                android:layout_width="94dp"
+                android:layout_height="94dp"
                 android:src="@drawable/user_icon_female"
                 android:layout_above="@+id/navigation_drawer_account_information"
                 android:layout_alignEnd="@+id/navigation_drawer_account_information"
-                android:layout_marginEnd="125dp" />
+                android:layout_marginEnd="112dp" />
 
 
 
