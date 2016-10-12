@@ -4,7 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gridview_bg"
-    android:paddingTop="10dp" >
+     >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/header"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/menu_icon"
+                android:layout_marginRight="@dimen/space_25"
+                android:layout_gravity="end"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_menu" />
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -30,7 +52,7 @@
         android:text="@string/choose_deilvery_mode"
         android:textColor="@color/white"
         android:layout_marginTop="15dip"
-        android:background="@android:color/holo_purple"
+        android:background="@color/text_color"
         />
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -187,15 +209,37 @@
             android:text="$$$" >
         </TextView>
 
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="178dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/grand_total"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/grandtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView9"
+            android:layout_marginLeft="92dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/textView9"
+            android:text="$$$" >
+        </TextView>
         <Button
             android:id="@+id/place_order"
-            android:layout_width="305dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="238dip"
-            android:layout_marginLeft="@dimen/space_15"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="220dip"
+            android:layout_marginLeft="@dimen/space_5"
             android:gravity="center"
-            android:background="@android:color/holo_purple"
+            android:background="@drawable/round_corner_button"
             android:text="@string/place_order"
             android:textAlignment="center"
             android:textColor="@color/white" />

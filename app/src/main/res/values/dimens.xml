@@ -44,6 +44,8 @@
         <dimen name="space_110">110.0dip</dimen>
         <dimen name="space_100">100.0dip</dimen>
         <dimen name="space_90">90.0dip</dimen>
+        <dimen name="space_88">88.0dip</dimen>
+        <dimen name="space_76">76.0dip</dimen>
         <dimen name="space_70">70.0dip</dimen>
          <dimen name="space_65">65.0dip</dimen>
         <dimen name="space_60">60.0dip</dimen>
@@ -51,6 +53,7 @@
         <dimen name="space_50">50.0dip</dimen>
         <dimen name="space_40">40.0dip</dimen>
         <dimen name="space_35">35.0dip</dimen>
+         <dimen name="space_32">32.0dip</dimen>
         <dimen name="space_30">30.0dip</dimen>
         <dimen name="space_29">29.0dip</dimen>
         <dimen name="space_28">28.0dip</dimen>
@@ -84,7 +87,7 @@
 
         <dimen name="navigation_drawer_max_width">250dp</dimen>
 
-        <dimen name="navigation_drawer_profile_image_size">64dp</dimen>
+        <dimen name="navigation_drawer_profile_image_size">80dp</dimen>
         <dimen name="navigation_drawer_item_height">48dp</dimen>
         <dimen name="navigation_drawer_account_section_default_height">164dp</dimen>
         <dimen name="navigation_drawer_account_information_height">96dp</dimen>

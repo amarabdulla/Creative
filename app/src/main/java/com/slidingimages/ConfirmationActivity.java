@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,7 +41,11 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
     TextView textViewId;
     TextView textViewStatus,textViewAmount;
     String amt;
+    Button home;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
+    private ImageView profile_pic;
+    private ImageLoader imageLoader;
+    private String image_pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,7 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         textViewId = (TextView) findViewById(R.id.paymentId);
         textViewStatus= (TextView) findViewById(R.id.paymentStatus);
         textViewAmount = (TextView) findViewById(R.id.paymentAmount);
+        home=(Button)findViewById(R.id.home) ;
 //        textViewAddress = (TextView) findViewById(R.id.shippingaddress);
         menuLayoutOne=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_one);
         menuLayoutTwo=(FrameLayout)findViewById(R.id.navigation_drawer_items_list_linearLayout_two);
@@ -64,6 +70,8 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         menuLayoutFour_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_four);
         menuLayoutFive_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_five);
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
+        profile_pic=(ImageView)findViewById(R.id.profile_picture_navigation);
+        imageLoader=new ImageLoader(getApplicationContext());
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
         menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
@@ -74,14 +82,17 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
+        image_pref = prefs.getString("profile_image", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
         }else {
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
+                imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic);
             }else {
                 navigation_username.setText(namepref);
+                imageLoader.DisplayImage(image_pref,profile_pic);
             }
             navigation_username.setTypeface(tf);
         }
@@ -159,7 +170,7 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
             }
         });
         //Getting Intent
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         //Clearing all items from cart
         ShoppingCart.product_names.clear();
@@ -171,7 +182,14 @@ public class ConfirmationActivity extends ActionBarActivity implements View.OnCl
         ShoppingCart.designer_names.clear();
         ShoppingCart.product_images.clear();
 
-
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(ConfirmationActivity.this,HomePage.class);
+                startActivity(intent1);
+                ConfirmationActivity.this.finish();
+            }
+        });
 
         try {
             if (!intent.getStringExtra("PaymentDetails").equalsIgnoreCase("cash on delivery")) {

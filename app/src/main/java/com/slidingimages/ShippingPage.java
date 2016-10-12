@@ -265,7 +265,7 @@ public class ShippingPage extends Activity {
                         @Override
                         public void onResponse(String response) {
 //                                result="success";
-                            Toast.makeText(ShippingPage.this,response,Toast.LENGTH_LONG).show();
+//                            Toast.makeText(ShippingPage.this,response,Toast.LENGTH_LONG).show();
                             Intent intent= new Intent(ShippingPage.this,ChangeShippingAddressPage.class);
                             startActivity(intent);
                         }

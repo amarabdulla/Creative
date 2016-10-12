@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.bumptech.glide.Glide;
+import com.koushikdutta.ion.Ion;
 import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
@@ -86,7 +88,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private CustomProgressDialog mCustomProgressDialog;
-    String useridpref,namepref;
+    private String useridpref,namepref,image_pref;
+    ImageView no_internet;
+    TextView no_internet_text;
+    private ImageView profile_pic;
+    private ImageLoader imageLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +114,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         menuLayoutFour_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_four);
         menuLayoutFive_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_five);
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
+        no_internet=(ImageView)findViewById(R.id.no_internet);
+        no_internet_text=(TextView)findViewById(R.id.no_internet_text) ;
+        profile_pic=(ImageView)findViewById(R.id.profile_picture_navigation);
+        imageLoader=new ImageLoader(getApplicationContext());
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
         menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
@@ -119,16 +129,32 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
         useridpref = prefs.getString("userid", "null");
+        image_pref = prefs.getString("profile_image", "null");
         System.out.println("name in pref"+name);
 
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
+            profile_pic.setBackgroundResource(R.drawable.user_icon_female);
         }else {
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
+               imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic);
+//                Glide.with(HomePage.this)
+//                        .load(Activity_Login.profile_image)
+//                        .placeholder(R.drawable.user_icon_female)
+//                        .error(R.drawable.user_icon_female)
+//                        .crossFade()
+//                        .into(profile_pic);
             }else {
                 navigation_username.setText(namepref);
+                imageLoader.DisplayImage(image_pref,profile_pic);
+//                Glide.with(HomePage.this)
+//                        .load(image)
+//                        .placeholder(R.drawable.user_icon_female)
+//                        .error(R.drawable.user_icon_female)
+//                        .crossFade()
+//                        .into(profile_pic);
             }
             navigation_username.setTypeface(tf);
         }
@@ -241,6 +267,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener{
             ProgressTask progressTask=new ProgressTask();
             progressTask.execute();
         }else {
+
+            no_internet.setBackgroundResource(R.drawable.no_internet_bg);
+            no_internet.setVisibility(View.VISIBLE);
+            no_internet_text.setVisibility(View.VISIBLE);
             new SweetAlertDialog(HomePage.this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("Please check your network")
                     .show();

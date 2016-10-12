@@ -66,13 +66,13 @@
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/navigation_drawer_user_account_picture_profile"
+                    android:id="@+id/profile_picture_navigation"
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
                     android:layout_marginLeft="@dimen/space_18"
                     android:layout_marginBottom="-35dp"
                     android:layout_above="@id/navigation_drawer_account_information"
-                    android:src="@drawable/user_icon_female" />
+                    />
 
             </RelativeLayout>
 

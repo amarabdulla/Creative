@@ -77,7 +77,9 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private CustomProgressDialog mCustomProgressDialog;
-
+    private ImageView profile_pic;
+    private ImageLoader imageLoader;
+    private String image_pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +101,8 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutFour_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_four);
         menuLayoutFive_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_five);
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
+        profile_pic=(ImageView)findViewById(R.id.profile_picture_navigation);
+        imageLoader=new ImageLoader(getApplicationContext());
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
         menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
@@ -109,14 +113,18 @@ public class SpecialOfferPage extends ActionBarActivity implements View.OnClickL
         menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
+        image_pref = prefs.getString("profile_image", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
+            profile_pic.setBackgroundResource(R.drawable.user_icon_female);
         }else {
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
+                imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic);
             }else {
                 navigation_username.setText(namepref);
+                imageLoader.DisplayImage(image_pref,profile_pic);
             }
             navigation_username.setTypeface(tf);
         }

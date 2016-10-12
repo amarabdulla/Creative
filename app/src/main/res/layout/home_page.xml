@@ -67,7 +67,7 @@
                     android:layout_marginTop="135dp"
                     android:padding="10dip"
                     app:centered="true"
-                    app:fillColor="#ff0099"
+                    app:fillColor="@color/text_color"
                     app:pageColor="#F2F2F2"
                     app:snap="false" />
             </RelativeLayout>
@@ -102,7 +102,25 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />-->
             </FrameLayout>
-
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/no_internet"
+                android:visibility="gone"
+                android:layout_gravity="left|center_vertical" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/no_internet"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="@dimen/space_12"
+                android:id="@+id/no_internet_text"
+                android:layout_gravity="left|center_vertical" />
             <com.slidingimages.ExpandableHeightGridView
                 android:id="@+id/gridView"
                 android:layout_width="match_parent"
@@ -135,6 +153,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             />
+
+
+
 
     </FrameLayout>
 

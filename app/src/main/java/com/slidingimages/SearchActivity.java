@@ -82,6 +82,11 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 	private ArrayList<String> qtyArray = new ArrayList<String>();
 	private ArrayList<String> productIdArray= new ArrayList<>();
 	private ArrayList<String> descArray= new ArrayList<>();
+	ImageView no_internet;
+	TextView no_internet_text;
+	private ImageView profile_pic;
+	private String image_pref;
+	private ImageLoader imageLoader;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -103,6 +108,10 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		menuLayoutFour_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_four);
 		menuLayoutFive_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_five);
 		menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
+		no_internet=(ImageView)findViewById(R.id.no_internet);
+		no_internet_text=(TextView)findViewById(R.id.no_internet_text) ;
+		profile_pic=(ImageView)findViewById(R.id.profile_picture_navigation);
+		imageLoader=new ImageLoader(getApplicationContext());
 		String fontPath = "fonts/arial.ttf";
 		Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
 		menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
@@ -113,6 +122,7 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
 		SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
 		namepref = prefs.getString("username", "null");
+		image_pref = prefs.getString("profile_image", "null");
 		menu_icon.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -126,11 +136,14 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 		if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
 			navigation_username.setText("Welcome "+"Guest");
 			navigation_username.setTypeface(tf);
+			profile_pic.setBackgroundResource(R.drawable.user_icon_female);
 		}else {
 			if (name.equals("null") || name.equals("")){
 				navigation_username.setText(Activity_Login.username);
+				imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic);
 			}else {
 				navigation_username.setText(namepref);
+				imageLoader.DisplayImage(image_pref,profile_pic);
 			}
 			navigation_username.setTypeface(tf);
 		}
@@ -145,6 +158,9 @@ public class SearchActivity extends ActionBarActivity implements View.OnClickLis
 			ProgressTask progressTask=new ProgressTask();
 			progressTask.execute();
 		}else {
+			no_internet.setBackgroundResource(R.drawable.no_internet_bg);
+			no_internet.setVisibility(View.VISIBLE);
+			no_internet_text.setVisibility(View.VISIBLE);
 			new SweetAlertDialog(SearchActivity.this, SweetAlertDialog.WARNING_TYPE)
 					.setTitleText("Please check your network")
 					.show();

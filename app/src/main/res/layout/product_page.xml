@@ -61,7 +61,26 @@
             android:textSize="20dp" />
     </FrameLayout>
 
-
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/no_internet"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/space_50"
+            android:layout_gravity="left|center_vertical" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/no_internet"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="@dimen/space_12"
+            android:id="@+id/no_internet_text"
+            android:layout_gravity="left|center_vertical" />
 
     <com.slidingimages.ExpandableHeightGridView
         android:id="@+id/gridView"

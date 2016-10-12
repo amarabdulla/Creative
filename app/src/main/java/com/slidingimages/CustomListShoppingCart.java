@@ -97,6 +97,7 @@ public class CustomListShoppingCart extends ArrayAdapter<String> {
                 ShoppingCart.product_names.remove(ShoppingCart.product_names.get(position));
                 ShoppingCart.purchase_prices.remove(ShoppingCart.purchase_prices.get(position));
                 ShoppingCart.product_images.remove(ShoppingCart.product_images.get(position));
+                ShoppingCart.qtyArray.remove(ShoppingCart.qtyArray.get(position));
 //                product_names.remove(product_names.get(position));
 //                purchase_prices.remove(purchase_prices.get(position));
 //                product_images.remove(product_images.get(position));

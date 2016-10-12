@@ -31,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.bumptech.glide.Glide;
 import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
@@ -55,6 +56,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
 //    private TextView tc,privacy,my_order;
     private static final String name = "name";
     String namepref;
+    private ImageLoader imageLoader;
     private AHBottomNavigation bottomNavigation;
     private FrameLayout menuLayoutOne,menuLayoutTwo,menuLayoutThree,menuLayoutFour,menuLayoutFive,menuLayoutSix;
     private TextView textViewPhone_txt,textViewEmail_txt,textViewCity_txt;
@@ -63,11 +65,14 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
     private CustomProgressDialog mCustomProgressDialog;
     String userid="2";
     private String url = "";
+    private ImageView profile_pic;
     public static final String KEY_USERID = "user_id";
     FloatingActionButton floatingActionButton;
     private TextView navigation_username,menuLayoutOne_header,menuLayoutTwo_header,menuLayoutThree_header,menuLayoutFour_header,menuLayoutFive_header,menuLayoutSix_header;
     private TextView textViewUsername;
-    private String username,surname,email,city,address1,address2,phone,zip;
+    private String username,surname,email,city,address1,address2,phone,zip,image;
+    private ImageView profile_pic_nav;
+    private String image_pref;
     ListView list;
     String[] menu_item = {
             "My Orders",
@@ -84,11 +89,15 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         setContentView(R.layout.button_test);
         final String[] colors = {"#a41c9a"};
         list=(ListView)findViewById(R.id.list);
+        profile_pic=(ImageView)findViewById(R.id.profile_pic);
         textViewUsername=(TextView)findViewById(R.id.username);
+        profile_pic_nav=(ImageView)findViewById(R.id.profile_picture_navigation);
         floatingActionButton=(FloatingActionButton)findViewById(R.id.fab);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         String name_pref= prefs.getString("username", "null");
         String userid_pref= prefs.getString("userid", "null");
+        image_pref = prefs.getString("profile_image", "null");
+        imageLoader = new ImageLoader(getApplicationContext());
         if (name_pref.equals("") || userid_pref.equals("")|| name_pref.equals("null")|| userid_pref.equals("null")){
             url = HomePage.FIRSTPART + "profileView?user_id=" + Activity_Login.userId;
         }else {
@@ -165,11 +174,14 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
+            profile_pic_nav.setBackgroundResource(R.drawable.user_icon_female);
         }else {
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
+                imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic_nav);
             }else {
                 navigation_username.setText(namepref);
+                imageLoader.DisplayImage(image_pref,profile_pic_nav);
             }
             navigation_username.setTypeface(tf);
         }
@@ -384,6 +396,7 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                                     username = jsonObjectUser.getString("firstname");
                                     surname = jsonObjectUser.getString("lastname");
                                     email = jsonObjectUser.getString("email");
+                                    image= jsonObjectUser.getString("profile_image");
                                     phone = jsonObjectUser.getString("phone");
                                     address1 = jsonObjectUser.getString("address1");
                                     address2 = jsonObjectUser.getString("address2");
@@ -399,6 +412,14 @@ public class ProfilePage extends ActionBarActivity implements View.OnClickListen
                                         textViewCity_txt.setText(city);
                                         textViewEmail_txt.setText(email);
                                         textViewPhone_txt.setText(phone);
+
+                                            imageLoader.DisplayImage(image, profile_pic);
+//                                            Glide.with(ProfilePage.this)
+//                                                    .load(image)
+//                                                    .placeholder(R.drawable.user_icon_female)
+//                                                    .error(R.drawable.user_icon_female)
+//                                                    .crossFade()
+//                                                    .into(profile_pic);
                                     }
                                 });
                             } catch (JSONException e) {

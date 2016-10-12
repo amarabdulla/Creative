@@ -73,6 +73,7 @@ public class ProductsDetailActivity extends Activity {
 				if (!ShoppingCart.product_names.isEmpty()){
 					Intent intent= new Intent(ProductsDetailActivity.this,ShoppingCart.class);
 					startActivity(intent);
+					ProductsDetailActivity.this.finish();
 				}else {
 					Intent intent= new Intent(ProductsDetailActivity.this,LoginEmptyCartActivity.class);
 					startActivity(intent);
@@ -204,6 +205,7 @@ public class ProductsDetailActivity extends Activity {
 						ShoppingCart.qtyArray.add(1);
 						badge_notification.setVisibility(View.VISIBLE);
 						badge_notification.setText(ShoppingCart.product_names.size()+"");
+
 
 						new SweetAlertDialog(ProductsDetailActivity.this, SweetAlertDialog.SUCCESS_TYPE)
 								.setTitleText("Added to Cart!")

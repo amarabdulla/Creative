@@ -4,12 +4,34 @@
     android:orientation="vertical"
     android:background="@drawable/gridview_bg"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@drawable/header"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/menu_icon"
+                android:layout_marginRight="@dimen/space_25"
+                android:layout_gravity="end"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_menu" />
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/space_5"
-        android:layout_marginBottom="@dimen/space_15"
+        android:layout_marginBottom="@dimen/space_8"
         android:id="@+id/welcome">
 
         <ImageView
@@ -23,14 +45,15 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:fillViewport="true"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="@dimen/space_20"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
 
@@ -40,15 +63,46 @@
 
         <Button
             android:id="@+id/btnShipping"
-            android:layout_width="335dp"
-            android:layout_height="42dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:layout_marginTop="10dip"
-            android:background="@android:color/holo_purple"
+            android:layout_marginTop="50dip"
+            android:background="@drawable/round_corner_button"
             android:text="@string/shipping_address"
-            android:textColor="@color/white" />
+            android:textColor="@color/white">
+        </Button>
 
-        <EditText
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
+
+            <TextView
+                android:id="@+id/constant_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_fname"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/fname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text"
+                android:textColor="#000000"
+                android:inputType="textCapWords"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+        <!--<EditText
             android:id="@+id/fname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -60,8 +114,38 @@
             android:singleLine="true"
             android:inputType="textCapWords"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
-        <EditText
+            android:textColorHint="@color/input_register_hint" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
+
+            <TextView
+                android:id="@+id/constant_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_lname"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text1"
+                android:textColor="#000000"
+                android:inputType="textCapWords"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+      <!--  <EditText
             android:id="@+id/lname"
             android:layout_width="fill_parent"
             android:layout_height="38dp"
@@ -72,9 +156,38 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColorHint="@color/input_register_hint" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
 
-        <EditText
+            <TextView
+                android:id="@+id/constant_text12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/phone"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text12"
+                android:textColor="#000000"
+                android:inputType="phone"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+       <!-- <EditText
             android:id="@+id/phone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -85,9 +198,39 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColorHint="@color/input_register_hint" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
 
-        <EditText
+            <TextView
+                android:id="@+id/constant_text123"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_address"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/address_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text123"
+                android:textColor="#000000"
+                android:inputType="textPostalAddress"
+                android:singleLine="true"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+       <!-- <EditText
             android:id="@+id/address_1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -98,9 +241,39 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColorHint="@color/input_register_hint" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
 
-        <EditText
+            <TextView
+                android:id="@+id/constant_text1223"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_address_2"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/address_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text1223"
+                android:textColor="#000000"
+                android:inputType="textPostalAddress"
+                android:singleLine="true"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+      <!--  <EditText
             android:id="@+id/address_2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -111,10 +284,40 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColorHint="@color/input_register_hint" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
+
+            <TextView
+                android:id="@+id/constant_text12223"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_city"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text12223"
+                android:textColor="#000000"
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
 
 
-        <EditText
+        </RelativeLayout>
+
+     <!--   <EditText
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,9 +327,39 @@
             android:singleLine="true"
             android:textColorHint="@color/input_register_hint"
             android:background="@android:color/white"
-            android:hint="@string/hint_city" />
+            android:hint="@string/hint_city" />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:drawable/editbox_background" >
 
-        <EditText
+            <TextView
+                android:id="@+id/constant_text122223"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold"
+                android:textColor="#C0C0C0"
+                android:text="@string/hint_zip"
+                android:background="@android:color/transparent" />
+
+            <EditText
+                android:id="@+id/zip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/constant_text122223"
+                android:textColor="#000000"
+                android:inputType="text|number"
+                android:singleLine="true"
+                android:background="@android:color/transparent"
+                android:paddingLeft="5dp"
+                android:text="" />
+
+
+        </RelativeLayout>
+       <!-- <EditText
             android:id="@+id/zip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -138,7 +371,7 @@
             android:singleLine="true"
             android:layout_marginTop="@dimen/space_10"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColorHint="@color/input_register_hint" />-->
 
 
             <TextView
@@ -146,23 +379,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/billing_address"
                 android:textSize="18sp"
+                android:layout_marginTop="@dimen/space_5"
                 android:textColor="@color/black"
-                android:background="#c5c5c5"
+                android:background="@drawable/round_corner_button_grey"
                 android:padding="10dp"
                 android:id="@+id/butto" />
 
 
-
-
-        <!-- Login Button -->
-
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="320dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="20dip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dip"
             android:gravity="center"
-            android:background="@android:color/holo_purple"
+            android:background="@drawable/round_corner_button"
             android:text="@string/next"
             android:textAlignment="center"
             android:textColor="@color/white" />

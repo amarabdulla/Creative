@@ -1,6 +1,9 @@
 package com.slidingimages;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +19,8 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Amar on 9/2/2016.
@@ -58,18 +63,17 @@ public class ShoppingCart extends Activity {
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#a41c9a"));
 
-        bottomNavigation.setAccentColor(Color.parseColor("#a41c9a"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#a41c9a"));
+        bottomNavigation.setAccentColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setInactiveColor(Color.parseColor("#FFFFFF"));
 
         //  Enables Reveal effect
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         bottomNavigation.setCurrentItem(3);
 
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position, boolean wasSelected) {
-                // Do something cool here...
                 switch (position) {
                     case 0:
                         Intent intent= new Intent(ShoppingCart.this,HomePage.class);
@@ -89,9 +93,13 @@ public class ShoppingCart extends Activity {
                     case 3:
                         break;
                     case 4:
-                        Intent intent4= new Intent(ShoppingCart.this,ProfilePage.class);
-                        startActivity(intent4);
-                        ShoppingCart.this.finish();
+                        if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
+                            initAlertDialog();
+                        }else {
+                            Intent intent4 = new Intent(ShoppingCart.this, ProfilePage.class);
+                            startActivity(intent4);
+                            ShoppingCart.this.finish();
+                        }
                         break;
                 }
 
@@ -142,7 +150,8 @@ public class ShoppingCart extends Activity {
         customListShoppingCart.setOnDataChangeListener(new CustomListShoppingCart.OnDataChangeListener(){
             public void onDataChanged(int size){
 //                Toast.makeText(getApplicationContext(),"Dtat change",Toast.LENGTH_SHORT).show();
-                total_quanity.setText(product_names.size()+"");
+
+                total_quanity.setText(total_qty()+"");
                 total.setText((int) total_sale_price()+" AED");
             }
         });
@@ -150,8 +159,14 @@ public class ShoppingCart extends Activity {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShoppingCart.this,ShippingPage.class);
-                startActivity(intent);
+                if (!ShoppingCart.product_names.isEmpty()) {
+                    Intent intent = new Intent(ShoppingCart.this, ShippingPage.class);
+                    startActivity(intent);
+                }else {
+                    new SweetAlertDialog(ShoppingCart.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("No items in your cart")
+                            .show();
+                }
             }
         });
         apply.setOnClickListener(new View.OnClickListener() {
@@ -177,5 +192,38 @@ public class ShoppingCart extends Activity {
             sum += (int)Double.parseDouble(purchase_prices.get(i))*qtyArray.get(i);
         }
         return sum;
+    }
+    public double total_qty()
+    {
+        Integer sum = 0;
+        for(int i = 0; i < qtyArray.size(); i++)
+        {
+            sum += Integer.parseInt(String.valueOf(qtyArray.get(i)));
+        }
+        return sum;
+    }
+    protected void initAlertDialog() {
+        Dialog alertDialog = new AlertDialog.Builder(this).
+                setTitle("Sign in required").
+                setMessage("To continue please sign in").
+                setIcon(R.drawable.ic_launcher).
+                setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String none = "none";
+                        Intent intent = new Intent(ShoppingCart.this,Activity_Login.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bottomNavigation.setCurrentItem(0);
+            }
+        }).create();
+
+        alertDialog.show();
+
     }
 }

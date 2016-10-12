@@ -41,6 +41,7 @@ public class Activity_Login extends Activity implements OnClickListener {
     private String result="null";
     public static String userId="null";
     public static String username="null";
+    public static String profile_image="null";
     private CustomProgressDialog mCustomProgressDialog;
 
     private static final String REGISTER_URL = HomePage.FIRSTPART+"login";
@@ -159,7 +160,7 @@ public class Activity_Login extends Activity implements OnClickListener {
                             @Override
                             public void onResponse(String response) {
 //                                result="success";
-                                Toast.makeText(Activity_Login.this,response,Toast.LENGTH_LONG).show();
+//                                Toast.makeText(Activity_Login.this,response,Toast.LENGTH_LONG).show();
                                 try {
                                     JSONObject mainObject = new JSONObject(response.toString());
                                     System.out.println(response.toString());
@@ -167,14 +168,17 @@ public class Activity_Login extends Activity implements OnClickListener {
 
                                      userId = mainObject.getString("user_id");
                                      username = mainObject.getString("name");
+                                     profile_image=mainObject.getString("profile_image");
+
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             if (result.equals("true")) {
-                                                Toast.makeText(Activity_Login.this, "successful", Toast.LENGTH_LONG).show();
+//                                                Toast.makeText(Activity_Login.this, "successful", Toast.LENGTH_LONG).show();
                                                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                                                 editor.putString("username", username);
                                                 editor.putString("userid", userId);
+                                                editor.putString("profile_image", profile_image);
                                                 editor.commit();
                                                 Intent intent = new Intent(Activity_Login.this, HomePage.class);
                                                 startActivity(intent);
@@ -193,7 +197,7 @@ public class Activity_Login extends Activity implements OnClickListener {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Activity_Login.this,error.toString(),Toast.LENGTH_LONG).show();
+//                                Toast.makeText(Activity_Login.this,error.toString(),Toast.LENGTH_LONG).show();
                               result="failed";
                                 runOnUiThread(new Runnable() {
                                     @Override

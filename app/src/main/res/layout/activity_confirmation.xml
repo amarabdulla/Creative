@@ -51,6 +51,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/order_placed"
+                        android:textStyle="bold"
                         android:layout_marginBottom="@dimen/space_5"
                         android:layout_marginTop="@dimen/space_10"
                         android:textColor="#a41c9a"
@@ -156,11 +157,23 @@
                         android:layout_width="wrap_content"
                         android:text="@string/check_email"
                         android:layout_marginTop="@dimen/space_10"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_color"
                         />
                 </TableRow>
                 </TableLayout>
+            <Button
+                android:id="@+id/home"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_corner_button"
+                android:padding="10dp"
+                android:text="@string/home"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
         <FrameLayout
             android:id="@+id/coordinator"

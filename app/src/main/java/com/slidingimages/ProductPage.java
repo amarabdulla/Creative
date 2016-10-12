@@ -1,10 +1,7 @@
 package com.slidingimages;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,8 +15,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -27,6 +22,7 @@ import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
+import com.bumptech.glide.Glide;
 import com.slidingimages.app.AppStatus;
 import com.slidingimages.cart.LoginEmptyCartActivity;
 import com.slidingimages.cart.LoginItemCartActivity;
@@ -76,6 +72,11 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private CustomProgressDialog mCustomProgressDialog;
+    ImageView no_internet;
+    TextView no_internet_text;
+    private ImageView profile_pic;
+    private String image_pref;
+    private ImageLoader imageLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,24 +96,44 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
         menuLayoutFour_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_four);
         menuLayoutFive_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_five);
         menuLayoutSix_header=(TextView) findViewById(R.id.navigation_drawer_items_textView_six);
+        no_internet=(ImageView)findViewById(R.id.no_internet);
+        no_internet_text=(TextView)findViewById(R.id.no_internet_text) ;
+        profile_pic=(ImageView)findViewById(R.id.profile_picture_navigation);
+        imageLoader=new ImageLoader(getApplicationContext());
         String fontPath = "fonts/arial.ttf";
         Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        menuLayoutOne_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutTwo_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutThree_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFour_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutFive_header.setTypeface(tf, Typeface.BOLD);
-        menuLayoutSix_header.setTypeface(tf, Typeface.BOLD);
+        menuLayoutOne_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutTwo_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutThree_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFour_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutFive_header.setTypeface(tf, Typeface.NORMAL);
+        menuLayoutSix_header.setTypeface(tf, Typeface.NORMAL);
         SharedPreferences prefs = getSharedPreferences(Activity_Login.MY_PREFS_NAME, MODE_PRIVATE);
         namepref = prefs.getString("username", "null");
+        image_pref = prefs.getString("profile_image", "null");
         if (Activity_Login.username.equals("") || Activity_Login.username.equals("temp")){
             navigation_username.setText("Welcome "+"Guest");
             navigation_username.setTypeface(tf);
+            profile_pic.setBackgroundResource(R.drawable.user_icon_female);
         }else {
             if (name.equals("null") || name.equals("")){
                 navigation_username.setText(Activity_Login.username);
+                imageLoader.DisplayImage(Activity_Login.profile_image,profile_pic);
+//                Glide.with(ProductPage.this)
+//                        .load(Activity_Login.profile_image)
+//                        .placeholder(R.drawable.user_icon_female)
+//                        .error(R.drawable.user_icon_female)
+//                        .crossFade()
+//                        .into(profile_pic);
             }else {
                 navigation_username.setText(namepref);
+                imageLoader.DisplayImage(image_pref,profile_pic);
+//                Glide.with(ProductPage.this)
+//                        .load(image_pref)
+//                        .placeholder(R.drawable.user_icon_female)
+//                        .error(R.drawable.user_icon_female)
+//                        .crossFade()
+//                        .into(profile_pic);
             }
             navigation_username.setTypeface(tf);
         }
@@ -186,6 +207,9 @@ public class ProductPage extends ActionBarActivity implements View.OnClickListen
             ProgressTask progressTask=new ProgressTask();
             progressTask.execute();
         }else {
+            no_internet.setBackgroundResource(R.drawable.no_internet_bg);
+            no_internet.setVisibility(View.VISIBLE);
+            no_internet_text.setVisibility(View.VISIBLE);
             new SweetAlertDialog(ProductPage.this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("Please check your network")
                     .show();

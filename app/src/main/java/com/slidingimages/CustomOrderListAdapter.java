@@ -114,7 +114,7 @@ public class CustomOrderListAdapter  extends BaseAdapter {
         else
         {
             holder.product_name.setText(title.get(position) );
-            holder.designer_name.setText( "Price- "+companyArray.get(position)+" AED" );
+            holder.designer_name.setText( "Price- "+companyArray.get(position)+"" );
 //            holder.textWide.setText( emailArray.get(position) );
             holder.textAddress.setText( "Order ID- "+addressArray.get(position) );
             imageLoader.DisplayImage(images.get(position), holder.image);

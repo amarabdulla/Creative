@@ -118,7 +118,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginLeft="@dimen/space_10"
-                android:id="@+id/navigation_drawer_user_account_picture_profile"
+                android:id="@+id/profile_pic"
                 android:layout_width="94dp"
                 android:layout_height="94dp"
                 android:src="@drawable/user_icon_female"
