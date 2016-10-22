@@ -121,7 +121,7 @@
                 android:layout_marginBottom="@dimen/space_12"
                 android:id="@+id/no_internet_text"
                 android:layout_gravity="left|center_vertical" />
-            <com.slidingimages.ExpandableHeightGridView
+            <com.mazyoona.ExpandableHeightGridView
                 android:id="@+id/gridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,10 +136,11 @@
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dp">
 
-            </com.slidingimages.ExpandableHeightGridView>
+            </com.mazyoona.ExpandableHeightGridView>
 
         </LinearLayout>
     </ScrollView>
+
 
     <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/coordinator"
@@ -154,10 +155,8 @@
             android:layout_gravity="bottom"
             />
 
-
-
-
     </FrameLayout>
+
 
 
     <include layout="@layout/navigation_drawer" />

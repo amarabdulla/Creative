@@ -24,7 +24,7 @@ public class BouncyEditText extends EditText {
 
 
 
-    private int hintColor=Color.parseColor("#FFFFFF");
+    private int hintColor=Color.parseColor("#C0C0C0");
     private Paint paint;
     private Status status= Status.ANIMATION_NONE;
 

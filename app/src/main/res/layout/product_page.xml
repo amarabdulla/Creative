@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="end"
     tools:context=".ProductPage">
 
 
@@ -43,9 +42,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <FrameLayout
+  <!--  <RelativeLayout
         android:id="@+id/lll"
         android:layout_width="fill_parent"
+
         android:layout_height="wrap_content" >
 
         <TextView
@@ -55,11 +55,12 @@
             android:gravity="center"
             android:paddingLeft="@dimen/space_5"
             android:text="@string/products"
+
             android:layout_marginBottom="@dimen/space_5"
             android:layout_marginTop="@dimen/space_70"
             android:textColor="#a41c9a"
             android:textSize="20dp" />
-    </FrameLayout>
+    </RelativeLayout>-->
 
         <ImageView
             android:layout_width="250dp"
@@ -82,11 +83,12 @@
             android:id="@+id/no_internet_text"
             android:layout_gravity="left|center_vertical" />
 
-    <com.slidingimages.ExpandableHeightGridView
+    <com.mazyoona.ExpandableHeightGridView
         android:id="@+id/gridView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="@dimen/space_15"
+        android:background="@drawable/gridview_bg_new"
         android:paddingLeft="@dimen/space_15"
         android:layout_marginBottom="@dimen/space_50"
         android:columnWidth="190dp"
@@ -98,7 +100,7 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp">
 
-    </com.slidingimages.ExpandableHeightGridView>
+    </com.mazyoona.ExpandableHeightGridView>
 
         </LinearLayout>
     </ScrollView>

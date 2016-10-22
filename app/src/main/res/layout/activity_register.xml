@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/splash"
+    android:background="@drawable/reg_bg"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="10dp" >
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,58 +17,37 @@
         android:paddingRight="20dp" >
 
         <com.mingle.BouncyEditText
-            android:id="@+id/name"
-            android:layout_width="fill_parent"
-            android:layout_height="65dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext_bg"
-            android:hint="@string/hint_fname"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:inputType="textCapWords"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-
-
-        <com.mingle.BouncyEditText
             android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="65dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edittext_bg"
+            android:drawableLeft="@drawable/email_icon_new"
             android:hint="@string/hint_email"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="18sp"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:singleLine="true"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="#C0C0C0" />
+
+
 
         <com.mingle.BouncyEditText
-            android:id="@+id/phone"
+            android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="65dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edittext_bg"
-            android:hint="@string/hint_phone"
-            android:inputType="phone"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <com.mingle.BouncyEditText
-            android:id="@+id/city"
-            android:layout_width="fill_parent"
-            android:layout_height="65dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext_bg"
-            android:hint="@string/hint_city"
+            android:drawableLeft="@drawable/user_login_icon"
+            android:paddingRight="@dimen/space_2"
+            android:hint="@string/hint_fname"
             android:inputType="textCapWords"
             android:padding="10dp"
             android:singleLine="true"
+            android:textSize="18sp"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="#C0C0C0" />
 
         <com.mingle.BouncyEditText
             android:id="@+id/password"
@@ -75,19 +55,54 @@
             android:layout_height="65dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edittext_bg"
+            android:paddingRight="@dimen/space_2"
+            android:drawableLeft="@drawable/password_login_icon"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
+            android:textSize="18sp"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="#C0C0C0" />
+
+        <com.mingle.BouncyEditText
+            android:id="@+id/city"
+            android:layout_width="fill_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="@dimen/space_2"
+            android:background="@drawable/edittext_bg"
+            android:hint="@string/hint_city"
+            android:drawableLeft="@drawable/city_icon"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textColorHint="#C0C0C0" />
+
+        <com.mingle.BouncyEditText
+            android:id="@+id/phone"
+            android:layout_width="fill_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="@dimen/space_2"
+            android:background="@drawable/edittext_bg"
+            android:hint="@string/hint_phone"
+            android:inputType="phone"
+            android:drawableLeft="@drawable/phone_icon"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textColorHint="#C0C0C0" />
 
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:background="#7a1572"
+            android:background="@color/text_color"
             android:layout_marginTop="20dip"
             android:textSize="20sp"
             android:text="@string/create_account"
@@ -96,5 +111,4 @@
 
 
     </LinearLayout>
-
 </LinearLayout>

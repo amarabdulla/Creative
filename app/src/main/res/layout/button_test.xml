@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="end"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -162,7 +162,7 @@
         android:background="@color/text_color"
         android:clickable="true"
         app:backgroundTint="#b02d90"
-        android:src="@drawable/log_off"
+        android:src="@drawable/logoff_btn"
         app:layout_anchor="@id/navigation_drawer_account_section"
         app:layout_anchorGravity="bottom|right|end"/>
     <FrameLayout

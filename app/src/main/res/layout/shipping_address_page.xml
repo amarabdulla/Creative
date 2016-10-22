@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_DrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShippingPage">
+<LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gridview_bg"
@@ -94,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="textCapWords"
                 android:background="@android:color/transparent"
                 android:paddingLeft="5dp"
@@ -102,19 +107,7 @@
 
 
         </RelativeLayout>
-        <!--<EditText
-            android:id="@+id/fname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_fname"
-            android:layout_marginTop="@dimen/space_5"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:inputType="textCapWords"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -137,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text1"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="textCapWords"
                 android:background="@android:color/transparent"
                 android:paddingLeft="5dp"
@@ -145,18 +138,7 @@
 
 
         </RelativeLayout>
-      <!--  <EditText
-            android:id="@+id/lname"
-            android:layout_width="fill_parent"
-            android:layout_height="38dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_lname"
-            android:inputType="textCapWords"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -179,7 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text12"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="phone"
                 android:background="@android:color/transparent"
                 android:paddingLeft="5dp"
@@ -187,18 +169,7 @@
 
 
         </RelativeLayout>
-       <!-- <EditText
-            android:id="@+id/phone"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/phone"
-            android:inputType="textCapWords"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -221,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text123"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="textPostalAddress"
                 android:singleLine="true"
                 android:background="@android:color/transparent"
@@ -230,18 +201,7 @@
 
 
         </RelativeLayout>
-       <!-- <EditText
-            android:id="@+id/address_1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_address"
-            android:inputType="textCapWords"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -264,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text1223"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="textPostalAddress"
                 android:singleLine="true"
                 android:background="@android:color/transparent"
@@ -273,18 +233,7 @@
 
 
         </RelativeLayout>
-      <!--  <EditText
-            android:id="@+id/address_2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_address_2"
-            android:inputType="textPostalAddress"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -307,7 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text12223"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="textCapWords"
                 android:singleLine="true"
                 android:background="@android:color/transparent"
@@ -317,17 +266,7 @@
 
         </RelativeLayout>
 
-     <!--   <EditText
-            android:id="@+id/city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textColor="@color/input_register"
-            android:layout_marginBottom="10dp"
-            android:singleLine="true"
-            android:textColorHint="@color/input_register_hint"
-            android:background="@android:color/white"
-            android:hint="@string/hint_city" />-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -350,7 +289,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/constant_text122223"
-                android:textColor="#000000"
+                android:textColor="@color/black_alpha_50"
                 android:inputType="text|number"
                 android:singleLine="true"
                 android:background="@android:color/transparent"
@@ -359,19 +298,6 @@
 
 
         </RelativeLayout>
-       <!-- <EditText
-            android:id="@+id/zip"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:hint="@string/hint_zip"
-            android:inputType="text|number"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:layout_marginTop="@dimen/space_10"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />-->
 
 
             <TextView
@@ -403,3 +329,5 @@
     </ScrollView>
 
 </LinearLayout>
+    <include layout="@layout/navigation_drawer" />
+</android.support.v4.widget.DrawerLayout>

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="end"
     tools:context=".ProductPage">
 
     <LinearLayout
@@ -33,7 +32,7 @@
                     android:layout_gravity="end"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_drawer" />
+                    android:src="@drawable/ic_menu" />
             </android.support.v7.widget.Toolbar>
         </LinearLayout>
 
@@ -54,7 +53,20 @@
                 android:textSize="22dp" />
         </LinearLayout>
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/no_product"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/space_30"
+            android:textColor="@color/text_color"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="@dimen/space_12"
+            android:id="@+id/no_product_text"
+            android:layout_gravity="left|center_vertical" />
 
         <GridView
             android:id="@+id/gridView"

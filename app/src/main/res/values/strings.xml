@@ -21,7 +21,7 @@
     <string name="slide_4_title">Kaftan</string>
     <string name="slide_4_desc">Kaftan is a collection of casual,comfortable,versatile lifestyle dressing that is effortlessly stylish made from quality fabrics in gorgeous bright colours and parts elevating and energizing your spirit</string>
 
-    <string name="slide_5_title">DRESSES</string>
+    <string name="slide_5_title">ACCESSORIES</string>
     <string name="slide_5_desc">Dubai and UAE have varying degrees of tolerance for clothing styles from across the world.Nevertheless, dress code in Dubai is quite liberal</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
@@ -32,7 +32,7 @@
     <string name="check_out">Check Out</string>
     <string name="hint_email">Email</string>
     <string name="hint_address">Address</string>
-    <string name="hint_address_2">Address 2 (Optional) </string>
+    <string name="hint_address_2">Address 2</string>
     <string name="hint_password">Password</string>
     <string name="hint_country">Country</string>
     <string name="hint_state">State</string>
@@ -63,7 +63,9 @@
     <string name="product_desc">Product Descrption</string>
     <string name="browse_by_category">Browse By Category</string>
     <string name="featured_product">Featured Products</string>
+    <string name="no_search_result">No search result found</string>
     <string name="no_internet">Please check your internet and try again</string>
+    <string name="no_product">Uh Oh! No Products here..</string>
     <string name="start_shopping">START SHOPPING</string>
     <string name="see_all">See All</string>
     <string name="buy_now">Buy Now</string>
@@ -71,6 +73,7 @@
     <string name="billing_address">Billing Address</string>
     <string name="address_you_entered"> ADDERESS YOU ENTERED</string>
     <string name="choose_deilvery_mode"> Choose Deilvery Mode</string>
+    <string name="choose_payment_mode"> Choose Payment Mode</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="total_quanity">Total Quanity</string>
     <string name="merchandise_total">Merchandise Total</string>
@@ -78,6 +81,7 @@
     <string name="shipping">Shipping</string>
     <string name="check_email">Please check your email for more details</string>
     <string name="tax">Tax</string>
+    <string name="additional_charge">Additional Charge</string>
     <string name="grand_total">Grand Total</string>
     <string name="product_lowcase">Products</string>
     <string name="my_profile">My Profile</string>
@@ -130,6 +134,7 @@
     <string name="tools_text_account_information_email">user@mail.com</string>
     <string name="about_us">About Us</string>
     <string name="contact_us">Contact Us</string>
+    <string name="powered_by">Powered by</string>
     <string name="faq">FAQ</string>
     <string name="home">Home</string>
     <string name="search">Search</string>

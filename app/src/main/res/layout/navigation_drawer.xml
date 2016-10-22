@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.slidingimages.customViews.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mazyoona.customViews.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_navigation_drawer_rootLayout"
     style="@style/ScrimInsetsLayout"
@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".HomePage">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,8 +23,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-               >
+                android:layout_height="match_parent">
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/navigation_drawer_user_account_picture_cover"
@@ -39,8 +38,8 @@
             <RelativeLayout
                 android:id="@+id/navigation_drawer_account_section"
                 android:layout_width="match_parent"
-                android:gravity="left"
                 android:layout_height="match_parent"
+                android:gravity="left"
                 android:paddingBottom="@dimen/nav_drawer_vertical_spacing_listing"
                 android:paddingEnd="@dimen/nav_drawer_vertical_keyline_right"
                 android:paddingLeft="@dimen/nav_drawer_vertical_keyline_icon_left"
@@ -58,10 +57,10 @@
                     <TextView
                         android:id="@+id/navigation_drawer_account_information_display_name"
                         style="@style/NavDrawerAccountInfoText"
-                        android:text="@string/tools_text_account_information_username"
                         android:layout_marginLeft="@dimen/space_5"
                         android:layout_marginTop="@dimen/space_5"
-                        tools:fontFamily="sans-serif-medium"/>
+                        android:text="@string/tools_text_account_information_username"
+                        tools:fontFamily="sans-serif-medium" />
 
                 </LinearLayout>
 
@@ -69,10 +68,9 @@
                     android:id="@+id/profile_picture_navigation"
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
-                    android:layout_marginLeft="@dimen/space_18"
-                    android:layout_marginBottom="-35dp"
                     android:layout_above="@id/navigation_drawer_account_information"
-                    />
+                    android:layout_marginBottom="-35dp"
+                    android:layout_marginLeft="@dimen/space_18" />
 
             </RelativeLayout>
 
@@ -81,79 +79,101 @@
         <!-- Drawer items -->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/navigation_drawer_background"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/nav_drawer_vertical_spacing_listing"
-            android:paddingTop="@dimen/nav_drawer_vertical_spacing_listing">
+            android:paddingTop="@dimen/nav_drawer_vertical_spacing_listing"
+            android:layout_below="@+id/navigation_drawer_account_view"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/scrollView">
 
             <LinearLayout
                 android:id="@+id/navigation_drawer_linearLayout_entries_root_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <FrameLayout
                     android:id="@+id/navigation_drawer_items_list_linearLayout_one"
                     style="@style/NavDrawerRowLayout.Main">
 
-                   <!-- <com.slidingimages.customViews.TintOnStateImageView
-                        android:id="@+id/navigation_drawer_items_list_icon_home"
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_home_white_24dp"
-                        tools:ignore="ContentDescription"
-                        tools:tint="@color/nav_drawer_item_icon_selected" />-->
+                    <!-- <com.slidingimages.customViews.TintOnStateImageView
+                         android:id="@+id/navigation_drawer_items_list_icon_home"
+                         style="@style/NavDrawerRowItemIcon"
+                         android:src="@drawable/ic_home_white_24dp"
+                         tools:ignore="ContentDescription"
+                         tools:tint="@color/nav_drawer_item_icon_selected" />-->
 
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_one"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/designer_list"
-                        android:layout_marginLeft="@dimen/space_40"
-                        tools:fontFamily="sans-serif-medium"
-                        />
+                        tools:fontFamily="sans-serif-medium" />
 
-
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/designerlist_icon" />
 
 
                 </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/navigation_drawer_items_list_linearLayout_two"
-                    style="@style/NavDrawerRowLayout.Main" >
+                    style="@style/NavDrawerRowLayout.Main">
 
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/percentage" />
 
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_two"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/special_offer"
-                        android:layout_marginLeft="@dimen/space_40"
-                        tools:fontFamily="sans-serif-medium"/>
+                        tools:fontFamily="sans-serif-medium" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
 
                 </FrameLayout>
 
-             <!--   <include
-                    layout="@layout/navigation_drawer_divider"/>-->
+                <!--   <include
+                       layout="@layout/navigation_drawer_divider"/>-->
 
                 <FrameLayout
                     android:id="@+id/navigation_drawer_items_list_linearLayout_three"
                     style="@style/NavDrawerRowLayout.Secondary">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
 
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/shopping_cart_icon_navigation" />
 
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_help_and_three"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/shopping_cart"
-                        android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>
@@ -162,16 +182,24 @@
                     android:id="@+id/navigation_drawer_items_list_linearLayout_four"
                     style="@style/NavDrawerRowLayout.Secondary">
 
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/faq_icon" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
+
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_four"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/faq"
-                        android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>
@@ -180,21 +208,30 @@
                     android:id="@+id/navigation_drawer_items_list_linearLayout_five"
                     style="@style/NavDrawerRowLayout.Secondary">
 
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/about_us_icon" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
+
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_five"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/about_us"
-                        android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
 
                 </FrameLayout>
 
@@ -202,33 +239,52 @@
                     android:id="@+id/navigation_drawer_items_list_linearLayout_six"
                     style="@style/NavDrawerRowLayout.Secondary">
 
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="@dimen/space_25"
+                        android:background="@drawable/contactus_icon" />
 
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_six"
                         style="@style/NavDrawerRowItemText"
+                        android:layout_marginLeft="@dimen/space_56"
                         android:text="@string/contact_us"
-                        android:layout_marginLeft="@dimen/space_40"
                         tools:fontFamily="sans-serif-medium" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_btn_bg_color"/>
+                        android:background="@color/gray_btn_bg_color" />
 
                 </FrameLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="85dp"
-                    android:background="@drawable/creative_logo"
-                    android:id="@+id/imageView2" />
+                    >
 
 
+                </RelativeLayout>
             </LinearLayout>
 
         </ScrollView>
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="220dp"
+            android:layout_height="25dp"
+            android:background="@drawable/powered_by_creative"
+            android:layout_alignBottom="@+id/scrollView"
+            android:layout_centerHorizontal="true" />
 
-    </LinearLayout>
 
-</com.slidingimages.customViews.ScrimInsetsFrameLayout>
+    </RelativeLayout>
+
+</com.mazyoona.customViews.ScrimInsetsFrameLayout>

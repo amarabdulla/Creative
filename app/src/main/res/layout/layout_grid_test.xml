@@ -10,8 +10,7 @@
         android:layout_marginBottom="@dimen/space_15"
         android:orientation="vertical">
 
-        // this is your first layout to put the big image
-        // use src or backgroud image as per requirement
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,9 +76,11 @@
 
             <TextView
                 android:id="@+id/discount"
-                android:layout_width="56dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
                 android:text="abcdddd"
+                android:singleLine="true"
+                android:padding="@dimen/space_3"
                 android:background="@color/text_color"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
